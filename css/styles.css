@@ -1,0 +1,115 @@
+:root {
+    color: var(--txt-color-primary);
+    --txt-color-primary: #36393a;
+    --txt-color-secondary: #3d4041;
+    --txt-color-tertiary: #797d7e;
+    --border-color-primary: #eee;
+    --border-primary: 1px solid var(--border-color-primary);
+    --shadow-color-primary: #0002;
+    --shadow-primary: 0 8px 24px var(--shadow-color-primary);
+}
+
+.container {
+    max-width: 640px;
+    margin: 36px auto;
+    user-select: none;
+}
+
+.container>.hero, .container>.section-title, .container>footer {
+    margin: 0 20px;
+}
+
+.container>.hero {
+    margin-top: 36px;
+    margin-bottom: 36px;
+    padding: 96px 0;
+}
+
+.container>.hero>h3 {
+    font-size: 24px;
+    color: var(--txt-color-tertiary);
+}
+
+.container>.hero>h1 {
+    font-size: 48px;
+}
+
+.container>.hero>p {
+    font-size: 20px;
+    color: var(--txt-color-secondary);
+    font-weight: 500;
+}
+
+.container>.section-title {
+    text-align: center;
+}
+
+.container>.section-title::before {
+    content: '';
+    position: relative;
+    display: block;
+    top: 14px;
+    width: 100%;
+    height: 1px;
+    background-image: linear-gradient( 90deg, var(--border-color-primary), transparent, var(--border-color-primary));
+}
+
+.container>.card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 16px 8px;
+    padding: 6px;
+}
+
+.container>.card-grid>.card {
+    border: var(--border-primary);
+    border-radius: 6px;
+    margin: 6px;
+    padding: 12px;
+    color: var(--txt-color-primary);
+    text-decoration: none;
+    transition-property: box-shadow;
+    transition-duration: 0.2s;
+}
+
+.container>.card-grid>.card:hover, .container>.card-grid>.card:focus-visible {
+    box-shadow: var(--shadow-primary);
+}
+
+.container>.card-grid>.card>* {
+    margin: 0;
+}
+
+.container>.card-grid>.card>h1 {
+    margin-bottom: 8px;
+    height: 40px;
+}
+
+.container>.card-grid>.card>h1>img {
+    height: 40px;
+    fill: var(--txt-color-primary);
+}
+
+.container>.card-grid>.card>p {
+    color: var(--txt-color-secondary);
+}
+
+.container>footer>* {
+    margin: 4px 0;
+    font-size: 14px;
+}
+
+.container>footer>.copyright {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--txt-color-secondary);
+    margin-bottom: 8px;
+}
+
+.container>footer>.powered-by>svg {
+    transform: translateY(1px);
+}
+
+.container>footer>.description, .container>footer>.powered-by {
+    color: var(--txt-color-tertiary);
+}
