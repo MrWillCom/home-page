@@ -1,5 +1,8 @@
 :root {
+    background-color: var(--bg-color-primary);
     color: var(--txt-color-primary);
+    font-family: 'SF Pro Rounded', -apple-system, 'Segoe UI', 'Roboto', 'Helvetica', sans-serif;
+    --bg-color-primary: #fff;
     --txt-color-primary: #36393a;
     --txt-color-secondary: #3d4041;
     --txt-color-tertiary: #797d7e;
@@ -7,6 +10,19 @@
     --border-primary: 1px solid var(--border-color-primary);
     --shadow-color-primary: #0002;
     --shadow-primary: 0 8px 24px var(--shadow-color-primary);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color-primary: #181818;
+        --txt-color-primary: #e9f1f3;
+        --txt-color-secondary: #c4cccf;
+        --txt-color-tertiary: #9ea4a5;
+        --border-color-primary: #262626;
+        --border-primary: 1px solid var(--border-color-primary);
+        --shadow-color-primary: #0004;
+        --shadow-primary: 0 8px 24px var(--shadow-color-primary);
+    }
 }
 
 .container {
@@ -23,6 +39,8 @@
     margin-top: 36px;
     margin-bottom: 36px;
     padding: 96px 0;
+    transform: translateY(calc(var(--body-scroll-top-px) * -0.5)) scale(calc(1 - var(--body-scroll-top-1) * 0.2));
+    opacity: calc(1 - var(--body-scroll-top-1));
 }
 
 .container>.hero>h3 {
@@ -31,7 +49,7 @@
 }
 
 .container>.hero>h1 {
-    font-size: 48px;
+    font-size: 56px;
 }
 
 .container>.hero>p {
@@ -68,12 +86,13 @@
     padding: 12px;
     color: var(--txt-color-primary);
     text-decoration: none;
-    transition-property: box-shadow;
+    transition-property: box-shadow, border-color;
     transition-duration: 0.2s;
 }
 
 .container>.card-grid>.card:hover, .container>.card-grid>.card:focus-visible {
     box-shadow: var(--shadow-primary);
+    border-color: transparent;
 }
 
 .container>.card-grid>.card>* {
@@ -92,6 +111,12 @@
 
 .container>.card-grid>.card>p {
     color: var(--txt-color-secondary);
+}
+
+.container>footer {
+    margin-top: 56px;
+    opacity: var(--body-scroll-top-1);
+    transform: translateY(calc((1 - var(--body-scroll-top-1)) * 56px));
 }
 
 .container>footer>* {
