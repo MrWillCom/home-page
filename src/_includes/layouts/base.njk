@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>{{ title }}</title>
+  <link rel="icon" href="/favicon.svg">
+  {% for stylesheet in stylesheets %}
+  <link rel="stylesheet" href="{{ stylesheet }}">
+  {% endfor %}
+</head>
+<body>
+  <article class="markdown-body">
+    {{ content | safe }}
+  </article>
+  <div id="dynamic-background"></div>
+  {% for script in scripts %}
+  <script src="{{ script }}"></script>
+  {% endfor %}
+</body>
+</html>
