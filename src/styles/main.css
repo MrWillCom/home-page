@@ -26,7 +26,7 @@ body {
   background-image: radial-gradient(var(--color), transparent);
   border-radius: var(--radius);
   opacity: 0;
-  animation: spot-animation var(--duration), spot-fade var(--duration);
+  animation: spot-animation var(--duration) linear, spot-fade var(--duration) linear;
 }
 
 @keyframes spot-animation {

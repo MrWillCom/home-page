@@ -36,18 +36,23 @@ ScrollReveal({
   class Spot {
     constructor() {
       this.color = getRandomColor()
-      this.from = {
-        x: Math.floor(Math.random() * (window.innerWidth + 1)),
-        y: Math.floor(Math.random() * (window.innerHeight + 1)),
+      
+      this.distance = 0
+      while (this.distance < 500) {
+        this.from = {
+          x: Math.floor(Math.random() * (window.innerWidth + 1)),
+          y: Math.floor(Math.random() * (window.innerHeight + 1)),
+        }
+        this.to = {
+          x: Math.floor(Math.random() * (window.innerWidth + 1)),
+          y: Math.floor(Math.random() * (window.innerHeight + 1)),
+        }
+        this.distance = Math.sqrt(
+          Math.pow(this.from.x - this.to.x, 2) + Math.pow(this.from.y - this.to.y, 2)
+        )
       }
-      this.to = {
-        x: Math.floor(Math.random() * (window.innerWidth + 1)),
-        y: Math.floor(Math.random() * (window.innerHeight + 1)),
-      }
-      this.distance = Math.sqrt(
-        Math.pow(this.from.x - this.to.x, 2) + Math.pow(this.from.y - this.to.y, 2)
-      )
-      this.duration = Math.floor(this.distance * 10)
+
+      this.duration = Math.floor(this.distance * 20)
 
       this.el = document.createElement('div')
       this.el.classList.add('spot')
