@@ -15,6 +15,17 @@ I'm <span class="highlight">Mr. Will</span>, a frontend hobbyist.
 
 ---
 
+## 🗺️ Site Map
+
+|                                                |                            |
+| ---------------------------------------------- | -------------------------- |
+| <span class="highlight text-center">Me</span>  |                            |
+| [Blog](https://blog.mrwillcom.com/)            | `blog.mrwillcom.com`       |
+| <span class="highlight">Projects</span>        |                            |
+| [Theme Cupertino Docs](https://cupertino.mrwillcom.com/)      | `cupertino.mrwillcom.com`    |
+| [RSA CLI](https://rsa-cli.mrwillcom.com/)      | `rsa-cli.mrwillcom.com`    |
+| [A Calendar](http://a-calendar.mrwillcom.com/) | `a-calendar.mrwillcom.com` |
+
 ## 🔗 Links
 
 |                                           |                           |
@@ -52,16 +63,6 @@ I'm learning:
 | [Patreon](https://www.patreon.com/MrWillCom) | `@MrWillCom`                                 |
 | Bitcoin                                      | `bc1qd8w0qdjdj8gy6nr4cwvfywsv7w7ysqzwdf7sm5` |
 | Ethereum                                     | `0x44Baea5016C461aA838ff9B369A60246A9a540Eb` |
-
-## 🗺️ Site Map
-
-|                                                |                            |
-| ---------------------------------------------- | -------------------------- |
-| <span class="highlight text-center">Me</span>  |                            |
-| [Blog](https://blog.mrwillcom.com/)            | `blog.mrwillcom.com`       |
-| <span class="highlight">Projects</span>        |                            |
-| [RSA CLI](https://rsa-cli.mrwillcom.com/)      | `rsa-cli.mrwillcom.com`    |
-| [A Calendar](http://a-calendar.mrwillcom.com/) | `a-calendar.mrwillcom.com` |
 
 ---
 
