@@ -17,14 +17,14 @@ I'm <span class="highlight">Mr. Will</span>, a frontend hobbyist.
 
 ## 🗺️ Site Map
 
-|                                                |                            |
-| ---------------------------------------------- | -------------------------- |
-| <span class="highlight text-center">Me</span>  |                            |
-| [Blog](https://blog.mrwillcom.com/)            | `blog.mrwillcom.com`       |
-| <span class="highlight">Projects</span>        |                            |
-| [Theme Cupertino Docs](https://cupertino.mrwillcom.com/)      | `cupertino.mrwillcom.com`    |
-| [RSA CLI](https://rsa-cli.mrwillcom.com/)      | `rsa-cli.mrwillcom.com`    |
-| [A Calendar](http://a-calendar.mrwillcom.com/) | `a-calendar.mrwillcom.com` |
+|                                                          |                            |
+| -------------------------------------------------------- | -------------------------- |
+| <span class="highlight text-center">Me</span>            |                            |
+| [Blog](https://blog.mrwillcom.com/)                      | `blog.mrwillcom.com`       |
+| <span class="highlight">Projects</span>                  |                            |
+| [Theme Cupertino Docs](https://cupertino.mrwillcom.com/) | `cupertino.mrwillcom.com`  |
+| [RSA CLI](https://rsa-cli.mrwillcom.com/)                | `rsa-cli.mrwillcom.com`    |
+| [A Calendar](http://a-calendar.mrwillcom.com/)           | `a-calendar.mrwillcom.com` |
 
 ## 🔗 Links
 
@@ -53,7 +53,7 @@ I'm learning:
 ## 💻 OS
 
 - Windows 11
-- macOS Monterey
+- macOS Ventura
 - Android 11
 
 ## ✌️ Sponsor
