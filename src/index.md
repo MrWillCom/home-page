@@ -32,7 +32,7 @@ I'm <span class="highlight">Mr. Will</span>, a frontend hobbyist.
 | ----------------------------------------- | ------------------------- |
 | [Email](mailto:mr.will.com@outlook.com)   | `mr.will.com@outlook.com` |
 | [GitHub](https://github.com/MrWillCom)    | `@MrWillCom`              |
-| [Mastodon](https://noc.social/@MrWillCom) | `@MrWillCom@noc.social`   |
+| <a rel="me" href="https://noc.social/@MrWillCom">Mastodon</a> | `@MrWillCom@noc.social`   |
 | [CodePen](https://codepen.io/mrwillcom)   | `@mrwillcom`              |
 
 ## ⚙️ Skills
