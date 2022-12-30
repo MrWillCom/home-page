@@ -17,23 +17,25 @@ I'm <span class="highlight">Mr. Will</span>, a frontend hobbyist.
 
 ## 🗺️ Site Map
 
-|                                                          |                            |
-| -------------------------------------------------------- | -------------------------- |
-| <span class="highlight text-center">Me</span>            |                            |
-| [Blog](https://blog.mrwillcom.com/)                      | `blog.mrwillcom.com`       |
-| <span class="highlight">Projects</span>                  |                            |
-| [Theme Cupertino Docs](https://cupertino.mrwillcom.com/) | `cupertino.mrwillcom.com`  |
-| [RSA CLI](https://rsa-cli.mrwillcom.com/)                | `rsa-cli.mrwillcom.com`    |
-| [A Calendar](http://a-calendar.mrwillcom.com/)           | `a-calendar.mrwillcom.com` |
+|                                                          |                                                                                             |                            |
+| -------------------------------------------------------- | ------------------------------------------------------------------------------------------- | -------------------------- |
+| <small class="highlight text-center">Me</small>          |                                                                                             |                            |
+| [Blog](https://blog.mrwillcom.com/)                      | <small>Where I express my thoughts and some updates.</small>                                | `blog.mrwillcom.com`       |
+| <small class="highlight">Projects</small>                |                                                                                             |                            |
+| [Theme Cupertino Docs](https://cupertino.mrwillcom.com/) | <small>The theme powers my blog.</small>                                                    | `cupertino.mrwillcom.com`  |
+| [ChemWiki](https://chemwiki.mrwillcom.com/)              | <small>Well-organized and detailed Chemistry notes for senior high school students.</small> | `chemwiki.mrwillcom.com`   |
+| [RSA CLI](https://rsa-cli.mrwillcom.com/)                | <small>A command-line tool for RSA en/decryption.</small>                                   | `rsa-cli.mrwillcom.com`    |
+| <small class="highlight">Deprecated</small>              |                                                                                             |                            |
+| [A Calendar](http://a-calendar.mrwillcom.com/)           | <small>A calendar website powered by my DIY builder.</small>                                | `a-calendar.mrwillcom.com` |
 
 ## 🔗 Links
 
-|                                           |                           |
-| ----------------------------------------- | ------------------------- |
-| [Email](mailto:mr.will.com@outlook.com)   | `mr.will.com@outlook.com` |
-| [GitHub](https://github.com/MrWillCom)    | `@MrWillCom`              |
+|                                                               |                           |
+| ------------------------------------------------------------- | ------------------------- |
+| [Email](mailto:mr.will.com@outlook.com)                       | `mr.will.com@outlook.com` |
+| [GitHub](https://github.com/MrWillCom)                        | `@MrWillCom`              |
 | <a rel="me" href="https://noc.social/@MrWillCom">Mastodon</a> | `@MrWillCom@noc.social`   |
-| [CodePen](https://codepen.io/mrwillcom)   | `@mrwillcom`              |
+| [CodePen](https://codepen.io/mrwillcom)                       | `@mrwillcom`              |
 
 ## ⚙️ Skills
 
@@ -46,8 +48,9 @@ I work with:
 
 I'm learning:
 
-- Vue.js
 - MongoDB
+- PostgreSQL
+- Vue.js
 - Flutter
 
 ## 💻 OS
@@ -68,7 +71,7 @@ I'm learning:
 
 <footer>
 
-© 2021 Mr. Will (MrWillCom)
+© 2021-2022 Mr. Will (MrWillCom)
 
 Built with <a href="https://www.11ty.dev/">11ty</a> and <a href="https://github.com/sindresorhus/github-markdown-css">github-markdown-css</a>
 
