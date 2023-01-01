@@ -71,7 +71,7 @@ I'm learning:
 
 <footer>
 
-© 2021-2022 Mr. Will (MrWillCom)
+© 2021-2023 Mr. Will (MrWillCom)
 
 Built with <a href="https://www.11ty.dev/">11ty</a> and <a href="https://github.com/sindresorhus/github-markdown-css">github-markdown-css</a>
 
