@@ -21,6 +21,7 @@ I'm <span class="highlight">Mr. Will</span>, a frontend hobbyist.
 | -------------------------------------------------------- | ------------------------------------------------------------------------------------------- | -------------------------- |
 | <small class="highlight text-center">Me</small>          |                                                                                             |                            |
 | [Blog](https://blog.mrwillcom.com/)                      | <small>Where I express my thoughts and some updates.</small>                                | `blog.mrwillcom.com`       |
+| [Gallery](https://gallery.mrwillcom.com/)                | <small>Photos I shared in Mastodon, all in one place.</small>                               | `gallery.mrwillcom.com`    |
 | <small class="highlight">Projects</small>                |                                                                                             |                            |
 | [Theme Cupertino Docs](https://cupertino.mrwillcom.com/) | <small>The theme powers my blog.</small>                                                    | `cupertino.mrwillcom.com`  |
 | [ChemWiki](https://chemwiki.mrwillcom.com/)              | <small>Well-organized and detailed Chemistry notes for senior high school students.</small> | `chemwiki.mrwillcom.com`   |
