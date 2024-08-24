@@ -1,6 +1,5 @@
 ScrollReveal({
   delay: 250,
-  reset: true,
   easing: 'cubic-bezier(0, 0, 0, 1)',
   distance: '48px',
   origin: 'bottom',

@@ -56,8 +56,6 @@ body {
 }
 
 .markdown-body {
-  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
-    Liberation Mono, monospace;
   width: calc(100% - 15px * 2);
   max-width: 600px;
   margin: auto;
