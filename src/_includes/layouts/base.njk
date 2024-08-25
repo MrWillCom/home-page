@@ -6,8 +6,8 @@
   <meta name="color-scheme" content="light dark">
   <title>{{ title }}</title>
   <link rel="icon" href="/favicon.svg">
-  {% for stylesheet in stylesheets %}
-  <link rel="stylesheet" href="{{ stylesheet }}">
+  {% for i in appendHead %}
+  {{ i | safe}}
   {% endfor %}
 </head>
 <body>
@@ -15,8 +15,7 @@
     {{ content | safe }}
   </article>
   <div id="dynamic-background"></div>
-  {% for script in scripts %}
-  <script src="{{ script }}"></script>
-  {% endfor %}
-</body>
+  {% for i in appendBody %}
+  {{ i | safe}}
+  {% endfor %}</body>
 </html>

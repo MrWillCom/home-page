@@ -1,12 +1,13 @@
 ---
 layout: "layouts/empty.njk"
 title: Mr. Will
-stylesheets:
-  - "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.6.1/github-markdown.min.css"
-  - "/styles/main.css"
-scripts:
-  - "https://unpkg.com/scrollreveal"
-  - "/scripts/main.js"
+appendHead:
+  - <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.6.1/github-markdown.min.css">
+  - <link rel="stylesheet" href="/styles/main.css">
+  - <script src="https://unpkg.com/scrollreveal"></script>
+  - <script defer src="https://cloud.umami.is/script.js" data-website-id="dab6d615-57ca-49c5-be77-407cc43426cb"></script>
+appendBody:
+  - <script src="/scripts/main.js"></script>
 ---
 
 # Hi there 👋
