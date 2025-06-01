@@ -69,7 +69,7 @@ I'm <span class="highlight">Mr. Will</span>, a frontend hobbyist.
 
 <footer>
 
-© 2021-2024 Mr. Will (MrWillCom)
+© 2021-2025 Mr. Will (MrWillCom)
 
 Built with <a href="https://www.11ty.dev/">11ty</a> and <a href="https://github.com/sindresorhus/github-markdown-css">github-markdown-css</a>
 
