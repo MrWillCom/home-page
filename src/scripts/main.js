@@ -35,7 +35,7 @@ ScrollReveal({
   class Spot {
     constructor() {
       this.color = getRandomColor()
-      
+
       this.distance = 0
       while (this.distance < 500) {
         this.from = {
@@ -72,7 +72,8 @@ ScrollReveal({
   }
 
   const getRandomColor = () => {
-    return '#' + Math.floor(Math.random() * 256 * 256 * 256).toString(16)
+    // return '#' + Math.floor(Math.random() * 256 * 256 * 256).toString(16)
+    return `hsl(${Math.random() * 360} 100% 70%)`
   }
 
   var intervalID = setInterval(update, 1000)
