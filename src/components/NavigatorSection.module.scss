@@ -1,0 +1,87 @@
+.navigator {
+  & > .typingArea {
+    font-family: var(--font-mono);
+    display: flex;
+    border-bottom: var(--border-dashed-default);
+
+    & > input {
+      border: none;
+      outline: none;
+      background-color: transparent;
+      text-align: right;
+      padding: var(--spacing-lg);
+      padding-right: 0;
+      flex-grow: 1;
+      width: 100%;
+      color: var(--text-color-secondary);
+
+      &:focus {
+        color: var(--text-color-primary);
+      }
+    }
+
+    & > span {
+      display: block;
+      padding: var(--spacing-lg);
+      padding-left: 0;
+    }
+  }
+
+  & > .subdomains {
+    font-family: var(--font-mono);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 300px;
+    overflow-y: auto;
+    border-bottom: var(--border-dashed-default);
+
+    @mixin brighter {
+      color: var(--text-color-primary);
+    }
+
+    & > li {
+      &.active > a {
+        background-color: var(--background-color-secondary);
+      }
+
+      & > a {
+        padding: var(--spacing-md) var(--spacing-lg);
+        text-decoration: none;
+        color: var(--text-color-secondary);
+        display: flex;
+        justify-content: space-between;
+
+        &:hover,
+        &:focus-visible {
+          @include brighter;
+          background-color: var(--background-color-secondary);
+        }
+
+        & > .left {
+          & > .title {
+            @include brighter;
+          }
+        }
+
+        & > .right {
+          text-align: right;
+          min-width: 240px;
+          @media (max-width: 600px) {
+            min-width: 100px;
+          }
+
+          & > .name {
+            @include brighter;
+          }
+
+          & > .domainName {
+            @media (max-width: 600px) {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}

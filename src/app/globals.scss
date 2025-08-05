@@ -3,3 +3,37 @@
 *::after {
   box-sizing: border-box;
 }
+
+:root {
+  font-size: 15px;
+
+  --font-sans: 'Inter', 'system-ui';
+  font-family: var(--font-sans);
+
+  @supports (font-variation-settings: normal) {
+    --font-sans: 'InterVariable', 'system-ui';
+  }
+
+  --border-color-primary: #0001;
+  --border-dashed-default: 1px dashed var(--border-color-primary);
+
+  --spacing-xs: 9px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 28px;
+}
+
+[data-theme='dark'] {
+  --text-color-primary: #eee;
+  --text-color-secondary: #bbb;
+  --background-color-underlying: #000;
+  --background-color-primary: #080808;
+  --background-color-secondary: #101010;
+  --border-color-primary: #fff1;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--text-color-secondary);
+  background-color: var(--background-color-underlying);
+}
