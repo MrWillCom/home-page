@@ -96,26 +96,28 @@ export default function NavigatorSection() {
         />
         <span>.mrwillcom.com</span>
       </div>
-      <ul className={styles.subdomains}>
-        {...foundSubdomains.map((s, i) => (
-          <li
-            className={
-              foundSubdomains.length === 1 && i === 0 ? styles.active : ''
-            }
-          >
-            <a href={'https://' + s.name + '.mrwillcom.com/'} target="_blank">
-              <span className={styles.left}>
-                <span className={styles.title}>{s.title}</span>
-                <span className={styles.description}>: {s.description}</span>
-              </span>
-              <span className={styles.right}>
-                <span className={styles.name}>{s.name}</span>.
-                <span className={styles.domainName}>mrwillcom.com</span>
-              </span>
-            </a>
-          </li>
-        ))}
-      </ul>
+      <div className={styles.subdomains}>
+        <ul>
+          {...foundSubdomains.map((s, i) => (
+            <li
+              className={
+                foundSubdomains.length === 1 && i === 0 ? styles.active : ''
+              }
+            >
+              <a href={'https://' + s.name + '.mrwillcom.com/'} target="_blank">
+                <span className={styles.left}>
+                  <span className={styles.title}>{s.title}</span>
+                  <span className={styles.description}> {s.description}</span>
+                </span>
+                <span className={styles.right}>
+                  <span className={styles.name}>{s.name}</span>.
+                  <span className={styles.domainName}>mrwillcom.com</span>
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   )
 }
