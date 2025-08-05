@@ -15,6 +15,9 @@ export default function Home() {
         </p>
       </section>
       <NavigatorSection />
+      <footer className={styles.footer}>
+        © 2021-{new Date().getFullYear()} Mr. Will (MrWillCom)
+      </footer>
     </main>
   )
 }
