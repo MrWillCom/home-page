@@ -18,7 +18,7 @@ const greetings = [
   'Nice to meet you',
 ]
 
-const getRandomGreeting = () => greetings[_.random(greetings.length - 1)]
+const getRandomGreeting = () => _.sample(greetings)
 
 export default function RandomGreeting() {
   const [currentGreeting, setCurrentGreeting] = useState(getRandomGreeting())
@@ -33,6 +33,7 @@ export default function RandomGreeting() {
           }
           setCurrentGreeting(getRandomGreeting())
         }}
+        suppressHydrationWarning
       >
         {currentGreeting}
       </span>
