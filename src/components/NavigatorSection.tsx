@@ -39,7 +39,7 @@ const subdomains = [
     title: 'Phanpy',
     name: 'phanpy',
     description:
-      '[Self-hosted] A minimalistic opinionated Mastodon web client.',
+      '[Self-hosted] A minimalistic opinionated Mastodon web client.', // TODO: Make a tag for `[Self-hosted]`
   },
   {
     title: 'GitHub Readme Stats',
