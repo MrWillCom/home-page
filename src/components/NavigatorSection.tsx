@@ -42,12 +42,6 @@ const subdomains = [
       '[Self-hosted] A minimalistic opinionated Mastodon web client.', // TODO: Make a tag for `[Self-hosted]`
   },
   {
-    title: 'GitHub Readme Stats',
-    name: 'ghrs',
-    description:
-      '[Self-hosted] Dynamically generated stats for your github readmes.',
-  },
-  {
     title: 'Moodist',
     name: 'moodist',
     description: '[Self-hosted] Ambient sounds for focus and calm.',
