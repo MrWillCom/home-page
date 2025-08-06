@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
 import { Geist_Mono } from 'next/font/google'
-import 'normalize.css/normalize.css'
-import './globals.scss'
 import { ThemeProvider } from 'next-themes'
+import 'normalize.css/normalize.css'
 import 'inter-ui/inter.css'
 import 'inter-ui/inter-variable.css'
+import 'simple-icons-font/font/simple-icons.min.css'
+import './globals.scss'
 
 const geistMono = Geist_Mono({
   variable: '--font-mono',

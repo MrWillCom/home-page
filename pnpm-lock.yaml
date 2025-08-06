@@ -11,6 +11,9 @@ importers:
       inter-ui:
         specifier: ^4.1.1
         version: 4.1.1
+      jotai:
+        specifier: ^2.13.0
+        version: 2.13.0(@types/react@19.1.9)(react@19.1.1)
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -29,6 +32,9 @@ importers:
       react-dom:
         specifier: 19.1.1
         version: 19.1.1(react@19.1.1)
+      simple-icons-font:
+        specifier: ^15.9.0
+        version: 15.9.0
     devDependencies:
       '@types/lodash':
         specifier: ^4.17.20
@@ -395,6 +401,24 @@ packages:
     resolution: {integrity: sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==}
     engines: {node: '>=0.12.0'}
 
+  jotai@2.13.0:
+    resolution: {integrity: sha512-H43zXdanNTdpfOEJ4NVbm4hgmrctpXLZagjJNcqAywhUv+sTE7esvFjwm5oBg/ywT9Qw63lIkM6fjrhFuW8UDg==}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      '@babel/core': '>=7.0.0'
+      '@babel/template': '>=7.0.0'
+      '@types/react': '>=17.0.0'
+      react: '>=17.0.0'
+    peerDependenciesMeta:
+      '@babel/core':
+        optional: true
+      '@babel/template':
+        optional: true
+      '@types/react':
+        optional: true
+      react:
+        optional: true
+
   lodash@4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
 
@@ -485,6 +509,9 @@ packages:
   sharp@0.34.3:
     resolution: {integrity: sha512-eX2IQ6nFohW4DbvHIOLRB3MHFpYqaqvXd3Tp5e/T/dSH83fxaNJQRvDMhASmkNTsNTVF2/OOopzRCt7xokgPfg==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
+
+  simple-icons-font@15.9.0:
+    resolution: {integrity: sha512-UKSR2QEuoIhVVYfpS/EfdohCyxx5dGBmOnDECvMTLkwY7pMAryRSLLQHk6hWGEe/PgLik+FkAPOGDqt8X5Y+Fw==}
 
   simple-swizzle@0.2.2:
     resolution: {integrity: sha512-JA//kQgZtbuY83m+xT+tXJkmJncGMTFT+C+g2h2R9uxkYIrE2yy9sgmcLhCnw57/WSD+Eh3J97FPEDFnbXnDUg==}
@@ -783,6 +810,11 @@ snapshots:
   is-number@7.0.0:
     optional: true
 
+  jotai@2.13.0(@types/react@19.1.9)(react@19.1.1):
+    optionalDependencies:
+      '@types/react': 19.1.9
+      react: 19.1.1
+
   lodash@4.17.21: {}
 
   micromatch@4.0.8:
@@ -891,6 +923,8 @@ snapshots:
       '@img/sharp-win32-ia32': 0.34.3
       '@img/sharp-win32-x64': 0.34.3
     optional: true
+
+  simple-icons-font@15.9.0: {}
 
   simple-swizzle@0.2.2:
     dependencies:

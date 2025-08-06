@@ -1,6 +1,7 @@
 import RandomGreeting from '@/components/RandomGreeting'
 import styles from './page.module.scss'
 import NavigatorSection from '@/components/NavigatorSection'
+import TechShowcase from '@/components/TechShowcase'
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
         </p>
       </section>
       <NavigatorSection />
+      <TechShowcase />
       <footer className={styles.footer}>
         © 2021–{new Date().getFullYear()} Mr. Will (MrWillCom)
       </footer>
