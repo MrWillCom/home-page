@@ -1,0 +1,31 @@
+import type { Metadata } from 'next'
+import { Geist_Mono } from 'next/font/google'
+import 'normalize.css/normalize.css'
+import './globals.scss'
+import { ThemeProvider } from 'next-themes'
+import 'inter-ui/inter.css'
+import 'inter-ui/inter-variable.css'
+
+const geistMono = Geist_Mono({
+  variable: '--font-mono',
+  subsets: ['latin'],
+})
+
+export const metadata: Metadata = {
+  title: 'Mr. Will',
+  description: 'A full-stack developer and a photographer.',
+}
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body className={geistMono.variable}>
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
+    </html>
+  )
+}
