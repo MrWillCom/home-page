@@ -73,7 +73,12 @@ export default function NavigatorSection() {
 
   return (
     <section className={styles.navigator}>
-      <div className={styles.typingArea}>
+      <div
+        className={
+          styles.typingArea +
+          (foundSubdomains.length === 1 ? ' ' + styles.ready : '')
+        }
+      >
         <input
           type="text"
           autoFocus
