@@ -8,7 +8,7 @@ export default function Home() {
       <section className={styles.hero}>
         <h1>
           <RandomGreeting />
-          I'm <strong>Mr. Will</strong>!
+          I'm&nbsp;<strong>Mr.&nbsp;Will</strong>!
         </h1>
         <p>
           A <i>full-stack developer</i> and a <i>photographer</i>.

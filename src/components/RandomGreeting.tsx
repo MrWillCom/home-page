@@ -27,6 +27,10 @@ export default function RandomGreeting() {
     <>
       <span
         onClick={() => {
+          let r = getRandomGreeting()
+          while (r === currentGreeting) {
+            r = getRandomGreeting()
+          }
           setCurrentGreeting(getRandomGreeting())
         }}
       >
