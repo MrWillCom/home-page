@@ -2,6 +2,7 @@ import RandomGreeting from '@/components/RandomGreeting'
 import styles from './page.module.scss'
 import NavigatorSection from '@/components/NavigatorSection'
 import TechShowcase from '@/components/TechShowcase'
+import SocialMediaSection from '@/components/SocialMediaSection'
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
           A <i>full-stack developer</i> and a <i>photographer</i>.
         </p>
       </section>
+      <SocialMediaSection />
       <NavigatorSection />
       <TechShowcase />
       <footer className={styles.footer}>
