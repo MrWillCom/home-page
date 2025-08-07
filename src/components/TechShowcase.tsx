@@ -89,7 +89,7 @@ export default function TechShowcase() {
   return (
     <section>
       <h2 className={styles.heading}>
-        I work with countless technologies, services and software.
+        I work with <i>countless</i> technologies, services and software.
       </h2>
       <div className={styles.grid} ref={gridRef}>
         {..._.range(SHOWN_COUNT).map(i => <TechIcon i={i} />)}
