@@ -38,6 +38,12 @@ const techs = [
   'unsplash',
   'html5',
   'eleventy',
+  'resend',
+  'nodedotjs',
+  'pnpm',
+  'prettier',
+  'markdown',
+  'jamstack',
 ]
 
 const SHOWN_COUNT = 12
