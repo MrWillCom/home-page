@@ -24,7 +24,7 @@
     padding: var(--spacing-md) var(--spacing-lg);
     border-right: var(--border-dashed-default);
     font-size: 14px;
-    transition-property: font-weight, color, letter-spacing;
+    transition-property: font-weight, color, letter-spacing, transform;
     transition-duration: 0.2s;
 
     @media (max-width: 540px) {
@@ -37,6 +37,7 @@
       color: var(--text-color-primary);
       font-weight: 500;
       letter-spacing: 0.1;
+      transform: skewX(-8deg);
     }
 
     &:last-child {
