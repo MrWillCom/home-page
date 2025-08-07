@@ -4,14 +4,16 @@ export default function SocialMediaSection() {
   return (
     <section className={styles.grid}>
       <a href="https://github.com/MrWillCom" target="_blank">
-        GitHub
+        <span>GitHub</span>
       </a>
       <a href="https://noc.social/@MrWillCom" target="_blank">
-        Mastodon
+        <span>Mastodon</span>
       </a>
-      <a href="mailto:hi@mrwillcom.com">Email</a>
+      <a href="mailto:hi@mrwillcom.com">
+        <span>Email</span>
+      </a>
       <a href="https://unsplash.com/@mrwillcom" target="_blank">
-        Unsplash
+        <span>Unsplash</span>
       </a>
     </section>
   )
