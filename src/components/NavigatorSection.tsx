@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import styles from './NavigatorSection.module.scss'
+import { useOpenPanel } from '@openpanel/nextjs'
 
 const subdomains = [
   {
@@ -50,6 +51,7 @@ const subdomains = [
 
 export default function NavigatorSection() {
   const [inputValue, setInputValue] = useState('')
+  const op = useOpenPanel()
 
   const foundSubdomains = subdomains.filter(s => {
     if (inputValue === '') {
@@ -82,14 +84,13 @@ export default function NavigatorSection() {
             setInputValue(ev.target.value)
           }}
           onKeyDown={ev => {
-            if (ev.key === 'Enter') {
-              window.open(
-                'https://' +
-                  (foundSubdomains.length === 1
-                    ? foundSubdomains[0].name
-                    : ev.currentTarget.value) +
-                  '.mrwillcom.com',
-              )
+            if (ev.key === 'Enter' && ev.currentTarget.value.length > 0) {
+              const subdomain =
+                foundSubdomains.length === 1
+                  ? foundSubdomains[0].name
+                  : ev.currentTarget.value
+              window.open('https://' + subdomain + '.mrwillcom.com')
+              op.track('navigator_jump_to', { subdomain })
             }
           }}
         />

@@ -10,6 +10,7 @@
     "format": "prettier . --write"
   },
   "dependencies": {
+    "@openpanel/nextjs": "^1.0.8",
     "atropos": "^2.0.2",
     "inter-ui": "^4.1.1",
     "jotai": "^2.13.0",

@@ -2,6 +2,7 @@
 
 import _ from 'lodash'
 import { useState } from 'react'
+import { useOpenPanel } from '@openpanel/nextjs'
 
 const greetings = [
   'Hello',
@@ -22,6 +23,7 @@ const getRandomGreeting = () => _.sample(greetings)
 
 export default function RandomGreeting() {
   const [currentGreeting, setCurrentGreeting] = useState(getRandomGreeting())
+  const op = useOpenPanel()
 
   return (
     <>
@@ -32,6 +34,7 @@ export default function RandomGreeting() {
             r = getRandomGreeting()
           }
           setCurrentGreeting(getRandomGreeting())
+          op.track('click_random_greeting')
         }}
         suppressHydrationWarning
       >
