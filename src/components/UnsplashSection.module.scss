@@ -42,7 +42,7 @@
     text-decoration: none;
     color: var(--text-color-secondary);
     margin: calc(-1 * var(--spacing-lg));
-    margin-top: 0;
+    margin-top: var(--spacing-md);
     padding: var(--spacing-lg);
     font-size: 14px;
     position: relative;
@@ -90,5 +90,19 @@
   & .atroposImage {
     display: block;
     height: 280px;
+  }
+
+  & > .error {
+    font-size: 13px;
+    padding-left: var(--spacing-lg);
+
+    & > a {
+      color: var(--text-color-secondary);
+
+      &:hover,
+      &:focus-visible {
+        color: var(--text-color-primary);
+      }
+    }
   }
 }

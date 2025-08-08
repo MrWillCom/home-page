@@ -19,6 +19,7 @@ export default async function UnsplashSection() {
         headers: {
           Authorization: 'Client-ID ' + process.env.UNSPLASH_ACCESS_KEY,
         },
+        next: { revalidate: 3600 },
       },
     )
     photos = await data.json()
@@ -55,7 +56,13 @@ export default async function UnsplashSection() {
           } catch (error) {
             console.error(error)
 
-            return [null]
+            return [
+              <span className={styles.error}>
+                Oops, something went wrong. Here should be some photos. I'd
+                appreciate you very much if you're willing to{' '}
+                <a href="mailto:hi@mrwillcom.com">report this issue to me</a>.
+              </span>,
+            ]
           }
         })()}
       </div>
