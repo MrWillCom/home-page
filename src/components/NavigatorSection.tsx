@@ -77,7 +77,7 @@ export default function NavigatorSection() {
       >
         <input
           type="text"
-          autoFocus
+          tabIndex={1}
           placeholder="Jump to ..."
           value={inputValue}
           onChange={ev => {
