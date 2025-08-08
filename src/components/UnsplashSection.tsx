@@ -3,7 +3,7 @@ import AtroposWrapper from './AtroposWrapper'
 
 function AtroposImage({ src, alt }: { src: string; alt?: string }) {
   return (
-    <AtroposWrapper shadowScale={0.8}>
+    <AtroposWrapper shadowScale={0.8} activeOffset={25}>
       <img src={src} alt={alt} className={styles.atroposImage} />
     </AtroposWrapper>
   )
