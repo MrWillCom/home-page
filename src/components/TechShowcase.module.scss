@@ -20,14 +20,17 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
 
-  & > .techIcon {
-    border-right: var(--border-dashed-default);
-    border-bottom: var(--border-dashed-default);
+  @media not (max-width: 600px) {
+    grid-template-columns: repeat(4, 1fr);
 
-    &:nth-child(4n) {
-      border-right: none;
+    & > .techIcon {
+      border-right: var(--border-dashed-default);
+      border-bottom: var(--border-dashed-default);
+
+      &:nth-child(4n) {
+        border-right: none;
+      }
     }
   }
 
@@ -35,8 +38,8 @@
     grid-template-columns: repeat(3, 1fr);
 
     & > .techIcon {
-      border-right: var(--border-dashed-default) !important;
-      border-bottom: var(--border-dashed-default) !important;
+      border-right: var(--border-dashed-default);
+      border-bottom: var(--border-dashed-default);
 
       &:nth-child(3n) {
         border-right: none;
