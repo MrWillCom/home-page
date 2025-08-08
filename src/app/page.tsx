@@ -4,6 +4,7 @@ import NavigatorSection from '@/components/NavigatorSection'
 import TechShowcase from '@/components/TechShowcase'
 import SocialMediaSection from '@/components/SocialMediaSection'
 import UnsplashSection from '@/components/UnsplashSection'
+import MessageSection from '@/components/MessageSection'
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
       <NavigatorSection />
       <TechShowcase />
       <UnsplashSection />
+      <MessageSection />
       <footer className={styles.footer}>
         © 2021–{new Date().getFullYear()} Mr. Will (MrWillCom)
       </footer>
