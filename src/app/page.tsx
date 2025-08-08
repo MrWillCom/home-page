@@ -3,6 +3,7 @@ import styles from './page.module.scss'
 import NavigatorSection from '@/components/NavigatorSection'
 import TechShowcase from '@/components/TechShowcase'
 import SocialMediaSection from '@/components/SocialMediaSection'
+import UnsplashSection from '@/components/UnsplashSection'
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       <SocialMediaSection />
       <NavigatorSection />
       <TechShowcase />
+      <UnsplashSection />
       <footer className={styles.footer}>
         © 2021–{new Date().getFullYear()} Mr. Will (MrWillCom)
       </footer>

@@ -5,6 +5,7 @@ import 'normalize.css/normalize.css'
 import 'inter-ui/inter.css'
 import 'inter-ui/inter-variable.css'
 import 'simple-icons-font/font/simple-icons.min.css'
+import 'atropos/scss'
 import './globals.scss'
 
 const geistMono = Geist_Mono({
