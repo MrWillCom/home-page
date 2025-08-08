@@ -40,7 +40,11 @@ export default async function UnsplashSection() {
             where permissive free photos live.
           </p>
         </div>
-        <a href="https://unsplash.com/@mrwillcom" className={styles.bottom}>
+        <a
+          href="https://unsplash.com/@mrwillcom"
+          target="_blank"
+          className={styles.bottom}
+        >
           <span>View Profile</span>
           <strong>@mrwillcom</strong>
         </a>
