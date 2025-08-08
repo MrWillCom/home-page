@@ -1,15 +1,31 @@
 import styles from './UnsplashSection.module.scss'
 import AtroposWrapper from './AtroposWrapper'
 
-function AtroposImage({ src }: { src: string }) {
+function AtroposImage({ src, alt }: { src: string; alt?: string }) {
   return (
     <AtroposWrapper shadowScale={0.8}>
-      <img src={src} className={styles.atroposImage} />
+      <img src={src} alt={alt} className={styles.atroposImage} />
     </AtroposWrapper>
   )
 }
 
-export default function UnsplashSection() {
+export default async function UnsplashSection() {
+  var photos = null
+
+  try {
+    const data = await fetch(
+      'https://api.unsplash.com/users/mrwillcom/photos?per_page=3',
+      {
+        headers: {
+          Authorization: 'Client-ID ' + process.env.UNSPLASH_ACCESS_KEY,
+        },
+      },
+    )
+    photos = await data.json()
+  } catch (error) {
+    console.error(error)
+  }
+
   return (
     <section className={styles.sect}>
       <div className={styles.left}>
@@ -29,9 +45,19 @@ export default function UnsplashSection() {
         </a>
       </div>
       <div className={styles.images}>
-        <AtroposImage src="https://picsum.photos/seed/picsum/400/600" />
-        <AtroposImage src="https://picsum.photos/seed/react/400/600" />
-        <AtroposImage src="https://picsum.photos/seed/homepage/600/600" />
+        {...(() => {
+          try {
+            return photos.map(
+              (p: { urls: { regular: string }; alt_description: string }) => (
+                <AtroposImage src={p.urls.regular} alt={p.alt_description} />
+              ),
+            )
+          } catch (error) {
+            console.error(error)
+
+            return [null]
+          }
+        })()}
       </div>
     </section>
   )
