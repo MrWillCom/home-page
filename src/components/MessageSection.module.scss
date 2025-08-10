@@ -1,4 +1,122 @@
 .sect {
-  padding: var(--spacing-lg);
   border-bottom: var(--border-dashed-default);
+}
+
+.heading {
+  padding: var(--spacing-lg);
+  color: var(--text-color-secondary);
+  font-size: 22px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.sect:hover .heading > i {
+  display: inline-block;
+  animation: flash 0.5s;
+
+  @keyframes flash {
+    45% {
+      color: #0ff;
+      translate: 15px;
+      opacity: 0;
+      transform: skewX(-30deg) translate(20px);
+    }
+    55% {
+      color: #ff0;
+      translate: -15px;
+      opacity: 0;
+      transform: skewX(15deg) translate(-20px);
+    }
+  }
+}
+
+.controls {
+  display: flex;
+  overflow-y: hidden;
+  interpolate-size: allow-keywords;
+  background-color: var(--background-color-secondary);
+  margin: var(--spacing-lg);
+  margin-top: 0;
+  border-radius: 5px;
+
+  @media (max-width: 680px) {
+    flex-direction: column;
+  }
+
+  textarea,
+  input,
+  button {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: var(--text-color-secondary);
+
+    &:hover,
+    &:focus-visible {
+      color: var(--text-color-primary);
+    }
+  }
+
+  & > .left {
+    padding: var(--spacing-md);
+    flex-grow: 1;
+    resize: none;
+    border-right: 1px solid var(--background-color-primary);
+    font-size: 15px;
+    line-height: 1.4;
+
+    @media (max-width: 680px) {
+      border-right: none;
+      border-bottom: 1px solid var(--background-color-primary);
+      height: 120px;
+    }
+  }
+
+  & > .right {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+
+    @media (max-width: 680px) {
+      width: 100%;
+    }
+
+    & > * {
+      display: block;
+      padding: var(--spacing-md);
+      border-bottom: 1px solid var(--background-color-primary);
+      font-size: 14px;
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    & > button {
+      &:not(:disabled) {
+        &:hover,
+        &:focus-visible {
+          background-color: var(--background-color-tertiary);
+        }
+      }
+
+      &:disabled {
+        color: var(--text-color-disabled);
+      }
+    }
+
+    & > .notes,
+    & > .error {
+      color: var(--text-color-secondary);
+      font-size: 12px;
+    }
+
+    & > .notes.warning {
+      background-image: linear-gradient(270deg, #ffcd001a, transparent);
+    }
+
+    & > .error {
+      background-image: linear-gradient(270deg, #ff00001a, transparent);
+    }
+  }
 }
