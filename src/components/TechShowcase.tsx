@@ -1,7 +1,7 @@
 'use client'
 
 import styles from './TechShowcase.module.scss'
-import { AnimationEventHandler, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import _ from 'lodash'
 import { atom, useAtom } from 'jotai'
 

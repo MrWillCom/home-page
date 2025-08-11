@@ -5,10 +5,23 @@
   font-size: 26px;
   padding: var(--spacing-lg);
   transition-property: color;
-  transition-duration: 0.6s;
+  --duration: 0.6s;
+  transition-duration: var(--duration);
+  --delay: calc(sibling-index() * 0.01s);
+  transition-delay: var(--delay);
+
+  & > i {
+    transition-property: scale;
+    transition-duration: var(--duration);
+    transition-delay: var(--delay);
+  }
 
   [data-hidden] > & {
     color: transparent;
+
+    & > i {
+      scale: 0.9;
+    }
   }
 }
 
