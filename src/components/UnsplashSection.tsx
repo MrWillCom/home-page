@@ -69,6 +69,13 @@ export default async function UnsplashSection() {
             ]
           }
         })()}
+        <div className={styles.mask}>
+          <AtroposWrapper highlight={false}>
+            <a href="https://unsplash.com/@mrwillcom" target="_blank">
+              View more
+            </a>
+          </AtroposWrapper>
+        </div>
       </div>
     </section>
   )

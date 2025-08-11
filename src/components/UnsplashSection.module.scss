@@ -1,6 +1,7 @@
 .sect {
   display: flex;
   padding: var(--spacing-lg);
+  padding-right: 0;
   gap: var(--spacing-lg);
   border-bottom: var(--border-dashed-default);
   overflow: hidden;
@@ -56,6 +57,10 @@
     font-size: 14px;
     position: relative;
 
+    @media (max-width: 600px) {
+      margin-right: 0;
+    }
+
     &:hover,
     &:focus-visible {
       background-color: var(--background-color-secondary);
@@ -110,6 +115,8 @@
   display: flex;
   gap: var(--spacing-md);
   z-index: 300;
+  overflow-x: hidden;
+  position: relative;
 
   & .atroposImage {
     display: block;
@@ -127,6 +134,36 @@
       &:focus-visible {
         color: var(--text-color-primary);
       }
+    }
+  }
+}
+
+.mask {
+  z-index: 400;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  padding-right: var(--spacing-sm);
+  writing-mode: sideways-rl;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  a {
+    display: block;
+    pointer-events: initial;
+    color: var(--text-color-secondary);
+    background-color: var(--background-color-primary);
+    border-radius: 999px;
+    padding: var(--spacing-sm) var(--spacing-xs);
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--text-color-primary);
+      background-color: var(--background-color-secondary);
     }
   }
 }
