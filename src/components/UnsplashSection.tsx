@@ -3,7 +3,7 @@ import AtroposWrapper from './AtroposWrapper'
 
 function AtroposImage({ src, alt }: { src: string; alt?: string }) {
   return (
-    <AtroposWrapper shadowScale={0.8} activeOffset={25}>
+    <AtroposWrapper shadow={false} activeOffset={25}>
       <img src={src} alt={alt} className={styles.atroposImage} />
     </AtroposWrapper>
   )
@@ -70,7 +70,7 @@ export default async function UnsplashSection() {
           }
         })()}
         <div className={styles.mask}>
-          <AtroposWrapper highlight={false}>
+          <AtroposWrapper highlight={false} activeOffset={75}>
             <a href="https://unsplash.com/@mrwillcom" target="_blank">
               View more
             </a>
