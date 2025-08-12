@@ -37,7 +37,7 @@
   background-color: var(--background-color-secondary);
   margin: var(--spacing-lg);
   margin-top: 0;
-  border-radius: 5px;
+  border-radius: var(--radius-md);
 
   @media (max-width: 680px) {
     flex-direction: column;

@@ -162,7 +162,7 @@
     pointer-events: initial;
     color: var(--text-color-secondary);
     background-color: var(--background-color-primary);
-    border-radius: 999px;
+    border-radius: var(--radius-full);
     padding: var(--spacing-sm) var(--spacing-xs);
     text-decoration: none;
     transition-property: color, background-color;
