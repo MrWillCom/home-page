@@ -1,7 +1,7 @@
 'use client'
 
 import _ from 'lodash'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useOpenPanel } from '@openpanel/nextjs'
 
 const greetings = [
@@ -24,6 +24,10 @@ const getRandomGreeting = () => _.sample(greetings)
 export default function RandomGreeting() {
   const [currentGreeting, setCurrentGreeting] = useState(getRandomGreeting())
   const op = useOpenPanel()
+
+  useEffect(() => {
+    setCurrentGreeting(getRandomGreeting())
+  }, [])
 
   return (
     <>
