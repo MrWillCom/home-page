@@ -5,18 +5,31 @@ import TechShowcase from '@/components/TechShowcase'
 import SocialMediaSection from '@/components/SocialMediaSection'
 import UnsplashSection from '@/components/UnsplashSection'
 import MessageSection from '@/components/MessageSection'
+import Image from 'next/image'
+import AvatarImage from './avatar.jpg'
 
 export default function Home() {
   return (
     <main className={styles.main}>
       <section className={styles.hero}>
-        <h1>
-          <RandomGreeting />
-          I'm&nbsp;<strong>Mr.&nbsp;Will</strong>!
-        </h1>
-        <p>
-          A <i>full-stack developer</i> and a <i>photographer</i>.
-        </p>
+        <div className={styles.left}>
+          <h1 className={styles.greeting}>
+            <RandomGreeting />
+            I'm&nbsp;<strong>Mr.&nbsp;Will</strong>!
+          </h1>
+          <p className={styles.description}>
+            A <i>full-stack developer</i> and a <i>photographer</i>.
+          </p>
+        </div>
+        <div className={styles.right}>
+          <Image
+            src={AvatarImage}
+            alt="Avatar"
+            width={80}
+            height={80}
+            className={styles.avatar}
+          />
+        </div>
       </section>
       <SocialMediaSection />
       <NavigatorSection />

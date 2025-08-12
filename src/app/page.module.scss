@@ -11,37 +11,69 @@
 .hero {
   height: 400px;
   padding: var(--spacing-lg);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: var(--spacing-xs);
   border-bottom: var(--border-dashed-default);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--spacing-sm);
 
-  & > h1,
-  & > p {
-    margin: 0;
+  @keyframes entering {
+    from {
+      scale: 0.95;
+      opacity: 0;
+      filter: blur(4px);
+      translate: 0 20%;
+    }
   }
 
-  & > h1 {
-    font-size: 28px;
-    font-weight: 400;
+  .left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: var(--spacing-xs);
+
+    .greeting,
+    .description {
+      margin: 0;
+      transform-origin: left bottom;
+      animation-name: entering;
+      animation-duration: 0.8s;
+      animation-fill-mode: both;
+    }
+
+    .greeting {
+      font-size: 28px;
+      font-weight: 400;
+    }
+
+    .description {
+      font-weight: 300;
+      animation-delay: 0.1s;
+    }
+
+    i,
+    strong {
+      color: var(--text-color-primary);
+    }
+
+    i {
+      font-weight: 400;
+    }
+
+    strong {
+      font-weight: 500;
+    }
   }
 
-  & > p {
-    font-weight: 300;
-  }
-
-  i,
-  strong {
-    color: var(--text-color-primary);
-  }
-
-  i {
-    font-weight: 400;
-  }
-
-  strong {
-    font-weight: 500;
+  .right {
+    .avatar {
+      display: block;
+      border-radius: 50%;
+      transform-origin: right bottom;
+      animation-name: entering;
+      animation-duration: 0.8s;
+      animation-fill-mode: both;
+    }
   }
 }
 
