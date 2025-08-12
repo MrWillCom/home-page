@@ -27,6 +27,7 @@ export default function Home() {
             alt="Avatar"
             width={80}
             height={80}
+            placeholder="blur"
             className={styles.avatar}
           />
         </div>
