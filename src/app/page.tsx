@@ -6,7 +6,7 @@ import SocialMediaSection from '@/components/SocialMediaSection'
 import UnsplashSection from '@/components/UnsplashSection'
 import MessageSection from '@/components/MessageSection'
 import Image from 'next/image'
-import AvatarImage from './avatar.jpg'
+import AvatarImage from '@/assets/avatar.jpg'
 
 export default function Home() {
   return (
@@ -25,8 +25,8 @@ export default function Home() {
           <Image
             src={AvatarImage}
             alt="Avatar"
-            width={80}
-            height={80}
+            width={160}
+            height={160}
             placeholder="blur"
             className={styles.avatar}
           />
