@@ -110,7 +110,7 @@ export default async function ProjectShowcase() {
       </VisuallyHidden>
       <ProjectCard
         title="Hexo Theme Cupertino"
-        description="This is a modern and elegant theme for your Hexo blog, which is beautifully designed and has gorgeous details. Based on Cupertino Design, it looks similar to Apple Newsroom."
+        description="A modern and elegant theme for Hexo blogs, which is beautifully designed and has gorgeous details."
         stats={[
           {
             key: 'Stars',
