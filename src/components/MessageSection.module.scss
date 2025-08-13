@@ -38,6 +38,7 @@
   margin: var(--spacing-lg);
   margin-top: 0;
   border-radius: var(--radius-md);
+  border: var(--border-dashed-default);
 
   @media (max-width: 680px) {
     flex-direction: column;
@@ -61,13 +62,13 @@
     padding: var(--spacing-md);
     flex-grow: 1;
     resize: none;
-    border-right: 1px solid var(--background-color-primary);
+    border-right: var(--border-dashed-default);
     font-size: 15px;
     line-height: 1.4;
 
     @media (max-width: 680px) {
       border-right: none;
-      border-bottom: 1px solid var(--background-color-primary);
+      border-bottom: var(--border-dashed-default);
       height: 120px;
     }
   }
@@ -84,7 +85,7 @@
     & > * {
       display: block;
       padding: var(--spacing-md);
-      border-bottom: 1px solid var(--background-color-primary);
+      border-bottom: var(--border-dashed-default);
       font-size: 14px;
 
       &:last-child {

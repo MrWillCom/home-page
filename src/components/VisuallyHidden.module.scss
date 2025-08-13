@@ -1,0 +1,5 @@
+@use 'bootstrap/scss/mixins/_visually-hidden.scss';
+
+.vh {
+  @include visually-hidden.visually-hidden();
+}

@@ -16,19 +16,23 @@
 
   --text-color-primary: #222;
   --text-color-secondary: #585858;
+  --text-color-tertiary: #888;
   --text-color-success: #00d15a;
   --text-color-disabled: #888;
   --background-color-underlying: #fbfbfb;
   --background-color-primary: #fff;
-  --background-color-secondary: #f8f8f8;
+  --background-color-secondary: #fafafa;
   --background-color-tertiary: #f2f2f2;
   --border-color-primary: #0001;
   --border-dashed-default: 1px dashed var(--border-color-primary);
 
+  --spacing-3xs: 2px;
+  --spacing-2xs: 5px;
   --spacing-xs: 9px;
   --spacing-sm: 12px;
   --spacing-md: 16px;
   --spacing-lg: 28px;
+  --spacing-xl: 40px;
 
   --radius-md: 5px;
   --radius-full: 999px;
@@ -37,6 +41,7 @@
 [data-theme='dark'] {
   --text-color-primary: #eee;
   --text-color-secondary: #bbb;
+  --text-color-tertiary: #888;
   --text-color-success: #00e864;
   --text-color-disabled: #888;
   --background-color-underlying: #000;
