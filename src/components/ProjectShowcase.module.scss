@@ -1,5 +1,4 @@
 .projectCard {
-  position: sticky;
   padding: var(--spacing-md);
   border: var(--border-dashed-default);
   border-radius: var(--radius-md);
@@ -14,6 +13,7 @@
   }
 
   @supports (animation-timeline: view(block)) {
+    position: sticky;
     top: calc(20svh);
     transform-origin: center -200%;
     animation: scale-down linear both;
