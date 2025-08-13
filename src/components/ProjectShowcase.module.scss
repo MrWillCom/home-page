@@ -21,6 +21,10 @@
     --max-scale: 1.12;
     --min-scale: 0.92;
 
+    @media (max-width: 600px) {
+      top: 15svh;
+    }
+
     @keyframes scale-down {
       0% {
         box-shadow: 0 0 36px #0001;
