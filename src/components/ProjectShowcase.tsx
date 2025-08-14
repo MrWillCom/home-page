@@ -9,12 +9,14 @@ import nextMastodonGalleryImage from '@/assets/next-mastodon-gallery.png'
 function ProjectCard({
   title,
   description,
+  techs,
   stats,
   links,
   image,
 }: {
   title: ReactNode
   description: ReactNode
+  techs: Array<string>
   stats: Array<{ key: ReactNode; value: ReactNode }>
   links: Array<ReactNode>
   image: ReactNode
@@ -24,6 +26,9 @@ function ProjectCard({
       <div className={styles.left}>
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.description}>{description}</p>
+        <ul className={styles.techs}>
+          {...techs.map(t => <i className={'si si-' + t} title={t} />)}
+        </ul>
         <dl className={styles.stats}>
           {...stats.map(s => (
             <div className={styles.dlItem}>
@@ -111,6 +116,7 @@ export default async function ProjectShowcase() {
       <ProjectCard
         title="Hexo Theme Cupertino"
         description="A modern and elegant theme for Hexo blogs, which is beautifully designed and has gorgeous details."
+        techs={['hexo', 'ejs', 'sass', 'css']}
         stats={[
           {
             key: 'Stars',
@@ -154,6 +160,7 @@ export default async function ProjectShowcase() {
       <ProjectCard
         title="Next Mastodon Gallery"
         description="A Next.js-powered gallery for Mastodon."
+        techs={['nextdotjs', 'sass', 'swr']}
         stats={[
           {
             key: 'Stars',

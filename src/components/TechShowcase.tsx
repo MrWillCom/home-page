@@ -44,6 +44,7 @@ const techs = [
   'prettier',
   'markdown',
   'jamstack',
+  'typescript',
 ]
 
 const SHOWN_COUNT = 12
