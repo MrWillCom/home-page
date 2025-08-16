@@ -1,0 +1,54 @@
+.sect {
+  padding: var(--spacing-lg);
+  border-bottom: var(--border-dashed-default);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+
+  .description {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 280;
+
+    i {
+      font-size: 14.5px;
+      font-family: 'IBM Plex Serif';
+      letter-spacing: 0.08px;
+      font-weight: 400;
+    }
+  }
+
+  code {
+    font-size: 0.95em;
+  }
+
+  .dl {
+    font-size: 13px;
+    margin: 0;
+    display: table;
+    $spacingX: var(--spacing-xs);
+    $spacingY: var(--spacing-2xs);
+    border-spacing: $spacingX $spacingY;
+    margin-top: calc(-1 * $spacingY);
+    margin-bottom: calc(-1 * $spacingY);
+    margin-left: calc(-1 * $spacingX);
+    width: fit-content;
+
+    .item {
+      display: table-row;
+
+      dt,
+      dd {
+        display: table-cell;
+      }
+
+      dt {
+      }
+
+      dd {
+        text-align: right;
+        margin: 0;
+      }
+    }
+  }
+}

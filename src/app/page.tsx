@@ -8,6 +8,7 @@ import MessageSection from '@/components/MessageSection'
 import Image from 'next/image'
 import AvatarImage from '@/assets/avatar.jpg'
 import ProjectShowcase from '@/components/ProjectShowcase'
+import FeatureSupportSection from '@/components/FeatureSupportSection'
 
 export default function Home() {
   return (
@@ -39,6 +40,7 @@ export default function Home() {
       <UnsplashSection />
       <ProjectShowcase />
       <MessageSection />
+      <FeatureSupportSection />
       <footer className={styles.footer}>
         © 2021–{new Date().getFullYear()} Mr. Will (MrWillCom)
       </footer>
