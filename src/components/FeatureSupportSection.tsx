@@ -1,6 +1,16 @@
 import styles from './FeatureSupportSection.module.scss'
 import VisuallyHidden from './VisuallyHidden'
 import CSSSupports from './CSSSupports'
+import type { ReactNode } from 'react'
+
+function Row({ status, feature }: { status: ReactNode; feature: ReactNode }) {
+  return (
+    <div className={styles.item}>
+      <dd>{status}</dd>
+      <dt>{feature}</dt>
+    </div>
+  )
+}
 
 export default function FeatureSupportSection() {
   return (
@@ -15,22 +25,28 @@ export default function FeatureSupportSection() {
       </p>
       <p className={styles.description}>Your browser:</p>
       <dl className={styles.dl}>
-        <div className={styles.item}>
-          <dd>
+        <Row
+          status={
             <CSSSupports condition="width: calc(sibling-index() * 1px)" />
-          </dd>
-          <dt>
-            CSS: <code>sibling-index()</code>
-          </dt>
-        </div>
-        <div className={styles.item}>
-          <dd>
-            <CSSSupports condition="animation-timeline: view()" />
-          </dd>
-          <dt>
-            CSS: <code>animation-timeline: view()</code>
-          </dt>
-        </div>
+          }
+          feature={
+            <>
+              CSS: <code>sibling-index()</code>
+            </>
+          }
+        />
+        <Row
+          status={<CSSSupports condition="animation-timeline: view()" />}
+          feature={
+            <>
+              CSS: <code>animation-timeline: view()</code>
+            </>
+          }
+        />
+        <Row
+          status={<CSSSupports condition="font-variation-settings: normal" />}
+          feature="Variable fonts"
+        />
       </dl>
     </section>
   )
