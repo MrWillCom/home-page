@@ -80,10 +80,13 @@
 
         .timezone {
           font-size: 12px;
+          display: flex;
+          justify-content: space-between;
 
           .continent,
           .slash,
-          .city {
+          .city,
+          .offset {
             @include useForegroundColor;
           }
 
@@ -100,6 +103,12 @@
           .city {
             font-weight: 500;
             --transparency: 30%;
+          }
+
+          .offset {
+            font-size: 11px;
+            font-weight: 300;
+            --transparency: 50%;
           }
         }
 

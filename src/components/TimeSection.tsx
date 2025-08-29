@@ -103,9 +103,31 @@ export default async function TimeSection() {
             .join(' ')}
         >
           <span className={styles.timezone}>
-            <span className={styles.continent}>{TIMEZONE.split('/')[0]}</span>{' '}
-            <span className={styles.slash}>/</span>{' '}
-            <span className={styles.city}>{TIMEZONE.split('/')[1]}</span>
+            <span>
+              <span className={styles.continent}>{TIMEZONE.split('/')[0]}</span>{' '}
+              <span className={styles.slash}>/</span>{' '}
+              <span className={styles.city}>{TIMEZONE.split('/')[1]}</span>
+            </span>
+            <span className={styles.offset}>
+              UTC
+              {(function getUtcOffsetHours(timeZone) {
+                const referenceDate = new Date(
+                  Date.UTC(new Date().getFullYear(), 0, 1),
+                )
+                const utcDate = new Date(
+                  referenceDate.toLocaleString('en-US', { timeZone: 'UTC' }),
+                )
+                const tzDate = new Date(
+                  referenceDate.toLocaleString('en-US', { timeZone }),
+                )
+                const offsetHours = Math.trunc(
+                  (tzDate.getTime() - utcDate.getTime()) / (1000 * 60 * 60),
+                )
+                const sign = offsetHours >= 0 ? '+' : '-'
+                const absoluteHours = Math.abs(offsetHours)
+                return offsetHours === 0 ? '' : `${sign}${absoluteHours}`
+              })(TIMEZONE)}
+            </span>
           </span>
           <span className={styles.time} suppressHydrationWarning>
             <Now timezone={TIMEZONE} formatStr="H:mm:ss" />
