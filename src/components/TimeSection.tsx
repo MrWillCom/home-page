@@ -6,15 +6,16 @@ import { TZDate } from '@date-fns/tz'
 // `LAT` and `LNG` are never used for calculation, so it's safe to store them in strings.
 const LAT = '31.2304'
 const LNG = '121.4737'
+const TIMEZONE = 'Asia/Shanghai'
 
 export default async function TimeSection() {
   var sunriseSunsetData = null
 
   try {
     const data = await fetch(
-      `https://api.sunrise-sunset.org/json?lat=${LAT}&lng=${LNG}&formatted=0&tzid=Asia%2FShanghai`,
+      `https://api.sunrise-sunset.org/json?lat=${LAT}&lng=${LNG}&formatted=0&tzid=${encodeURIComponent(TIMEZONE)}`,
       {
-        next: { revalidate: 3600 },
+        next: { revalidate: 900 },
       },
     )
     sunriseSunsetData = (await data.json()).results
@@ -67,7 +68,7 @@ export default async function TimeSection() {
               } else if (
                 dateFns.isAfter(
                   now,
-                  dateFns.set(new TZDate(now, 'Asia/Shanghai'), {
+                  dateFns.set(new TZDate(now, TIMEZONE), {
                     hours: 0,
                     minutes: 0,
                     seconds: 0,
@@ -82,7 +83,7 @@ export default async function TimeSection() {
                 dateFns.isBefore(
                   now,
                   dateFns.addDays(
-                    dateFns.set(new TZDate(now, 'Asia/Shanghai'), {
+                    dateFns.set(new TZDate(now, TIMEZONE), {
                       hours: 0,
                       minutes: 0,
                       seconds: 0,
@@ -102,12 +103,12 @@ export default async function TimeSection() {
             .join(' ')}
         >
           <span className={styles.timezone}>
-            <span className={styles.continent}>Asia</span>{' '}
+            <span className={styles.continent}>{TIMEZONE.split('/')[0]}</span>{' '}
             <span className={styles.slash}>/</span>{' '}
-            <span className={styles.city}>Shanghai</span>
+            <span className={styles.city}>{TIMEZONE.split('/')[1]}</span>
           </span>
           <span className={styles.time} suppressHydrationWarning>
-            <Now timezone="Asia/Shanghai" formatStr="H:mm:ss" />
+            <Now timezone={TIMEZONE} formatStr="H:mm:ss" />
           </span>
         </div>
         <div className={['side', 'right'].map(c => styles[c]).join(' ')}>
@@ -121,7 +122,7 @@ export default async function TimeSection() {
               <dt>Sunrise</dt>
               <dd>
                 {dateFns.format(
-                  new Date(sunriseSunsetData?.sunrise ?? 0),
+                  new TZDate(sunriseSunsetData?.sunrise ?? 0, TIMEZONE),
                   'H:mm',
                 )}
               </dd>
@@ -130,7 +131,7 @@ export default async function TimeSection() {
               <dt>Sunset</dt>
               <dd>
                 {dateFns.format(
-                  new Date(sunriseSunsetData?.sunset ?? 0),
+                  new TZDate(sunriseSunsetData?.sunset ?? 0, TIMEZONE),
                   'H:mm',
                 )}
               </dd>
