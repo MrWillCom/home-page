@@ -44,7 +44,15 @@ export default function Home() {
       <MessageSection />
       <FeatureSupportSection />
       <footer className={styles.footer}>
-        © 2021–{new Date().getFullYear()} Mr. Will (MrWillCom)
+        <p className={styles.attribution}>
+          <a href="https://sunrise-sunset.org/api">
+            Sunrise-Sunset (sunrise-sunset.org/api)
+          </a>{' '}
+          is used for sunrise and sunset data.
+        </p>
+        <p className={styles.copyright}>
+          © 2021–{new Date().getFullYear()} Mr. Will (MrWillCom)
+        </p>
       </footer>
     </main>
   )

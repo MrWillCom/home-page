@@ -83,4 +83,31 @@
   font-size: 13px;
   padding: var(--spacing-lg);
   padding-bottom: 144px;
+
+  & > * {
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .attribution {
+    font-size: 12px;
+    font-weight: 300;
+  }
+
+  a {
+    color: var(--text-color-secondary);
+    text-decoration: none;
+    transition: color 0.15s;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--text-color-primary);
+      text-decoration: underline;
+    }
+  }
 }
