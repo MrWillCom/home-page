@@ -1,6 +1,7 @@
 import styles from './TimeSection.module.scss'
 import Now from './Now'
 import * as dateFns from 'date-fns'
+import { TZDate } from '@date-fns/tz'
 
 // `LAT` and `LNG` are never used for calculation, so it's safe to store them in strings.
 const LAT = '31.2304'
@@ -11,7 +12,7 @@ export default async function TimeSection() {
 
   try {
     const data = await fetch(
-      `https://api.sunrise-sunset.org/json?lat=${LAT}&lng=${LNG}&formatted=0`,
+      `https://api.sunrise-sunset.org/json?lat=${LAT}&lng=${LNG}&formatted=0&tzid=Asia%2FShanghai`,
       {
         next: { revalidate: 3600 },
       },
@@ -29,7 +30,7 @@ export default async function TimeSection() {
             'side',
             'left',
             (() => {
-              let ssd = sunriseSunsetData
+              let ssd = { ...sunriseSunsetData }
               const now = new Date()
               ssd['sunrise'] = new Date(sunriseSunsetData?.sunrise ?? 0)
               ssd['sunset'] = new Date(sunriseSunsetData?.sunset ?? 0)
@@ -66,7 +67,7 @@ export default async function TimeSection() {
               } else if (
                 dateFns.isAfter(
                   now,
-                  dateFns.set(now, {
+                  dateFns.set(new TZDate(now, 'Asia/Shanghai'), {
                     hours: 0,
                     minutes: 0,
                     seconds: 0,
@@ -81,7 +82,7 @@ export default async function TimeSection() {
                 dateFns.isBefore(
                   now,
                   dateFns.addDays(
-                    dateFns.set(now, {
+                    dateFns.set(new TZDate(now, 'Asia/Shanghai'), {
                       hours: 0,
                       minutes: 0,
                       seconds: 0,
