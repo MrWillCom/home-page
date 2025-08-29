@@ -10,6 +10,7 @@
     "format": "prettier . --write"
   },
   "dependencies": {
+    "@date-fns/tz": "^1.4.1",
     "@openpanel/nextjs": "^1.0.8",
     "atropos": "^2.0.2",
     "bootstrap": "^5.3.7",

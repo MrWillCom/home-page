@@ -9,6 +9,7 @@ import Image from 'next/image'
 import AvatarImage from '@/assets/avatar.jpg'
 import ProjectShowcase from '@/components/ProjectShowcase'
 import FeatureSupportSection from '@/components/FeatureSupportSection'
+import TimeSection from '@/components/TimeSection'
 
 export default function Home() {
   return (
@@ -35,6 +36,7 @@ export default function Home() {
         </div>
       </section>
       <SocialMediaSection />
+      <TimeSection />
       <NavigatorSection />
       <TechShowcase />
       <UnsplashSection />

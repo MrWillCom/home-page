@@ -1,0 +1,179 @@
+.sect {
+  border-bottom: var(--border-dashed-default);
+  padding: var(--spacing-lg);
+
+  .card {
+    display: flex;
+    position: relative;
+    transition-property: filter;
+    transition-duration: 0.35s;
+    transition-delay: 0s;
+
+    .side {
+      display: flex;
+      flex-direction: column;
+      padding: var(--spacing-md);
+      gap: var(--spacing-3xs);
+
+      &:first-child {
+        border-top-left-radius: var(--radius-md);
+        border-bottom-left-radius: var(--radius-md);
+      }
+
+      &:last-child {
+        border-top-right-radius: var(--radius-md);
+        border-bottom-right-radius: var(--radius-md);
+        text-align: right;
+      }
+
+      &.left {
+        justify-content: space-between;
+        width: 200px;
+
+        &.sunrise {
+          --foreground-color: #004266;
+          background-image: linear-gradient(#63c8ff, #d6e9eb, #ffe0b1);
+        }
+
+        &.morning {
+          --foreground-color: #001a4e;
+          background-image: linear-gradient(#6d9eff, #a7e0ff);
+        }
+
+        &.noon {
+          --foreground-color: #e2f1ff;
+          background-image: linear-gradient(#148aff, #2cb5ff);
+        }
+
+        &.sunset {
+          --foreground-color: #ffe0ce;
+          background-image: linear-gradient(#e8383b, #ff853e);
+        }
+
+        &.evening {
+          --foreground-color: #ffd8e8;
+          background-image: linear-gradient(#500020, #240d00);
+        }
+
+        &.night {
+          --foreground-color: #e0e2ff;
+          background-image: linear-gradient(#070927, #0b0e39);
+        }
+
+        &.midnight {
+          --foreground-color: #f4dbff;
+          background-image: linear-gradient(#13001b, #330049);
+        }
+
+        @mixin useForegroundColor {
+          color: color-mix(
+            in oklab,
+            var(--foreground-color),
+            transparent var(--transparency)
+          );
+        }
+
+        .timezone,
+        .time {
+          margin: 0;
+        }
+
+        .timezone {
+          font-size: 12px;
+
+          .continent,
+          .slash,
+          .city {
+            @include useForegroundColor;
+          }
+
+          .continent {
+            font-weight: 300;
+            --transparency: 50%;
+          }
+
+          .slash {
+            font-weight: 400;
+            --transparency: 80%;
+          }
+
+          .city {
+            font-weight: 500;
+            --transparency: 30%;
+          }
+        }
+
+        .time {
+          font-size: 16px;
+
+          @include useForegroundColor;
+          --transparency: 5%;
+        }
+      }
+
+      &.right {
+        flex-grow: 1;
+        border-top: var(--border-dashed-default);
+        border-right: var(--border-dashed-default);
+        border-bottom: var(--border-dashed-default);
+        background-color: var(--background-color-secondary);
+        font-size: 13px;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xs);
+
+        .latLng {
+          font-family: var(--font-mono);
+          font-weight: 300;
+
+          strong {
+            font-weight: 500;
+          }
+
+          .br {
+            display: none;
+          }
+
+          @media (max-width: 520px) {
+            .comma {
+              display: none;
+            }
+
+            .br {
+              display: inline;
+            }
+          }
+        }
+
+        .dl {
+          margin: 0;
+
+          display: flex;
+          justify-content: flex-end;
+          gap: var(--spacing-xs);
+
+          & > div {
+            & > dt {
+              text-transform: uppercase;
+              font-weight: 500;
+              font-size: 11px;
+              color: var(--text-color-tertiary);
+            }
+
+            & > dd {
+              font-size: 14px;
+              margin: 0;
+              color: var(--text-color-primary);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &:hover .card {
+    transition-duration: 0.65s;
+    transition-delay: 0.3s;
+    filter: saturate(1.5);
+  }
+}
