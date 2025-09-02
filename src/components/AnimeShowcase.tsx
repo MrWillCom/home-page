@@ -97,6 +97,7 @@ export default async function AnimeShowcase() {
                 <li>
                   <img
                     src={e.media.coverImage.medium}
+                    loading="lazy"
                     className={styles.cover}
                   />
                   <div className={styles.info}>
