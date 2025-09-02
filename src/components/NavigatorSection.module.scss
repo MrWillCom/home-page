@@ -47,6 +47,7 @@
       position: absolute;
       left: 0;
       right: 0;
+      pointer-events: none;
     }
 
     &::before {
@@ -58,6 +59,7 @@
         transparent
       );
     }
+
     &::after {
       bottom: 0;
       height: var(--spacing-md);
