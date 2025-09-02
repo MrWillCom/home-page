@@ -164,3 +164,5 @@ export default async function TimeSection() {
     </section>
   )
 }
+
+export { LAT, LNG, TIMEZONE }

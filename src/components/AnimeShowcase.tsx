@@ -1,5 +1,7 @@
 import styles from './AnimeShowcase.module.scss'
 import * as dateFns from 'date-fns'
+import { TZDate } from '@date-fns/tz'
+import { TIMEZONE } from './TimeSection'
 
 export default async function AnimeShowcase() {
   var animeEntries = null
@@ -115,7 +117,15 @@ export default async function AnimeShowcase() {
                         <dt>Completed watching</dt>
                         <dd>
                           {dateFns.formatDistanceToNow(
-                            dateFns.set(new Date(), e.completedAt),
+                            dateFns.set(new TZDate(new Date(), TIMEZONE), {
+                              year: e.completedAt.year,
+                              month: e.completedAt.month - 1,
+                              date: e.completedAt.day,
+                              hours: 0,
+                              minutes: 0,
+                              seconds: 0,
+                              milliseconds: 0,
+                            }),
                             { addSuffix: true },
                           )}
                         </dd>
