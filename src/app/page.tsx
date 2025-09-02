@@ -10,6 +10,7 @@ import AvatarImage from '@/assets/avatar.jpg'
 import ProjectShowcase from '@/components/ProjectShowcase'
 import FeatureSupportSection from '@/components/FeatureSupportSection'
 import TimeSection from '@/components/TimeSection'
+import AnimeShowcase from '@/components/AnimeShowcase'
 
 export default function Home() {
   return (
@@ -41,6 +42,7 @@ export default function Home() {
       <TechShowcase />
       <UnsplashSection />
       <ProjectShowcase />
+      <AnimeShowcase />
       <MessageSection />
       <FeatureSupportSection />
       <footer className={styles.footer}>

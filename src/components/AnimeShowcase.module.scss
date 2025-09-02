@@ -1,0 +1,142 @@
+.sect {
+  border-bottom: var(--border-dashed-default);
+
+  .sectionTitle {
+    font-size: 22px;
+    font-weight: 400;
+    margin: 0;
+    padding: var(--spacing-lg);
+    padding-bottom: 0;
+  }
+
+  .list {
+    position: relative;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      pointer-events: none;
+      z-index: 600;
+    }
+
+    &::before {
+      top: 0;
+      height: var(--spacing-lg);
+      background-image: linear-gradient(
+        180deg,
+        var(--background-color-primary),
+        transparent
+      );
+    }
+
+    &::after {
+      bottom: 0;
+      height: var(--spacing-lg);
+      background-image: linear-gradient(
+        0deg,
+        var(--background-color-primary),
+        transparent
+      );
+    }
+
+    & > ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      max-height: 360px;
+      overflow-y: auto;
+
+      & > a {
+        padding: calc(var(--spacing-lg) / 2) var(--spacing-lg);
+        text-decoration: none;
+        color: var(--text-color-secondary);
+
+        &:first-child {
+          padding-top: var(--spacing-lg);
+        }
+
+        &:last-child {
+          padding-bottom: var(--spacing-lg);
+        }
+
+        &:hover,
+        &:focus-visible {
+          background-color: color-mix(
+            in oklab,
+            var(--background-color-secondary),
+            var(--cover-color) 5%
+          );
+        }
+
+        & > li {
+          display: flex;
+          gap: var(--spacing-sm);
+
+          .cover {
+            display: block;
+            height: 75px;
+            aspect-ratio: 5/7;
+            object-fit: cover;
+          }
+
+          .info {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-2xs);
+
+            .title {
+              margin: 0;
+              color: var(--text-color-primary);
+              font-size: 15px;
+              font-weight: 500;
+            }
+
+            .description {
+              margin: 0;
+              font-size: 11px;
+              min-height: 20px;
+              max-height: 50px;
+              overflow-y: hidden;
+              color: var(--text-color-tertiary);
+              mask-image: linear-gradient(
+                to bottom,
+                black 0%,
+                transparent 100%
+              );
+              z-index: 300; // those with `mask-image` won't be covered by the gradient mask on top and bottom, so z-index is here to fix.
+            }
+
+            .dl {
+              font-size: 12px;
+              display: flex;
+              flex-wrap: wrap;
+              gap: var(--spacing-3xs) var(--spacing-xs);
+
+              & > div {
+                display: flex;
+
+                & > dt {
+                  color: var(--text-color-tertiary);
+
+                  &::after {
+                    content: ' ';
+                    white-space: pre;
+                  }
+                }
+
+                & > dd {
+                  margin: 0;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
