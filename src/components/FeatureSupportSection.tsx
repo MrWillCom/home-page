@@ -44,6 +44,16 @@ export default function FeatureSupportSection() {
           }
         />
         <Row
+          status={
+            <CSSSupports condition="mask-image: linear-gradient(to bottom, black 0%, transparent 100%)" />
+          }
+          feature={
+            <>
+              CSS: <code>mask-image</code>
+            </>
+          }
+        />
+        <Row
           status={<CSSSupports condition="font-variation-settings: normal" />}
           feature="Variable fonts"
         />
