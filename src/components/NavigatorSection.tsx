@@ -77,7 +77,6 @@ export default function NavigatorSection() {
       >
         <input
           type="text"
-          tabIndex={1}
           placeholder="Jump to ..."
           value={inputValue}
           onChange={ev => {

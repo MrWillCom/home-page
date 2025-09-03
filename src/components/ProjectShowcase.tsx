@@ -27,7 +27,11 @@ function ProjectCard({
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.description}>{description}</p>
         <ul className={styles.techs}>
-          {...techs.map(t => <i className={'si si-' + t} title={t} />)}
+          {...techs.map(t => (
+            <li>
+              <i className={'si si-' + t} title={t} />
+            </li>
+          ))}
         </ul>
         <dl className={styles.stats}>
           {...stats.map(s => (

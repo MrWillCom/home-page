@@ -4,7 +4,11 @@ import AtroposWrapper from './AtroposWrapper'
 function AtroposImage({ src, alt }: { src: string; alt: string }) {
   return (
     <AtroposWrapper shadow={false} activeOffset={25}>
-      <img src={src} alt={alt} className={styles.atroposImage} />
+      <img
+        src={src}
+        alt={alt ?? 'One of my Unsplash photos.'}
+        className={styles.atroposImage}
+      />
     </AtroposWrapper>
   )
 }

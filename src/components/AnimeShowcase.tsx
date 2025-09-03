@@ -85,9 +85,7 @@ export default async function AnimeShowcase() {
                 }
               }
             }) => (
-              <a
-                href={e.media.siteUrl}
-                target="_blank"
+              <li
                 style={
                   {
                     '--cover-color':
@@ -96,9 +94,10 @@ export default async function AnimeShowcase() {
                   } as React.CSSProperties
                 }
               >
-                <li>
+                <a href={e.media.siteUrl} target="_blank">
                   <img
                     src={e.media.coverImage.medium}
+                    alt={`Cover image of ${e.media.title}.`}
                     loading="lazy"
                     className={styles.cover}
                   />
@@ -132,8 +131,8 @@ export default async function AnimeShowcase() {
                       </div>
                     </dl>
                   </div>
-                </li>
-              </a>
+                </a>
+              </li>
             ),
           ) ?? []}
         </ul>

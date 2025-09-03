@@ -51,31 +51,31 @@
       max-height: 360px;
       overflow-y: auto;
 
-      & > a {
-        padding: calc(var(--spacing-lg) / 2) var(--spacing-lg);
-        text-decoration: none;
-        color: var(--text-color-secondary);
-
-        &:first-child {
-          padding-top: var(--spacing-lg);
-        }
-
-        &:last-child {
-          padding-bottom: var(--spacing-lg);
-        }
-
-        &:hover,
-        &:focus-visible {
-          background-color: color-mix(
-            in oklab,
-            var(--background-color-secondary),
-            var(--cover-color) 5%
-          );
-        }
-
-        & > li {
+      & > li {
+        & > a {
+          color: var(--text-color-secondary);
+          text-decoration: none;
           display: flex;
           gap: var(--spacing-sm);
+
+          padding: calc(var(--spacing-lg) / 2) var(--spacing-lg);
+
+          &:first-child {
+            padding-top: var(--spacing-lg);
+          }
+
+          &:last-child {
+            padding-bottom: var(--spacing-lg);
+          }
+
+          &:hover,
+          &:focus-visible {
+            background-color: color-mix(
+              in oklab,
+              var(--background-color-secondary),
+              var(--cover-color) 5%
+            );
+          }
 
           .cover {
             display: block;
