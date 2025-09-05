@@ -1,13 +1,13 @@
 import styles from './UnsplashSection.module.scss'
 import AtroposWrapper from './AtroposWrapper'
+import { ImgHTMLAttributes } from 'react'
 
-function AtroposImage({ src, alt }: { src: string; alt: string }) {
+function AtroposImage({ className, ...props }: ImgHTMLAttributes<HTMLElement>) {
   return (
     <AtroposWrapper shadow={false} activeOffset={25}>
       <img
-        src={src}
-        alt={alt ?? 'One of my Unsplash photos.'}
-        className={styles.atroposImage}
+        className={styles.atroposImage + (className ? ' ' + className : '')}
+        {...props}
       />
     </AtroposWrapper>
   )
@@ -58,7 +58,11 @@ export default async function UnsplashSection() {
           try {
             return photos.map(
               (p: { urls: { regular: string }; alt_description: string }) => (
-                <AtroposImage src={p.urls.regular} alt={p.alt_description} />
+                <AtroposImage
+                  src={p.urls.regular}
+                  alt={p.alt_description ?? 'One of my Unsplash photos.'}
+                  loading="lazy"
+                />
               ),
             )
           } catch (error) {
