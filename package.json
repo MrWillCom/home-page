@@ -16,24 +16,24 @@
     "bootstrap": "^5.3.8",
     "date-fns": "^4.1.0",
     "inter-ui": "^4.1.1",
-    "jotai": "^2.13.1",
+    "jotai": "^2.14.0",
     "lodash": "^4.17.21",
-    "next": "15.5.2",
+    "next": "15.5.3",
     "next-themes": "^0.4.6",
     "normalize.css": "^8.0.1",
     "react": "19.1.1",
     "react-dom": "19.1.1",
-    "simple-icons-font": "^15.12.0",
-    "zod": "^4.1.5"
+    "simple-icons-font": "^15.15.0",
+    "zod": "^4.1.11"
   },
   "devDependencies": {
     "@types/lodash": "^4.17.20",
-    "@types/node": "^24.3.0",
-    "@types/react": "^19.1.12",
+    "@types/node": "^24.5.2",
+    "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
     "prettier": "^3.6.2",
-    "sass": "^1.91.0",
+    "sass": "^1.93.0",
     "typescript": "^5"
   },
-  "packageManager": "pnpm@10.15.0+sha512.486ebc259d3e999a4e8691ce03b5cac4a71cbeca39372a9b762cb500cfdf0873e2cb16abe3d951b1ee2cf012503f027b98b6584e4df22524e0c7450d9ec7aa7b"
+  "packageManager": "pnpm@10.17.0+sha512.fce8a3dd29a4ed2ec566fb53efbb04d8c44a0f05bc6f24a73046910fb9c3ce7afa35a0980500668fa3573345bd644644fa98338fa168235c80f4aa17aa17fbef"
 }
