@@ -15,6 +15,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://mrwillcom.com'),
   title: 'Mr. Will',
   description: 'A full-stack developer and a photographer.',
 }
