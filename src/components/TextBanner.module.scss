@@ -1,0 +1,25 @@
+.sect {
+  border-bottom: var(--border-dashed-default);
+  padding: var(--spacing-lg);
+
+  & > p {
+    margin-top: 0;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  strong {
+    color: var(--text-color-primary);
+    font-weight: 500;
+  }
+
+  a {
+    color: var(--text-color-primary);
+    font-weight: 500;
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+      text-decoration: underline;
+    }
+  }
+}

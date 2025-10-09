@@ -11,6 +11,7 @@ import ProjectShowcase from '@/components/ProjectShowcase'
 import FeatureSupportSection from '@/components/FeatureSupportSection'
 import TimeSection from '@/components/TimeSection'
 import AnimeShowcase from '@/components/AnimeShowcase'
+import TextBanner from '@/components/TextBanner'
 
 export default function Home() {
   return (
@@ -37,6 +38,7 @@ export default function Home() {
         </div>
       </section>
       <SocialMediaSection />
+      <TextBanner />
       <TimeSection />
       <NavigatorSection />
       <TechShowcase />
