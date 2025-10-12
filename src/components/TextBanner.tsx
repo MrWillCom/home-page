@@ -6,7 +6,7 @@ export default function TextBanner() {
   return (
     <section className={styles.sect}>
       <p>
-        <strong>Reneur</strong> is a new links page.
+        <strong>Reneur</strong> is a new personal links page.
       </p>
       <p>
         Unlike Linktree or Bio Link, it's <strong>compact</strong> and{' '}
