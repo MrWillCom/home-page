@@ -18,7 +18,7 @@ export default function TextBanner() {
       </p>
       <p>
         To be the first to know when it launches,{' '}
-        <a href="https://wt.ls/reneur" target="_blank">
+        <a href="https://accounts.reneur.link/waitlist" target="_blank">
           join the waitlist
         </a>
         .
