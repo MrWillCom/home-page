@@ -163,6 +163,7 @@
     color: var(--text-color-secondary);
     background-color: var(--background-color-primary);
     border-radius: var(--radius-full);
+    corner-shape: initial;
     padding: var(--spacing-sm) var(--spacing-xs);
     text-decoration: none;
     transition-property: color, background-color;

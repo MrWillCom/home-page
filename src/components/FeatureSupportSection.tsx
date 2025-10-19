@@ -26,6 +26,14 @@ export default function FeatureSupportSection() {
       <p className={styles.description}>Your browser:</p>
       <dl className={styles.dl}>
         <Row
+          status={<CSSSupports condition="corner-shape: squircle" />}
+          feature={
+            <>
+              CSS: <code>corner-shape</code>
+            </>
+          }
+        />
+        <Row
           status={
             <CSSSupports condition="width: calc(sibling-index() * 1px)" />
           }

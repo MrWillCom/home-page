@@ -2,6 +2,10 @@
 *::before,
 *::after {
   box-sizing: border-box;
+
+  @supports (corner-shape: squircle) {
+    corner-shape: squircle;
+  }
 }
 
 :root {
@@ -37,6 +41,10 @@
 
   --radius-md: 5px;
   --radius-full: 999px;
+
+  @supports (corner-shape: squircle) {
+    --radius-md: 12px;
+  }
 }
 
 [data-theme='dark'] {

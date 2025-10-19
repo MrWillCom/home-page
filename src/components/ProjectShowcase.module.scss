@@ -124,6 +124,7 @@
           color: var(--text-color-secondary);
           text-decoration: none;
           border-radius: var(--radius-full);
+          corner-shape: initial;
           padding: var(--spacing-2xs) var(--spacing-xs);
 
           &:hover,
