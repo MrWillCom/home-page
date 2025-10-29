@@ -1,8 +1,8 @@
-import styles from './TextBanner.module.scss'
+import styles from './ReneurPromotion.module.scss'
 
 // this is a temporary banner for Reneur's waitlist
 
-export default function TextBanner() {
+export default function ReneurPromotion() {
   return (
     <section className={styles.sect}>
       <p>
