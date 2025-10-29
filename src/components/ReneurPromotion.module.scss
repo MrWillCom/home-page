@@ -1,38 +1,54 @@
 .sect {
   border-bottom: var(--border-dashed-default);
   padding: var(--spacing-lg);
-  animation: hlp 1.5s 1s 2;
 
-  @keyframes hlp {
-    50% {
+  .card {
+    padding: var(--spacing-lg);
+    border: var(--border-dashed-default);
+    border-radius: var(--radius-md);
+    background-color: var(--background-color-secondary);
+    text-align: center;
+
+    & > * {
+      margin: 0;
+    }
+
+    .logo {
+      color: var(--text-color-primary);
+      display: inline;
+      text-align: center;
+      margin-bottom: var(--spacing-md);
+    }
+
+    h2 {
+      color: var(--text-color-primary);
+      font-weight: 500;
+      font-size: 19px;
+      margin-bottom: var(--spacing-2xs);
+    }
+
+    p {
+      font-size: 14px;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: var(--spacing-md);
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-color-primary);
+      text-decoration: none;
+      corner-shape: initial;
       background-color: var(--background-color-tertiary);
-    }
-  }
+      color: var(--text-color-primary);
+      padding: var(--spacing-xs) var(--spacing-md);
+      transition-property: background-color, color, border-color;
+      transition-duration: 0.15s;
 
-  & > p {
-    margin-top: 0;
-    margin-bottom: var(--spacing-xs);
-  }
-
-  strong {
-    color: var(--text-color-primary);
-    font-weight: 500;
-  }
-
-  a {
-    color: var(--text-color-primary);
-    font-weight: 500;
-    animation: hl 1.5s 1s 2;
-
-    &:hover,
-    &:focus-visible {
-      text-decoration: underline;
-    }
-
-    @keyframes hl {
-      50% {
-        margin-left: 2px;
-        font-weight: 900;
+      &:hover,
+      &:focus-visible {
+        background-color: var(--text-color-primary);
+        color: var(--background-color-tertiary);
+        border-color: var(--text-color-primary);
       }
     }
   }
