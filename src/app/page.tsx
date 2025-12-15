@@ -13,6 +13,7 @@ import TimeSection from '@/components/TimeSection'
 import AnimeShowcase from '@/components/AnimeShowcase'
 import ReneurPromotion from '@/components/ReneurPromotion'
 import Snowy from '@/components/Snowy'
+import ChristmasGreeting from '@/components/ChristmasGreeting'
 
 export default function Home() {
   return (
@@ -39,6 +40,7 @@ export default function Home() {
             />
           </div>
         </section>
+        <ChristmasGreeting />
         <SocialMediaSection />
         <ReneurPromotion />
         <TimeSection />

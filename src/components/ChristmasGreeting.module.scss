@@ -1,0 +1,40 @@
+.sect {
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: var(--border-dashed-default);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .text {
+    --accent-color: #00ff59;
+    color: color-mix(
+      in oklch,
+      var(--text-color-secondary),
+      var(--accent-color) 30%
+    );
+    display: block;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-full);
+    font-size: 16px;
+    text-align: center;
+    animation: greeting-appear 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s
+      both;
+
+    background-color: color-mix(in oklab, var(--accent-color), transparent 92%);
+
+    @keyframes greeting-appear {
+      from {
+        font-weight: 800;
+        opacity: 0;
+        scale: 0.8;
+        filter: blur(4px);
+      }
+      to {
+        font-weight: 450;
+        opacity: 1;
+        scale: 1;
+        filter: blur(0);
+      }
+    }
+  }
+}
