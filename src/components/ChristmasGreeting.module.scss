@@ -3,15 +3,16 @@
   padding: var(--spacing-md) var(--spacing-lg);
   border-bottom: var(--border-dashed-default);
   background-image:
+    linear-gradient(to right, transparent, var(--background-color-primary)),
     linear-gradient(
       to bottom,
       transparent,
-      color-mix(in oklab, var(--ac), transparent 96%)
+      color-mix(in oklab, var(--ac), transparent 92%)
     ),
     linear-gradient(
       to bottom,
       transparent,
-      color-mix(in oklab, var(--ac), transparent 98%)
+      color-mix(in oklab, var(--ac), transparent 95%)
     );
 
   .text {
