@@ -12,6 +12,7 @@ export default function Snowy() {
   const [snowflakes, setSnowflakes] = useState<Snowflake[]>([])
   const nextId = useRef(0)
   const targetCount = useRef(0)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   const createSnowflake = useCallback((initial = false): Snowflake => {
     const duration = Math.random() * 8 + 6
@@ -63,6 +64,24 @@ export default function Snowy() {
     return () => window.removeEventListener('resize', handleResize)
   }, [createSnowflake])
 
+  useEffect(() => {
+    const isMouse = window.matchMedia('(pointer: fine)').matches
+    if (!isMouse) return
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (containerRef.current) {
+        containerRef.current.style.setProperty('--mouse-x', `${e.clientX}px`)
+        containerRef.current.style.setProperty('--mouse-y', `${e.clientY}px`)
+      }
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove)
+    }
+  }, [])
+
   const handleAnimationEnd = (id: number) => {
     setSnowflakes(prev => {
       const remaining = prev.filter(flake => flake.id !== id)
@@ -74,7 +93,7 @@ export default function Snowy() {
   }
 
   return (
-    <div className={styles.snowy}>
+    <div ref={containerRef} className={styles.snowy}>
       {snowflakes.map(flake => (
         <div
           key={flake.id}
