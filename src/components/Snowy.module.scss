@@ -9,26 +9,39 @@
   overflow: hidden;
 }
 
-.flake {
-  filter: blur(2px);
+.flakeWrapper {
   position: absolute;
   left: var(--left);
-  width: var(--size);
-  height: var(--size);
-  background: white;
-  border-radius: 50%;
-  corner-shape: initial;
-  opacity: var(--opacity);
   top: -20px;
   animation: fall var(--duration) linear;
   animation-delay: var(--delay);
 }
 
+.flake {
+  filter: blur(2px);
+  width: var(--size);
+  height: var(--size);
+  background: white;
+  border-radius: 50%;
+  opacity: var(--opacity);
+  animation: sway var(--sway-duration) ease-in-out infinite alternate;
+  animation-delay: var(--sway-delay);
+}
+
 @keyframes fall {
   from {
-    transform: translateY(0);
+    transform: translateY(0) translateX(0);
   }
   to {
-    transform: translateY(calc(100vh + 40px));
+    transform: translateY(calc(100vh + 40px)) translateX(var(--drift));
+  }
+}
+
+@keyframes sway {
+  from {
+    transform: translateX(calc(-1 * var(--sway-amount)));
+  }
+  to {
+    transform: translateX(var(--sway-amount));
   }
 }

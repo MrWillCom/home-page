@@ -14,7 +14,11 @@ export default function Snowy() {
   const targetCount = useRef(0)
 
   const createSnowflake = useCallback((initial = false): Snowflake => {
-    const duration = Math.random() * 5 + 5
+    const duration = Math.random() * 8 + 6
+    const drift = (Math.random() - 0.5) * 100
+    const swayAmount = Math.random() * 15 + 5
+    const swayDuration = Math.random() * 3 + 3
+
     return {
       id: nextId.current++,
       style: {
@@ -23,6 +27,10 @@ export default function Snowy() {
         '--opacity': Math.random() * 0.5 + 0.3,
         '--duration': `${duration}s`,
         '--delay': initial ? `${Math.random() * -10}s` : '0s',
+        '--drift': `${drift}px`,
+        '--sway-amount': `${swayAmount}px`,
+        '--sway-duration': `${swayDuration}s`,
+        '--sway-delay': `${Math.random() * -5}s`,
       } as React.CSSProperties,
     }
   }, [])
@@ -70,10 +78,12 @@ export default function Snowy() {
       {snowflakes.map(flake => (
         <div
           key={flake.id}
-          className={styles.flake}
+          className={styles.flakeWrapper}
           style={flake.style}
           onAnimationEnd={() => handleAnimationEnd(flake.id)}
-        />
+        >
+          <div className={styles.flake} />
+        </div>
       ))}
     </div>
   )
