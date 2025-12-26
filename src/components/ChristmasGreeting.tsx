@@ -1,13 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import {
-  addYears,
-  differenceInDays,
-  differenceInHours,
-  getYear,
-  isAfter,
-} from 'date-fns'
+import { differenceInDays, differenceInHours, isAfter } from 'date-fns'
 import styles from './ChristmasGreeting.module.scss'
 
 export default function ChristmasGreeting() {
@@ -19,14 +13,14 @@ export default function ChristmasGreeting() {
   useEffect(() => {
     const calculateTimeLeft = () => {
       const now = new Date()
-      let christmas = new Date(getYear(now), 11, 25)
+      const christmas = new Date(2026, 0, 1)
 
       if (isAfter(now, christmas)) {
-        christmas = addYears(christmas, 1)
+        return null
       }
 
       const days = differenceInDays(christmas, now)
-      const hours = differenceInHours(christmas, now) % 24
+      const hours = differenceInHours(christmas, now)
 
       return { days, hours }
     }
@@ -41,20 +35,13 @@ export default function ChristmasGreeting() {
 
   return (
     <section className={styles.sect}>
-      <span className={styles.text}>Merry Christmas! 🎄</span>
-      {timeLeft && (timeLeft.days > 0 || timeLeft.hours > 0) && (
+      <span className={styles.text}>Happy New Year! 🎊</span>
+      {timeLeft && (
         <span className={styles.countdown}>
           coming in{' '}
-          {[
-            timeLeft.days > 0
-              ? `${timeLeft.days} day${timeLeft.days === 1 ? '' : 's'}`
-              : null,
-            timeLeft.hours > 0
-              ? `${timeLeft.hours} hour${timeLeft.hours === 1 ? '' : 's'}`
-              : null,
-          ]
-            .filter(Boolean)
-            .join(' ')}
+          {timeLeft.days > 0
+            ? `${timeLeft.days} day${timeLeft.days === 1 ? '' : 's'}`
+            : `${timeLeft.hours} hour${timeLeft.hours === 1 ? '' : 's'}`}
         </span>
       )}
     </section>
