@@ -22,7 +22,6 @@ const techs = [
   'cloudflare',
   'git',
   'spaceship',
-  'codepen',
   'tower',
   'zsh',
   'starship',
