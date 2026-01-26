@@ -150,6 +150,9 @@ export default async function ProjectShowcase() {
           >
             GitHub
           </a>,
+          <a href="https://npmx.dev/hexo-theme-cupertino" target="_blank">
+            npm
+          </a>,
         ]}
         image={
           <Image
