@@ -35,7 +35,7 @@ export default function ChristmasGreeting() {
 
   return (
     <section className={styles.sect}>
-      <span className={styles.text}>Happy New Year! 🎊</span>
+      <span className={styles.text}>新年快乐！🎊</span>
       {timeLeft && (
         <span className={styles.countdown}>
           coming in{' '}
