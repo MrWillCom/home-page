@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://mrwillcom.com'),
   title: 'Mr. Will',
   description: 'A full-stack developer and a photographer.',
+  other: {
+    'fediverse:creator': '@MrWillCom@vmst.io',
+  },
 }
 
 export default function RootLayout({

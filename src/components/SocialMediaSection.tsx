@@ -9,7 +9,7 @@ export default function SocialMediaSection() {
       <a href="mailto:hi@mrwillcom.com">
         <span>Email</span>
       </a>
-      <a href="https://noc.social/@MrWillCom" target="_blank">
+      <a rel="me" href="https://vmst.io/@MrWillCom" target="_blank">
         <span>Mastodon</span>
       </a>
       <a href="https://unsplash.com/@mrwillcom" target="_blank">
