@@ -19,7 +19,7 @@ const greetings = [
   'Nice to meet you',
 ]
 
-const getRandomGreeting = () => _.sample(greetings)
+const getRandomGreeting = () => _.sample(greetings) as string
 
 export default function RandomGreeting() {
   const [currentGreeting, setCurrentGreeting] = useState(getRandomGreeting())
@@ -37,7 +37,7 @@ export default function RandomGreeting() {
           while (r === currentGreeting) {
             r = getRandomGreeting()
           }
-          setCurrentGreeting(getRandomGreeting())
+          setCurrentGreeting(r)
           op.track('click_random_greeting')
         }}
         suppressHydrationWarning
