@@ -44,7 +44,7 @@ export default function ReneurPromotion() {
       <div className={styles.card}>
         <Logo className={styles.logo} size={'2.5em'} />
         <h2>Reneur</h2>
-        <p>The all-in-one place for your links.</p>
+        <p>Where your links live.</p>
         <a href="https://accounts.reneur.link/waitlist" target="_blank">
           Join the Waitlist
         </a>
