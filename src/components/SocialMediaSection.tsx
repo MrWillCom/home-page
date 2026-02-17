@@ -1,48 +1,41 @@
 import styles from './SocialMediaSection.module.scss'
 
-async function HoverCard({
-  altName,
-  hideAvatar,
-  hideHeader,
+interface HoverCardProps {
+  platform: string
+  headerUrl?: string
+  icon?: React.ReactNode
+  avatarUrl?: string
+  displayName: string
+  username: string
+}
+
+function HoverCard({
+  platform,
+  headerUrl,
+  icon,
+  avatarUrl,
   displayName,
   username,
-  icon,
-}: {
-  altName: string
-  hideAvatar?: boolean
-  hideHeader?: boolean
-  displayName?: string
-  username: string
-  icon?: React.ReactNode
-}) {
-  const acctInfo = await (
-    await fetch('https://vmst.io/api/v1/accounts/lookup?acct=MrWillCom', {
-      next: { revalidate: 3600 },
-    })
-  ).json()
-
+}: HoverCardProps) {
   return (
     <div className={styles.hoverCard}>
-      {hideHeader === true ? (
-        <div className={styles.icon}>{icon}</div>
-      ) : (
+      {headerUrl && (
         <img
           className={styles.headerImage}
-          src={acctInfo.header}
-          alt={`${altName} profile header`}
+          src={headerUrl}
+          alt={`${platform} profile header`}
         />
       )}
+      {icon && <div className={styles.icon}>{icon}</div>}
       <div className={styles.content}>
-        {hideAvatar === true ? null : (
+        {avatarUrl && (
           <img
             className={styles.avatar}
-            src={acctInfo.avatar}
-            alt={`${altName} avatar`}
+            src={avatarUrl}
+            alt={`${platform} avatar`}
           />
         )}
-        <span className={styles.displayName}>
-          {displayName || acctInfo.display_name}
-        </span>
+        <span className={styles.displayName}>{displayName}</span>
         <span className={styles.username}>{username}</span>
       </div>
     </div>
@@ -50,54 +43,110 @@ async function HoverCard({
 }
 
 export default async function SocialMediaSection() {
+  const data: {
+    url: string
+    target?: React.HTMLAttributeAnchorTarget
+    rel?: string
+    label: string
+    profile: HoverCardProps
+  }[] = [
+    {
+      url: 'https://github.com/MrWillCom',
+      target: '_blank',
+      label: 'GitHub',
+      profile: await (async () => {
+        const response = await (
+          await fetch('https://api.github.com/users/MrWillCom', {
+            headers: {
+              Accept: 'application/vnd.github+json',
+              'X-GitHub-Api-Version': '2022-11-28',
+            },
+            next: { revalidate: 3600 },
+          })
+        ).json()
+
+        return {
+          platform: 'GitHub',
+          icon: <i className="si si-github" />,
+          avatarUrl: response.avatar_url,
+          displayName: response.name,
+          username: `@${response.login}`,
+        }
+      })(),
+    },
+    {
+      url: 'mailto:hi@mrwillcom.com',
+      label: 'Email',
+      profile: {
+        platform: 'Email',
+        icon: <i className="si si-spaceship" />,
+        displayName: 'Domain Email',
+        username: 'hi@mrwillcom.com',
+      },
+    },
+    {
+      url: 'https://vmst.io/@MrWillCom',
+      target: '_blank',
+      label: 'Mastodon',
+      profile: await (async () => {
+        const response = await (
+          await fetch('https://vmst.io/api/v1/accounts/lookup?acct=MrWillCom', {
+            next: { revalidate: 3600 },
+          })
+        ).json()
+
+        return {
+          platform: 'Mastodon',
+          headerUrl: response.header,
+          avatarUrl: response.avatar,
+          displayName: response.display_name,
+          username: `@${response.username}@${new URL(response.url).hostname}`,
+        }
+      })(),
+    },
+    {
+      url: 'https://x.com/MrWillCom',
+      target: '_blank',
+      label: 'X',
+      profile: {
+        platform: 'X',
+        icon: <i className="si si-x" />,
+        displayName: 'Mr. Will',
+        username: '@MrWillCom',
+      },
+    },
+    {
+      url: 'https://www.threads.com/@mr_will_com',
+      target: '_blank',
+      label: 'Threads',
+      profile: {
+        platform: 'Threads',
+        icon: <i className="si si-threads" />,
+        displayName: 'Mr. Will',
+        username: '@mr_will_com',
+      },
+    },
+    {
+      url: 'https://www.instagram.com/mr_will_com/',
+      target: '_blank',
+      label: 'Instagram',
+      profile: {
+        platform: 'Instagram',
+        icon: <i className="si si-instagram" />,
+        displayName: 'Mr. Will',
+        username: '@mr_will_com',
+      },
+    },
+  ]
+
   return (
     <section className={styles.grid}>
-      <a href="https://github.com/MrWillCom" target="_blank">
-        <HoverCard
-          altName="GitHub"
-          hideHeader
-          username="@MrWillCom"
-          icon={<i className="si si-github" />}
-        />
-        <span className={styles.label}>GitHub</span>
-      </a>
-      <a href="mailto:hi@mrwillcom.com">
-        <HoverCard
-          altName="Email"
-          hideAvatar
-          hideHeader
-          displayName="Domain Email"
-          username="hi@mrwillcom.com"
-          icon={<i className="si si-spaceship" />}
-        />
-        <span className={styles.label}>Email</span>
-      </a>
-      <a rel="me" href="https://vmst.io/@MrWillCom" target="_blank">
-        <HoverCard altName="Mastodon" username="@MrWillCom@vmst.io" />
-        <span className={styles.label}>Mastodon</span>
-      </a>
-      <a rel="me" href="https://x.com/MrWillCom" target="_blank">
-        <HoverCard altName="X" username="@MrWillCom" />
-        <span className={styles.label}>X</span>
-      </a>
-      <a rel="me" href="https://www.threads.com/@mr_will_com" target="_blank">
-        <HoverCard
-          altName="Threads"
-          hideHeader
-          username="@mr_will_com"
-          icon={<i className="si si-threads" />}
-        />
-        <span className={styles.label}>Threads</span>
-      </a>
-      <a href="https://www.instagram.com/mr_will_com/" target="_blank">
-        <HoverCard
-          altName="Instagram"
-          hideHeader
-          username="@mr_will_com"
-          icon={<i className="si si-instagram" />}
-        />
-        <span className={styles.label}>Instagram</span>
-      </a>
+      {...data.map(({ url, target, rel, profile, label }) => (
+        <a href={url} target={target} rel={rel}>
+          <HoverCard {...profile} />
+          <span className={styles.label}>{label}</span>
+        </a>
+      ))}
     </section>
   )
 }

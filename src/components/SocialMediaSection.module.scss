@@ -36,11 +36,14 @@
     border-right: var(--border-dashed-default);
     border-bottom: var(--border-dashed-default);
     font-size: 14px;
-    pointer-events: none;
     overflow: clip;
     transition-property:
       margin-top, border-color, box-shadow, scale, border-radius;
     transition-duration: 0.2s;
+
+    @media (pointer: fine) {
+      pointer-events: none;
+    }
 
     @media (width > 780px) {
       &:nth-child(4n) {
@@ -169,9 +172,12 @@
       display: block;
       padding: var(--spacing-md) var(--spacing-lg);
       height: 48px;
-      pointer-events: initial;
       transition-property: color, font-weight, padding;
       transition-duration: 0.2s;
+
+      @media (pointer: fine) {
+        pointer-events: initial;
+      }
     }
 
     &:hover,
