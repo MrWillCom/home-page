@@ -1,33 +1,17 @@
 'use client'
 
 import _ from 'lodash'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useOpenPanel } from '@openpanel/nextjs'
+import { greetings, getRandomGreeting } from '@/data/greetings'
 
-const greetings = [
-  'Hello',
-  'Hi',
-  'Greetings',
-  'Hi there',
-  'Hello there',
-  'Hey',
-  'Howdy',
-  'Good day',
-  'Hola',
-  'Bonjour',
-  'Nice to see you',
-  'Nice to meet you',
-]
+interface RandomGreetingProps {
+  initial: (typeof greetings)[number]
+}
 
-const getRandomGreeting = () => _.sample(greetings) as string
-
-export default function RandomGreeting() {
-  const [currentGreeting, setCurrentGreeting] = useState(getRandomGreeting())
+export default function RandomGreeting({ initial }: RandomGreetingProps) {
+  const [currentGreeting, setCurrentGreeting] = useState(initial)
   const op = useOpenPanel()
-
-  useEffect(() => {
-    setCurrentGreeting(getRandomGreeting())
-  }, [])
 
   return (
     <>
@@ -40,7 +24,6 @@ export default function RandomGreeting() {
           setCurrentGreeting(r)
           op.track('click_random_greeting')
         }}
-        suppressHydrationWarning
       >
         {currentGreeting}
       </span>
