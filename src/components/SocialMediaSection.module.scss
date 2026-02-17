@@ -150,7 +150,7 @@
           height: 35px;
           border-radius: var(--radius-full);
           corner-shape: initial;
-          margin-bottom: var(--spacing-2xs);
+          margin-bottom: var(--spacing-xs);
           margin-left: -1px;
         }
 
@@ -164,6 +164,36 @@
         .username {
           font-size: 11px;
           color: var(--text-color-tertiary);
+          margin-bottom: var(--spacing-2xs);
+        }
+
+        .datalist {
+          margin: 0;
+          display: flex;
+          gap: var(--spacing-2xs);
+
+          & > div {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+
+            & > dt {
+              color: var(--text-color-tertiary);
+              font-weight: 500;
+              font-size: 11px;
+              opacity: 0.8;
+            }
+
+            & > dd {
+              color: var(--text-color-tertiary);
+              margin: 0;
+              font-size: 12px;
+            }
+          }
+        }
+
+        & > *:last-child {
+          margin-bottom: 0;
         }
       }
     }
@@ -210,6 +240,10 @@
         padding-left: var(--spacing-md);
         padding-right: var(--spacing-md);
       }
+    }
+
+    &:active {
+      scale: 1.01;
     }
   }
 }

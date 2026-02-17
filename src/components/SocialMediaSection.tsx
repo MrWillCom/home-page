@@ -7,6 +7,7 @@ interface HoverCardProps {
   avatarUrl?: string
   displayName: string
   username: string
+  datalist?: { label: string; value: string }[]
 }
 
 function HoverCard({
@@ -16,6 +17,7 @@ function HoverCard({
   avatarUrl,
   displayName,
   username,
+  datalist,
 }: HoverCardProps) {
   return (
     <div className={styles.hoverCard}>
@@ -37,6 +39,16 @@ function HoverCard({
         )}
         <span className={styles.displayName}>{displayName}</span>
         <span className={styles.username}>{username}</span>
+        {datalist && (
+          <dl className={styles.datalist}>
+            {...datalist.map(({ label, value }) => (
+              <div>
+                <dt>{label}</dt>
+                <dd>{value}</dd>
+              </div>
+            ))}
+          </dl>
+        )}
       </div>
     </div>
   )
@@ -71,6 +83,11 @@ export default async function SocialMediaSection() {
           avatarUrl: response.avatar_url,
           displayName: response.name,
           username: `@${response.login}`,
+          datalist: [
+            { label: 'Following', value: response.following },
+            { label: 'Followers', value: response.followers },
+            { label: 'Repos', value: response.public_repos },
+          ],
         }
       })(),
     },
@@ -101,6 +118,11 @@ export default async function SocialMediaSection() {
           avatarUrl: response.avatar,
           displayName: response.display_name,
           username: `@${response.username}@${new URL(response.url).hostname}`,
+          datalist: [
+            { label: 'Following', value: response.following_count },
+            { label: 'Followers', value: response.followers_count },
+            { label: 'Posts', value: response.statuses_count },
+          ],
         }
       })(),
     },
