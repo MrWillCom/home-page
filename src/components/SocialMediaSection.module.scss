@@ -1,263 +1,303 @@
-.grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  border-bottom: var(--border-dashed-default);
-
-  @media (600px < width <= 780px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  @media (440px < width <= 600px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (width <= 440px) {
-    display: flex;
-    flex-direction: column;
-  }
-
-  &:has(:hover),
-  &:has(:focus-visible) {
-    & > a {
-      border-color: transparent;
-
-      .label {
-        color: var(--text-color-tertiary);
-      }
-    }
-  }
-
-  & > a {
-    display: flex;
-    flex-direction: column;
-    color: var(--text-color-secondary);
-    background-color: var(--background-color-primary);
-    text-decoration: none;
-    border-right: var(--border-dashed-default);
+.sect {
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     border-bottom: var(--border-dashed-default);
-    font-size: 14px;
-    overflow: clip;
-    transition-property:
-      margin-top, border-color, box-shadow, scale, border-radius;
-    transition-duration: 0.2s;
-
-    @media (pointer: fine) {
-      pointer-events: none;
-    }
-
-    @media (width > 780px) {
-      &:nth-child(4n) {
-        border-right: none;
-      }
-
-      &:nth-last-child(-n + 2) {
-        border-bottom: none;
-      }
-    }
 
     @media (600px < width <= 780px) {
-      &:nth-child(3n) {
-        border-right: none;
-      }
-
-      &:nth-last-child(-n + 3) {
-        border-bottom: none;
-      }
+      grid-template-columns: repeat(3, 1fr);
     }
 
     @media (440px < width <= 600px) {
-      &:nth-child(2n) {
-        border-right: none;
-      }
-
-      &:nth-last-child(-n + 2) {
-        border-bottom: none;
-      }
+      grid-template-columns: repeat(2, 1fr);
     }
 
     @media (width <= 440px) {
-      border-right: none;
-
-      &:last-child {
-        border-bottom: none;
-      }
+      display: flex;
+      flex-direction: column;
     }
 
-    $hcHeight: 160px;
-    .hoverCard {
-      height: 0;
-      position: relative;
-      overflow: clip;
-      transition: height 0.2s;
+    &:has(a:hover),
+    &:has(a:focus-visible) {
+      & > a {
+        border-color: transparent;
 
-      .headerImage {
-        $h: 140px;
-        width: 100%;
-        height: $h;
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: $hcHeight - $h;
-        object-fit: cover;
-        mask-image:
-          linear-gradient(to bottom, #000, transparent),
-          linear-gradient(to bottom, #000 50%, transparent),
-          linear-gradient(to bottom, #000 25%, transparent),
-          linear-gradient(to bottom, #000 12.5%, transparent);
-        mask-composite: intersect;
-        opacity: 0;
-        transition: opacity 0.15s;
-      }
-
-      .icon {
-        $size: 150px;
-        $offset: 30px;
-        width: $size;
-        height: $size;
-        position: absolute;
-        right: -$offset;
-        bottom: $hcHeight + $offset - $size;
-        font-size: $size;
-        opacity: 0.3;
-        line-height: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        mask-image:
-          linear-gradient(to bottom, #000, #0002),
-          linear-gradient(to left, #000, #0004);
-        mask-composite: intersect;
-        filter: blur(2px);
-      }
-
-      .tag {
-        $fontSize: 11px;
-        display: block;
-        font-size: $fontSize;
-        line-height: 1;
-        text-transform: uppercase;
-        color: var(--text-color-tertiary);
-        font-weight: 500;
-        position: absolute;
-        bottom: calc($hcHeight - $fontSize - var(--spacing-md));
-        left: var(--spacing-md);
-      }
-
-      .content {
-        padding: var(--spacing-md) var(--spacing-md);
-        padding-bottom: 0;
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        opacity: 0;
-        transition: opacity 0.2s;
-
-        .avatar,
-        .displayName,
-        .username {
-          display: block;
-        }
-
-        .avatar {
-          width: 35px;
-          height: 35px;
-          border-radius: var(--radius-full);
-          corner-shape: initial;
-          margin-bottom: var(--spacing-xs);
-          margin-left: -1px;
-        }
-
-        .displayName {
-          font-size: 13px;
-          font-weight: 450;
-          color: var(--text-color-primary);
-          margin-bottom: var(--spacing-3xs);
-        }
-
-        .username {
-          font-size: 11px;
+        .label {
           color: var(--text-color-tertiary);
-          margin-bottom: var(--spacing-2xs);
-        }
-
-        .datalist {
-          margin: 0;
-          display: flex;
-          gap: var(--spacing-2xs);
-
-          & > div {
-            display: flex;
-            flex-direction: column;
-            gap: 1px;
-
-            & > dt {
-              color: var(--text-color-tertiary);
-              font-weight: 500;
-              font-size: 11px;
-              opacity: 0.8;
-            }
-
-            & > dd {
-              color: var(--text-color-tertiary);
-              margin: 0;
-              font-size: 12px;
-            }
-          }
-        }
-
-        & > *:last-child {
-          margin-bottom: 0;
         }
       }
     }
 
-    .label {
-      display: block;
-      padding: var(--spacing-md) var(--spacing-lg);
-      height: 48px;
-      transition-property: color, font-weight, padding;
+    & > a {
+      display: flex;
+      flex-direction: column;
+      color: var(--text-color-secondary);
+      background-color: var(--background-color-primary);
+      text-decoration: none;
+      border-right: var(--border-dashed-default);
+      border-bottom: var(--border-dashed-default);
+      font-size: 14px;
+      overflow: clip;
+      transition-property:
+        margin-top, border-color, box-shadow, scale, border-radius;
       transition-duration: 0.2s;
 
       @media (pointer: fine) {
-        pointer-events: initial;
+        pointer-events: none;
       }
-    }
 
-    &:hover,
-    &:focus-visible {
-      margin-top: -$hcHeight;
-      outline: var(--border-dashed-default);
-      outline-offset: -1px;
-      border-top-left-radius: var(--radius-md);
-      border-top-right-radius: var(--radius-md);
-      border-radius: var(--radius-md);
-      z-index: 100;
-      box-shadow: 0 0 36px #00000008;
-      scale: 1.02;
+      @media (width > 780px) {
+        &:nth-child(4n) {
+          border-right: none;
+        }
 
+        &:nth-last-child(-n + 2) {
+          border-bottom: none;
+        }
+      }
+
+      @media (600px < width <= 780px) {
+        &:nth-child(3n) {
+          border-right: none;
+        }
+
+        &:nth-last-child(-n + 3) {
+          border-bottom: none;
+        }
+      }
+
+      @media (440px < width <= 600px) {
+        &:nth-child(2n) {
+          border-right: none;
+        }
+
+        &:nth-last-child(-n + 2) {
+          border-bottom: none;
+        }
+      }
+
+      @media (width <= 440px) {
+        border-right: none;
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+
+      $hcHeight: 160px;
       .hoverCard {
-        height: $hcHeight;
+        height: 0;
+        position: relative;
+        overflow: clip;
+        transition: height 0.2s;
 
         .headerImage {
-          opacity: 1;
-          transition-delay: 0.05s;
+          $h: 140px;
+          width: 100%;
+          height: $h;
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: $hcHeight - $h;
+          object-fit: cover;
+          mask-image:
+            linear-gradient(to bottom, #000, transparent),
+            linear-gradient(to bottom, #000 50%, transparent),
+            linear-gradient(to bottom, #000 25%, transparent),
+            linear-gradient(to bottom, #000 12.5%, transparent);
+          mask-composite: intersect;
+          opacity: 0;
+          transition: opacity 0.15s;
+        }
+
+        .icon {
+          $size: 150px;
+          $offset: 30px;
+          width: $size;
+          height: $size;
+          position: absolute;
+          right: -$offset;
+          bottom: $hcHeight + $offset - $size;
+          font-size: $size;
+          opacity: 0.3;
+          line-height: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          mask-image:
+            linear-gradient(to bottom, #000, #0002),
+            linear-gradient(to left, #000, #0004);
+          mask-composite: intersect;
+          filter: blur(2px);
+        }
+
+        .tag {
+          $fontSize: 11px;
+          display: block;
+          font-size: $fontSize;
+          line-height: 1;
+          text-transform: uppercase;
+          color: var(--text-color-tertiary);
+          font-weight: 500;
+          position: absolute;
+          bottom: calc($hcHeight - $fontSize - var(--spacing-md));
+          left: var(--spacing-md);
         }
 
         .content {
-          opacity: 1;
+          padding: var(--spacing-md) var(--spacing-md);
+          padding-bottom: 0;
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          opacity: 0;
+          transition: opacity 0.2s;
+
+          .avatar,
+          .displayName,
+          .username {
+            display: block;
+          }
+
+          .avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: var(--radius-full);
+            corner-shape: initial;
+            margin-bottom: var(--spacing-xs);
+            margin-left: -1px;
+          }
+
+          .displayName {
+            font-size: 13px;
+            font-weight: 450;
+            color: var(--text-color-primary);
+            margin-bottom: var(--spacing-3xs);
+          }
+
+          .username {
+            font-size: 11px;
+            color: var(--text-color-tertiary);
+            margin-bottom: var(--spacing-2xs);
+          }
+
+          .datalist {
+            margin: 0;
+            display: flex;
+            gap: var(--spacing-2xs);
+
+            & > div {
+              display: flex;
+              flex-direction: column;
+              gap: 1px;
+
+              & > dt {
+                color: var(--text-color-tertiary);
+                font-weight: 500;
+                font-size: 11px;
+                opacity: 0.8;
+              }
+
+              & > dd {
+                color: var(--text-color-tertiary);
+                margin: 0;
+                font-size: 12px;
+              }
+            }
+          }
+
+          & > *:last-child {
+            margin-bottom: 0;
+          }
         }
       }
 
       .label {
-        font-weight: 450;
-        padding-left: var(--spacing-md);
-        padding-right: var(--spacing-md);
+        display: block;
+        padding: var(--spacing-md) var(--spacing-lg);
+        height: 48px;
+        transition-property: color, font-weight, padding;
+        transition-duration: 0.2s;
+
+        @media (pointer: fine) {
+          pointer-events: initial;
+        }
+      }
+
+      &:hover,
+      &:focus-visible {
+        margin-top: -$hcHeight;
+        outline: var(--border-dashed-default);
+        outline-offset: -1px;
+        border-top-left-radius: var(--radius-md);
+        border-top-right-radius: var(--radius-md);
+        border-radius: var(--radius-md);
+        z-index: 100;
+        box-shadow: 0 0 36px #00000008;
+        scale: 1.02;
+
+        .hoverCard {
+          height: $hcHeight;
+
+          .headerImage {
+            opacity: 1;
+            transition-delay: 0.05s;
+          }
+
+          .content {
+            opacity: 1;
+          }
+        }
+
+        .label {
+          font-weight: 450;
+          padding-left: var(--spacing-md);
+          padding-right: var(--spacing-md);
+        }
+      }
+
+      &:active {
+        scale: 1.01;
       }
     }
+  }
 
-    &:active {
-      scale: 1.01;
+  .delegatedNote {
+    $height: 48px;
+    $fontSize: 12px;
+    $lineHeight: 1.15;
+    display: flex;
+    align-items: center;
+    // height: 48px;
+    padding: calc(($height - $fontSize * $lineHeight) / 2) var(--spacing-lg);
+
+    @media (width>780px) {
+      justify-content: flex-end;
+      margin-top: -48px;
+    }
+
+    @media (width <= 780px) {
+      justify-content: center;
+      border-bottom: var(--border-dashed-default);
+    }
+
+    span {
+      color: var(--text-color-tertiary);
+      font-size: $fontSize;
+      line-height: $lineHeight;
+
+      a {
+        color: var(--text-color-secondary);
+        text-decoration: none;
+        transition: color 0.15s;
+
+        &:hover,
+        &:focus-visible {
+          color: var(--text-color-primary);
+          text-decoration: underline;
+        }
+      }
     }
   }
 }

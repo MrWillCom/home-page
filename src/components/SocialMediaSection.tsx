@@ -173,13 +173,24 @@ export default async function SocialMediaSection() {
   ]
 
   return (
-    <section className={styles.grid}>
-      {...data.map(({ url, target, rel, profile, label }) => (
-        <a href={url} target={target} rel={rel}>
-          <HoverCard {...profile} />
-          <span className={styles.label}>{label}</span>
-        </a>
-      ))}
+    <section className={styles.sect}>
+      <div className={styles.grid}>
+        {...data.map(({ url, target, rel, profile, label }) => (
+          <a href={url} target={target} rel={rel}>
+            <HoverCard {...profile} />
+            <span className={styles.label}>{label}</span>
+          </a>
+        ))}
+      </div>
+      <div className={styles.delegatedNote}>
+        <span>
+          Thanks to{' '}
+          <a href="https://www.clckkkkk.site/" target="_blank">
+            Kevin&nbsp;Zhong
+          </a>{' '}
+          for handling delegated&nbsp;accounts.
+        </span>
+      </div>
     </section>
   )
 }
