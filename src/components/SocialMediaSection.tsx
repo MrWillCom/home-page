@@ -1,4 +1,5 @@
 import styles from './SocialMediaSection.module.scss'
+import Image from 'next/image'
 
 interface HoverCardProps {
   platform: string
@@ -22,19 +23,23 @@ function HoverCard({
   return (
     <div className={styles.hoverCard}>
       {headerUrl && (
-        <img
+        <Image
           className={styles.headerImage}
           src={headerUrl}
           alt={`${platform} profile header`}
+          width={420}
+          height={280}
         />
       )}
       {icon && <div className={styles.icon}>{icon}</div>}
       <div className={styles.content}>
         {avatarUrl && (
-          <img
+          <Image
             className={styles.avatar}
             src={avatarUrl}
             alt={`${platform} avatar`}
+            width={80}
+            height={80}
           />
         )}
         <span className={styles.displayName}>{displayName}</span>

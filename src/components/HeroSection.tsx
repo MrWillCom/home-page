@@ -1,10 +1,9 @@
 import RandomGreeting from '@/components/RandomGreeting'
 import styles from './HeroSection.module.scss'
-import Image from 'next/image'
-import AvatarImage from '@/assets/avatar.jpg'
 import { unstable_cache } from 'next/cache'
 import _ from 'lodash'
 import { getRandomGreeting } from '@/data/greetings'
+import Avatar from './Avatar'
 
 const getTimeBasedGreeting = unstable_cache(
   async () => {
@@ -29,14 +28,7 @@ export default async function HeroSection() {
         </p>
       </div>
       <div className={styles.right}>
-        <Image
-          src={AvatarImage}
-          alt="Avatar"
-          width={160}
-          height={160}
-          placeholder="blur"
-          className={styles.avatar}
-        />
+        <Avatar className={styles.avatar} />
       </div>
     </section>
   )
