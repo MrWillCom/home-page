@@ -121,7 +121,7 @@ export default async function SocialMediaSection() {
           datalist: [
             { label: 'Following', value: response.following_count },
             { label: 'Followers', value: response.followers_count },
-            { label: 'Posts', value: response.statuses_count },
+            { label: 'Posts', value: response.statuses_count + 340 }, // 340 posts from my old account
           ],
         }
       })(),
