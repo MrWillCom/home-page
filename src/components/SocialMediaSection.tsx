@@ -5,6 +5,7 @@ interface HoverCardProps {
   platform: string
   headerUrl?: string
   icon?: React.ReactNode
+  tag?: string
   avatarUrl?: string
   displayName: string
   username: string
@@ -15,6 +16,7 @@ function HoverCard({
   platform,
   headerUrl,
   icon,
+  tag,
   avatarUrl,
   displayName,
   username,
@@ -32,6 +34,7 @@ function HoverCard({
         />
       )}
       {icon && <div className={styles.icon}>{icon}</div>}
+      {tag && <span className={styles.tag}>{tag}</span>}
       <div className={styles.content}>
         {avatarUrl && (
           <Image
@@ -138,6 +141,7 @@ export default async function SocialMediaSection() {
       profile: {
         platform: 'X',
         icon: <i className="si si-x" />,
+        tag: 'Delegated',
         displayName: 'Mr. Will',
         username: '@MrWillCom',
       },
@@ -149,6 +153,7 @@ export default async function SocialMediaSection() {
       profile: {
         platform: 'Threads',
         icon: <i className="si si-threads" />,
+        tag: 'Delegated',
         displayName: 'Mr. Will',
         username: '@mr_will_com',
       },
@@ -160,6 +165,7 @@ export default async function SocialMediaSection() {
       profile: {
         platform: 'Instagram',
         icon: <i className="si si-instagram" />,
+        tag: 'Delegated',
         displayName: 'Mr. Will',
         username: '@mr_will_com',
       },

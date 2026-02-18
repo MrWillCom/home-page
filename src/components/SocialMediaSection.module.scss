@@ -127,6 +127,20 @@
           linear-gradient(to bottom, #000, #0002),
           linear-gradient(to left, #000, #0004);
         mask-composite: intersect;
+        filter: blur(2px);
+      }
+
+      .tag {
+        $fontSize: 11px;
+        display: block;
+        font-size: $fontSize;
+        line-height: 1;
+        text-transform: uppercase;
+        color: var(--text-color-tertiary);
+        font-weight: 500;
+        position: absolute;
+        bottom: calc($hcHeight - $fontSize - var(--spacing-md));
+        left: var(--spacing-md);
       }
 
       .content {
