@@ -23,7 +23,7 @@
           color: var(--text-color-secondary);
           text-decoration: none;
           display: flex;
-          gap: var(--spacing-sm);
+          gap: var(--spacing-md);
           width: 360px;
           height: 380px;
           padding: var(--spacing-lg);
@@ -43,9 +43,8 @@
 
           .cover {
             display: block;
-            height: 75px;
-            aspect-ratio: 5/7;
-            object-fit: cover;
+            width: 75px;
+            height: min-content;
           }
 
           .info {

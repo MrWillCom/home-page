@@ -113,7 +113,7 @@ export default async function AnimeShowcase() {
                         <dd>{e.media.startDate.year}</dd>
                       </div>
                       <div>
-                        <dt>Completed watching</dt>
+                        <dt>Watched</dt>
                         <dd>
                           {dateFns.formatDistanceToNow(
                             dateFns.set(new TZDate(new Date(), TIMEZONE), {
