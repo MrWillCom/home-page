@@ -130,7 +130,7 @@ export default async function TimeSection() {
             </span>
           </span>
           <span className={styles.time} suppressHydrationWarning>
-            <Now timezone={TIMEZONE} formatStr="H:mm:ss" />
+            <Now timezone={TIMEZONE} />
           </span>
         </div>
         <div className={['side', 'right'].map(c => styles[c]).join(' ')}>
