@@ -9,7 +9,6 @@ import FeatureSupportSection from '@/components/FeatureSupportSection'
 import TimeSection from '@/components/TimeSection'
 import AnimeShowcase from '@/components/AnimeShowcase'
 import ReneurPromotion from '@/components/ReneurPromotion'
-import Snowy from '@/components/Snowy'
 import ChristmasGreeting from '@/components/ChristmasGreeting'
 import HeroSection from '@/components/HeroSection'
 
@@ -41,7 +40,6 @@ export default async function Home() {
           </p>
         </footer>
       </main>
-      <Snowy />
     </>
   )
 }
