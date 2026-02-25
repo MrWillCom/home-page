@@ -1,5 +1,19 @@
 .sect {
+  // oops, in and out is named reverse
+  // td = transition duration
+  $tdIn: 0.3s;
+  $tdOut: 0.1s;
   border-bottom: var(--border-dashed-default);
+  transition-property: border-bottom-color;
+  transition-duration: 1s;
+  transition-delay: 1s;
+
+  &:has(.list > ul > li > a:hover),
+  &:has(.list > ul > li > a:focus-visible) {
+    border-bottom-color: transparent;
+    transition-duration: $tdOut;
+    transition-delay: 0s;
+  }
 
   .sectionTitle {
     font-size: 22px;
@@ -16,29 +30,77 @@
       list-style: none;
       display: flex;
       flex-direction: row-reverse;
-      overflow-y: auto;
+      overflow-x: auto;
+      overflow-y: hidden;
 
       & > li {
+        $w: 360px;
+        $h: 380px;
+        position: relative;
+
         & > a {
+          position: relative;
           color: var(--text-color-secondary);
           text-decoration: none;
           display: flex;
           gap: var(--spacing-md);
-          width: 360px;
-          height: 380px;
+          width: $w;
+          height: $h;
           padding: var(--spacing-lg);
+          z-index: 300;
+          mask-image:
+            linear-gradient(to right, #0006, #000, #0006),
+            linear-gradient(to top, #0008, #000);
+          mask-composite: intersect;
+          opacity: 0.6;
+          transition-property: opacity;
+          transition-duration: $tdIn;
+
+          &::before,
+          &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-image:
+              linear-gradient(
+                to right,
+                transparent,
+                color-mix(in oklch, var(--cover-color), transparent var(--opa)),
+                transparent
+              ),
+              linear-gradient(
+                to right,
+                transparent,
+                color-mix(in oklch, var(--cover-color), transparent var(--opa)),
+                transparent
+              );
+            opacity: 0;
+            transition-property: opacity;
+            transition-duration: $tdIn;
+          }
+
+          &::before {
+            top: 0;
+            --opa: 85%;
+          }
+
+          &::after {
+            bottom: 0;
+            --opa: 60%;
+          }
 
           &:hover,
           &:focus-visible {
-            background-image: linear-gradient(
-              to bottom,
-              transparent,
-              color-mix(
-                in oklab,
-                var(--background-color-secondary),
-                var(--cover-color) 5%
-              )
-            );
+            opacity: 1;
+            transition-duration: $tdOut;
+
+            &::before,
+            &::after {
+              opacity: 1;
+              transition-duration: $tdOut;
+            }
           }
 
           .cover {
@@ -71,7 +133,6 @@
                 black 0%,
                 transparent 100%
               );
-              z-index: 300; // those with `mask-image` won't be covered by the gradient mask on top and bottom, so z-index is here to fix.
             }
 
             .dl {
@@ -98,6 +159,69 @@
               }
             }
           }
+        }
+
+        .spotlightBottom,
+        .spotlightTop {
+          position: absolute;
+          pointer-events: none;
+          z-index: 100;
+          border-radius: 50%;
+          corner-shape: initial;
+        }
+
+        .spotlightBottom {
+          $sw: 120px;
+          $sh: 80px;
+          left: calc($w / 2 - $sw / 2);
+          top: calc($h - $sh / 2);
+          width: $sw;
+          height: $sh;
+          background-image: radial-gradient(
+            circle,
+            var(--cover-color),
+            color-mix(in oklch, transparent, var(--cover-color) 50%)
+          );
+          translate: 0 20px;
+          filter: blur(60px);
+          opacity: 0;
+          transition-property: opacity, filter, translate;
+          transition-duration: $tdIn;
+        }
+
+        & > a:hover ~ .spotlightBottom,
+        & > a:focus-visible ~ .spotlightBottom {
+          translate: 0 0;
+          opacity: 1;
+          filter: blur(80px);
+          transition-duration: $tdOut;
+        }
+
+        .spotlightTop {
+          $sw: 240px;
+          $sh: 20px;
+          left: calc($w / 2 - $sw / 2);
+          top: calc(-1 * $sh / 2);
+          width: $sw;
+          height: $sh;
+          background-image: radial-gradient(
+            circle,
+            var(--cover-color),
+            color-mix(in oklch, transparent, var(--cover-color) 50%)
+          );
+          translate: 0 -50px;
+          filter: blur(20px);
+          opacity: 0;
+          transition-property: opacity, filter, translate;
+          transition-duration: $tdIn;
+        }
+
+        & > a:hover ~ .spotlightTop,
+        & > a:focus-visible ~ .spotlightTop {
+          translate: 0 -30px;
+          opacity: 1;
+          filter: blur(30px);
+          transition-duration: $tdOut;
         }
       }
     }

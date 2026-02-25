@@ -132,6 +132,8 @@ export default async function AnimeShowcase() {
                     </dl>
                   </div>
                 </a>
+                <div className={styles.spotlightBottom}></div>
+                <div className={styles.spotlightTop}></div>
               </li>
             ),
           ) ?? []}
