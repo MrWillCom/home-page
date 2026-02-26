@@ -2,7 +2,7 @@
   // oops, in and out is named reverse
   // td = transition duration
   $tdIn: 0.3s;
-  $tdOut: 0.1s;
+  $tdOut: 0.05s;
   border-bottom: var(--border-dashed-default);
   transition-property: border-bottom-color;
   transition-duration: 1s;
@@ -52,8 +52,9 @@
             linear-gradient(to right, #0006, #000, #0006),
             linear-gradient(to top, #0008, #000);
           mask-composite: intersect;
+          filter: saturate(0.5);
           opacity: 0.6;
-          transition-property: opacity;
+          transition-property: opacity, filter;
           transition-duration: $tdIn;
 
           &::before,
@@ -93,6 +94,7 @@
 
           &:hover,
           &:focus-visible {
+            filter: saturate(1);
             opacity: 1;
             transition-duration: $tdOut;
 
