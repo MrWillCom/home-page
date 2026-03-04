@@ -9,7 +9,6 @@ import FeatureSupportSection from '@/components/FeatureSupportSection'
 import TimeSection from '@/components/TimeSection'
 import AnimeShowcase from '@/components/AnimeShowcase'
 import ReneurPromotion from '@/components/ReneurPromotion'
-import ChristmasGreeting from '@/components/ChristmasGreeting'
 import HeroSection from '@/components/HeroSection'
 
 export default async function Home() {
@@ -17,7 +16,6 @@ export default async function Home() {
     <>
       <main className={styles.main}>
         <HeroSection />
-        <ChristmasGreeting />
         <SocialMediaSection />
         <ReneurPromotion />
         <TimeSection />
