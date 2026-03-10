@@ -10,6 +10,7 @@ import TimeSection from '@/components/TimeSection'
 import AnimeShowcase from '@/components/AnimeShowcase'
 import ReneurPromotion from '@/components/ReneurPromotion'
 import HeroSection from '@/components/HeroSection'
+import Hanafubuki from '@/components/Hanafubuki'
 
 export default async function Home() {
   return (
@@ -38,6 +39,7 @@ export default async function Home() {
           </p>
         </footer>
       </main>
+      <Hanafubuki />
     </>
   )
 }
