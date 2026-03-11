@@ -44,7 +44,7 @@ function Petal() {
   return (
     <mesh rotation={[-Math.PI / 4, 0, 0]}>
       <EllipsoidPlate width={1} height={0.6} depth={0.01} />
-      <meshStandardMaterial color="#ffdcee" />
+      <meshStandardMaterial color="#ff6dc4" />
     </mesh>
   )
 }
