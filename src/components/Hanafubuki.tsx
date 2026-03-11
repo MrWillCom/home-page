@@ -1,34 +1,50 @@
 'use client'
 
 import styles from './Hanafubuki.module.scss'
-import { Canvas, useFrame } from '@react-three/fiber'
-import { useRef } from 'react'
+import { Canvas } from '@react-three/fiber'
+import { useMemo } from 'react'
+import * as THREE from 'three'
 
-type RotatingMesh = {
-  rotation: {
-    x: number
-    y: number
-    z: number
-  }
-}
+function EllipsoidPlate({
+  width = 1,
+  height = 0.6,
+  depth = 0.05,
+}: {
+  width?: number
+  height?: number
+  depth?: number
+}) {
+  const shape = useMemo(() => {
+    const s = new THREE.Shape()
+    s.absellipse(0, 0, width / 2, height / 2, 0, Math.PI * 2, false, 0)
+    return s
+  }, [width, height])
 
-function RotatingBox() {
-  const meshRef = useRef<RotatingMesh | null>(null)
-
-  useFrame((_state, delta) => {
-    if (!meshRef.current) {
-      return
-    }
-
-    meshRef.current.rotation.x += delta * 0.6
-    meshRef.current.rotation.y += delta * 0.9
-    meshRef.current.rotation.z += delta * 0.3
-  })
+  const extrudeSettings = useMemo(
+    () => ({
+      depth,
+      bevelEnabled: true,
+      bevelThickness: 0.02,
+      bevelSize: 0.02,
+      bevelSegments: 3,
+      curveSegments: 32,
+    }),
+    [depth],
+  )
 
   return (
-    <mesh ref={meshRef} rotation={[0.2, 0.3, 0.1]}>
-      <boxGeometry args={[2, 2, 2]} />
-      <meshPhongMaterial />
+    <extrudeGeometry
+      args={[shape, extrudeSettings]}
+      onUpdate={self => self.center()}
+    />
+  )
+}
+
+function Petal() {
+  return (
+    <mesh rotation={[-Math.PI / 4, 0, 0]}>
+      <EllipsoidPlate width={1} height={0.6} depth={0.01} />
+      <meshStandardMaterial color="#ffdcee" />
     </mesh>
   )
 }
@@ -39,9 +55,9 @@ export default function Hanafubuki() {
       className={styles.canvas}
       style={{ position: 'fixed', inset: 0, pointerEvents: 'none' }}
     >
-      <RotatingBox />
-      <ambientLight intensity={0.1} />
-      <directionalLight position={[0, 0, 5]} color="red" />
+      <Petal />
+      <ambientLight intensity={4} />
+      <directionalLight intensity={4} />
     </Canvas>
   )
 }
