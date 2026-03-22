@@ -33,7 +33,7 @@ const CONFIG: HanafubukiConfig = {
   scale: { min: 0.2, max: 0.5 },
   swayX: { speed: [0.5, 1], amplitude: [0.5, 2] },
   swayZ: { speed: [0.3, 0.7], amplitude: [0.5, 2] },
-  spawnArea: { depth: 10 },
+  spawnArea: { depth: 30 },
   petal: {
     width: 0.6,
     height: 0.3,
@@ -43,7 +43,26 @@ const CONFIG: HanafubukiConfig = {
   },
 }
 
+const CAMERA_Z = 10
+const NEAR_PLANE_BUFFER = 0.1
+const Y_PADDING =
+  CONFIG.scale.max +
+  Math.max(CONFIG.swayX.amplitude[1], CONFIG.swayZ.amplitude[1])
+
 const tempObject = new THREE.Object3D()
+
+/**
+ * Calculates the width and height of the camera's frustum at a given distance.
+ */
+function getFrustumSizeAtDistance(
+  camera: THREE.PerspectiveCamera,
+  distance: number,
+) {
+  const fovRad = (camera.fov * Math.PI) / 180
+  const height = 2 * Math.tan(fovRad / 2) * distance
+  const width = height * (window.innerWidth / window.innerHeight)
+  return { width, height }
+}
 
 function EllipsoidPlate({
   width = 1,
@@ -82,58 +101,81 @@ function EllipsoidPlate({
 
 function Petals() {
   const meshRef = useRef<THREE.InstancedMesh>(null)
-  const { viewport } = useThree()
+  const { viewport, camera } = useThree()
+  const pCamera = camera as THREE.PerspectiveCamera
   const tempColor = useMemo(() => new THREE.Color(), [])
 
   // Pre-calculate random properties for all possible petals
   // Scaling positions based on viewport to ensure they are visible
   const data = useMemo(() => {
-    return Array.from({ length: CONFIG.maxCount }).map(() => ({
-      position: new THREE.Vector3(
-        (Math.random() - 0.5) * viewport.width * 1.5,
-        (Math.random() - 0.5) * viewport.height * 2,
-        (Math.random() - 0.5) * CONFIG.spawnArea.depth,
-      ),
-      rotation: new THREE.Euler(
-        Math.random() * Math.PI,
-        Math.random() * Math.PI,
-        Math.random() * Math.PI,
-      ),
-      color:
-        CONFIG.petal.colors[
-          Math.floor(Math.random() * CONFIG.petal.colors.length)
-        ],
-      scale:
-        CONFIG.scale.min +
-        Math.random() * (CONFIG.scale.max - CONFIG.scale.min),
-      // Animation factors
-      rotationSpeed: new THREE.Vector3(
-        (Math.random() - 0.5) * CONFIG.rotationSpeedMax,
-        (Math.random() - 0.5) * CONFIG.rotationSpeedMax,
-        (Math.random() - 0.5) * CONFIG.rotationSpeedMax,
-      ),
-      swayX: {
-        speed:
-          CONFIG.swayX.speed[0] +
-          Math.random() * (CONFIG.swayX.speed[1] - CONFIG.swayX.speed[0]),
-        amplitude:
-          CONFIG.swayX.amplitude[0] +
-          Math.random() *
-            (CONFIG.swayX.amplitude[1] - CONFIG.swayX.amplitude[0]),
-        phase: Math.random() * Math.PI * 2,
-      },
-      swayZ: {
-        speed:
-          CONFIG.swayZ.speed[0] +
-          Math.random() * (CONFIG.swayZ.speed[1] - CONFIG.swayZ.speed[0]),
-        amplitude:
-          CONFIG.swayZ.amplitude[0] +
-          Math.random() *
-            (CONFIG.swayZ.amplitude[1] - CONFIG.swayZ.amplitude[0]),
-        phase: Math.random() * Math.PI * 2,
-      },
-    }))
-  }, [])
+    // Max distance is when Z = CAMERA_Z - NEAR_PLANE_BUFFER - spawnArea.depth
+    // Min distance is when Z = CAMERA_Z - NEAR_PLANE_BUFFER
+    // But we want to handle the distribution.
+    const maxDistance = CONFIG.spawnArea.depth + NEAR_PLANE_BUFFER
+    const maxFrustum = getFrustumSizeAtDistance(pCamera, maxDistance)
+
+    return Array.from({ length: CONFIG.maxCount }).map(() => {
+      const z =
+        (Math.random() - 1) * CONFIG.spawnArea.depth +
+        (CAMERA_Z - NEAR_PLANE_BUFFER)
+
+      // Distance from camera to the petal's Z position
+      const distance = Math.abs(CAMERA_Z - z)
+      const frustum = getFrustumSizeAtDistance(pCamera, distance)
+
+      // We use a slightly larger area than the frustum to prevent visible popping
+      const rangeX = frustum.width * 1.5
+      const rangeY = frustum.height + Y_PADDING * 2
+
+      return {
+        position: new THREE.Vector3(
+          (Math.random() - 0.5) * rangeX,
+          (Math.random() - 0.5) * rangeY,
+          z,
+        ),
+        rotation: new THREE.Euler(
+          Math.random() * Math.PI,
+          Math.random() * Math.PI,
+          Math.random() * Math.PI,
+        ),
+        color:
+          CONFIG.petal.colors[
+            Math.floor(Math.random() * CONFIG.petal.colors.length)
+          ],
+        scale:
+          CONFIG.scale.min +
+          Math.random() * (CONFIG.scale.max - CONFIG.scale.min),
+        // Animation factors
+        rotationSpeed: new THREE.Vector3(
+          (Math.random() - 0.5) * CONFIG.rotationSpeedMax,
+          (Math.random() - 0.5) * CONFIG.rotationSpeedMax,
+          (Math.random() - 0.5) * CONFIG.rotationSpeedMax,
+        ),
+        swayX: {
+          speed:
+            CONFIG.swayX.speed[0] +
+            Math.random() * (CONFIG.swayX.speed[1] - CONFIG.swayX.speed[0]),
+          amplitude:
+            CONFIG.swayX.amplitude[0] +
+            Math.random() *
+              (CONFIG.swayX.amplitude[1] - CONFIG.swayX.amplitude[0]),
+          phase: Math.random() * Math.PI * 2,
+        },
+        swayZ: {
+          speed:
+            CONFIG.swayZ.speed[0] +
+            Math.random() * (CONFIG.swayZ.speed[1] - CONFIG.swayZ.speed[0]),
+          amplitude:
+            CONFIG.swayZ.amplitude[0] +
+            Math.random() *
+              (CONFIG.swayZ.amplitude[1] - CONFIG.swayZ.amplitude[0]),
+          phase: Math.random() * Math.PI * 2,
+        },
+        // Store per-petal height for wrapping
+        wrapHeight: rangeY,
+      }
+    })
+  }, [pCamera])
 
   useFrame(state => {
     const mesh = meshRef.current
@@ -152,10 +194,9 @@ function Petals() {
       const offsetZ =
         Math.cos(t * item.swayZ.speed + item.swayZ.phase) * item.swayZ.amplitude
 
-      // Calculate falling position with wrapping based on viewport height
-      // Using modulo to ensure continuous falling loop
-      const halfHeight = viewport.height / 2 + 2
-      const fullHeight = halfHeight * 2
+      // Calculate falling position with wrapping based on per-petal wrap height
+      const halfHeight = item.wrapHeight / 2
+      const fullHeight = item.wrapHeight
       let y = item.position.y - (t % 1000000) * CONFIG.fallSpeed
       y =
         ((((y + halfHeight) % fullHeight) + fullHeight) % fullHeight) -
