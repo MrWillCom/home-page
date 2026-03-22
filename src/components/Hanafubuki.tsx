@@ -14,8 +14,14 @@ interface HanafubukiConfig {
   scale: { min: number; max: number }
   swayX: { speed: [number, number]; amplitude: [number, number] }
   swayZ: { speed: [number, number]; amplitude: [number, number] }
-  spawnArea: { width: number; depth: number }
-  petal: { width: number; height: number; depth: number; color: string }
+  spawnArea: { depth: number }
+  petal: {
+    width: number
+    height: number
+    depth: number
+    colors: string[]
+    curveSegments: number
+  }
 }
 
 const CONFIG: HanafubukiConfig = {
@@ -26,9 +32,15 @@ const CONFIG: HanafubukiConfig = {
   rotationSpeedMax: 0.02,
   scale: { min: 0.2, max: 0.5 },
   swayX: { speed: [0.5, 1], amplitude: [0.5, 2] },
-  swayZ: { speed: [0.5, 1], amplitude: [0.5, 2] },
-  spawnArea: { width: 30, depth: 10 },
-  petal: { width: 1, height: 0.6, depth: 0.01, color: '#ff6dc4' },
+  swayZ: { speed: [0.3, 0.7], amplitude: [0.5, 2] },
+  spawnArea: { depth: 10 },
+  petal: {
+    width: 0.6,
+    height: 0.3,
+    depth: 0.01,
+    colors: ['#ff6dc4', '#ffb7e5', '#ff94d2'],
+    curveSegments: 16,
+  },
 }
 
 const tempObject = new THREE.Object3D()
@@ -55,7 +67,7 @@ function EllipsoidPlate({
       bevelThickness: 0.02,
       bevelSize: 0.02,
       bevelSegments: 3,
-      curveSegments: 32,
+      curveSegments: CONFIG.petal.curveSegments,
     }),
     [depth],
   )
@@ -71,14 +83,15 @@ function EllipsoidPlate({
 function Petals() {
   const meshRef = useRef<THREE.InstancedMesh>(null)
   const { viewport } = useThree()
+  const tempColor = useMemo(() => new THREE.Color(), [])
 
   // Pre-calculate random properties for all possible petals
   // Scaling positions based on viewport to ensure they are visible
   const data = useMemo(() => {
     return Array.from({ length: CONFIG.maxCount }).map(() => ({
       position: new THREE.Vector3(
-        (Math.random() - 0.5) * CONFIG.spawnArea.width,
-        (Math.random() - 0.5) * 20,
+        (Math.random() - 0.5) * viewport.width * 1.5,
+        (Math.random() - 0.5) * viewport.height * 2,
         (Math.random() - 0.5) * CONFIG.spawnArea.depth,
       ),
       rotation: new THREE.Euler(
@@ -86,6 +99,10 @@ function Petals() {
         Math.random() * Math.PI,
         Math.random() * Math.PI,
       ),
+      color:
+        CONFIG.petal.colors[
+          Math.floor(Math.random() * CONFIG.petal.colors.length)
+        ],
       scale:
         CONFIG.scale.min +
         Math.random() * (CONFIG.scale.max - CONFIG.scale.min),
@@ -136,9 +153,10 @@ function Petals() {
         Math.cos(t * item.swayZ.speed + item.swayZ.phase) * item.swayZ.amplitude
 
       // Calculate falling position with wrapping based on viewport height
+      // Using modulo to ensure continuous falling loop
       const halfHeight = viewport.height / 2 + 2
       const fullHeight = halfHeight * 2
-      let y = item.position.y - t * CONFIG.fallSpeed
+      let y = item.position.y - (t % 1000000) * CONFIG.fallSpeed
       y =
         ((((y + halfHeight) % fullHeight) + fullHeight) % fullHeight) -
         halfHeight
@@ -152,8 +170,13 @@ function Petals() {
       tempObject.scale.setScalar(item.scale)
       tempObject.updateMatrix()
       mesh.setMatrixAt(i, tempObject.matrix)
+
+      // Set instance color
+      tempColor.set(item.color)
+      mesh.setColorAt(i, tempColor)
     })
     mesh.instanceMatrix.needsUpdate = true
+    if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true
   })
 
   // Determine active count based on viewport width
@@ -168,15 +191,16 @@ function Petals() {
   return (
     <instancedMesh
       ref={meshRef}
-      args={[null as any, null as any, CONFIG.maxCount]}
+      args={[undefined, undefined, CONFIG.maxCount]}
       count={count}
+      frustumCulled={false}
     >
       <EllipsoidPlate
         width={CONFIG.petal.width}
         height={CONFIG.petal.height}
         depth={CONFIG.petal.depth}
       />
-      <meshStandardMaterial color={CONFIG.petal.color} />
+      <meshStandardMaterial />
     </instancedMesh>
   )
 }
