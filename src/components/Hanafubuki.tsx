@@ -2,7 +2,9 @@
 
 import styles from './Hanafubuki.module.scss'
 import { Canvas, useThree, useFrame } from '@react-three/fiber'
-import { useMemo, useRef } from 'react'
+import { EffectComposer, Bloom } from '@react-three/postprocessing'
+import { useTheme } from 'next-themes'
+import { useMemo, useRef, useState, useEffect } from 'react'
 import * as THREE from 'three'
 
 interface HanafubukiConfig {
@@ -27,7 +29,7 @@ interface HanafubukiConfig {
 const CONFIG: HanafubukiConfig = {
   maxCount: 500,
   baseCount: 20,
-  density: 2,
+  density: 3,
   fallSpeed: 2,
   rotationSpeedMax: 0.02,
   scale: { min: 0.2, max: 0.5 },
@@ -38,7 +40,7 @@ const CONFIG: HanafubukiConfig = {
     width: 0.6,
     height: 0.3,
     depth: 0.01,
-    colors: ['#ff6dc4', '#ffb7e5', '#ff94d2'],
+    colors: ['#ffb7e5', '#ff94d2'],
     curveSegments: 16,
   },
 }
@@ -247,15 +249,36 @@ function Petals() {
 }
 
 export default function Hanafubuki() {
+  const { resolvedTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  // Avoid hydration mismatch
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const bloomEnabled = mounted && resolvedTheme === 'dark'
+
   return (
     <Canvas
       className={styles.canvas}
       style={{ position: 'fixed', inset: 0, pointerEvents: 'none' }}
       camera={{ position: [0, 0, 10], fov: 50 }}
+      gl={{ antialias: false }}
     >
       <Petals />
       <ambientLight intensity={4} />
       <directionalLight intensity={4} position={[5, 5, 5]} />
+      {bloomEnabled && (
+        <EffectComposer enableNormalPass={false}>
+          <Bloom
+            luminanceThreshold={0.2}
+            mipmapBlur
+            intensity={1.0}
+            radius={0.4}
+          />
+        </EffectComposer>
+      )}
     </Canvas>
   )
 }
