@@ -7,45 +7,56 @@ import { useTheme } from 'next-themes'
 import { useMemo, useRef, useState, useEffect } from 'react'
 import * as THREE from 'three'
 
+interface Range {
+  min: number
+  max: number
+}
+
 interface HanafubukiConfig {
+  maxCount: number
+  baseCount: number
   density: number
+  spawn: {
+    depth: number
+    nearPlane: number
+    cameraZ: number
+  }
   fallSpeed: number
-  rotationSpeedMax: number
-  scale: { min: number; max: number }
-  swayX: { speed: [number, number]; amplitude: [number, number] }
-  swayZ: { speed: [number, number]; amplitude: [number, number] }
+  rotation: { speed: Range }
+  scale: Range
+  swayX: { speed: Range; amplitude: Range }
+  swayZ: { speed: Range; amplitude: Range }
   petal: {
     width: number
     height: number
     depth: number
     colors: string[]
+    curveSegments: number
   }
 }
 
 const CONFIG: HanafubukiConfig = {
+  maxCount: 500,
+  baseCount: 20,
   density: 3,
+  spawn: {
+    depth: 30,
+    nearPlane: 0.1,
+    cameraZ: 10,
+  },
   fallSpeed: 2,
-  rotationSpeedMax: 0.02,
-  scale: { min: 0.2, max: 0.5 },
-  swayX: { speed: [0.5, 1], amplitude: [0.5, 2] },
-  swayZ: { speed: [0.3, 0.7], amplitude: [0.5, 2] },
+  rotation: { speed: { min: -0.02, max: 0.02 } },
+  scale: { min: 0.5, max: 0.6 },
+  swayX: { speed: { min: 0.5, max: 1 }, amplitude: { min: 0.5, max: 2 } },
+  swayZ: { speed: { min: 0.3, max: 0.7 }, amplitude: { min: 0.5, max: 2 } },
   petal: {
     width: 0.6,
     height: 0.3,
     depth: 0.01,
     colors: ['#ff94d2'],
+    curveSegments: 16,
   },
 }
-
-const MAX_COUNT = 500
-const BASE_COUNT = 20
-const CURVE_SEGMENTS = 16
-const SPAWN_DEPTH = 30
-const CAMERA_Z = 10
-const NEAR_PLANE_BUFFER = 0.1
-const Y_PADDING =
-  CONFIG.scale.max +
-  Math.max(CONFIG.swayX.amplitude[1], CONFIG.swayZ.amplitude[1])
 
 const tempObject = new THREE.Object3D()
 
@@ -80,7 +91,7 @@ function EllipsoidPlate() {
       bevelThickness: 0.02,
       bevelSize: 0.02,
       bevelSegments: 3,
-      curveSegments: CURVE_SEGMENTS,
+      curveSegments: CONFIG.petal.curveSegments,
     }
     return <extrudeGeometry args={[PETAL_SHAPE, extrudeSettings]} />
   }, [])
@@ -93,18 +104,23 @@ function Petals() {
   const { viewport, camera } = useThree()
   const pCamera = camera as THREE.PerspectiveCamera
 
+  const yPadding =
+    CONFIG.scale.max +
+    Math.max(CONFIG.swayX.amplitude.max, CONFIG.swayZ.amplitude.max)
+
   const data = useMemo(() => {
     const aspect = viewport.width / viewport.height
 
-    return Array.from({ length: MAX_COUNT }).map(() => {
+    return Array.from({ length: CONFIG.maxCount }).map(() => {
       const z =
-        (Math.random() - 1) * SPAWN_DEPTH + (CAMERA_Z - NEAR_PLANE_BUFFER)
+        (Math.random() - 1) * CONFIG.spawn.depth +
+        (CONFIG.spawn.cameraZ - CONFIG.spawn.nearPlane)
 
-      const distance = Math.abs(CAMERA_Z - z)
+      const distance = Math.abs(CONFIG.spawn.cameraZ - z)
       const frustum = getFrustumSizeAtDistance(pCamera, distance, aspect)
 
       const rangeX = frustum.width * 1.5
-      const rangeY = frustum.height + Y_PADDING * 2
+      const rangeY = frustum.height + yPadding * 2
 
       return {
         position: new THREE.Vector3(
@@ -125,34 +141,40 @@ function Petals() {
           CONFIG.scale.min +
           Math.random() * (CONFIG.scale.max - CONFIG.scale.min),
         rotationSpeed: new THREE.Vector3(
-          (Math.random() - 0.5) * CONFIG.rotationSpeedMax,
-          (Math.random() - 0.5) * CONFIG.rotationSpeedMax,
-          (Math.random() - 0.5) * CONFIG.rotationSpeedMax,
+          CONFIG.rotation.speed.min +
+            Math.random() *
+              (CONFIG.rotation.speed.max - CONFIG.rotation.speed.min),
+          CONFIG.rotation.speed.min +
+            Math.random() *
+              (CONFIG.rotation.speed.max - CONFIG.rotation.speed.min),
+          CONFIG.rotation.speed.min +
+            Math.random() *
+              (CONFIG.rotation.speed.max - CONFIG.rotation.speed.min),
         ),
         swayX: {
           speed:
-            CONFIG.swayX.speed[0] +
-            Math.random() * (CONFIG.swayX.speed[1] - CONFIG.swayX.speed[0]),
+            CONFIG.swayX.speed.min +
+            Math.random() * (CONFIG.swayX.speed.max - CONFIG.swayX.speed.min),
           amplitude:
-            CONFIG.swayX.amplitude[0] +
+            CONFIG.swayX.amplitude.min +
             Math.random() *
-              (CONFIG.swayX.amplitude[1] - CONFIG.swayX.amplitude[0]),
+              (CONFIG.swayX.amplitude.max - CONFIG.swayX.amplitude.min),
           phase: Math.random() * Math.PI * 2,
         },
         swayZ: {
           speed:
-            CONFIG.swayZ.speed[0] +
-            Math.random() * (CONFIG.swayZ.speed[1] - CONFIG.swayZ.speed[0]),
+            CONFIG.swayZ.speed.min +
+            Math.random() * (CONFIG.swayZ.speed.max - CONFIG.swayZ.speed.min),
           amplitude:
-            CONFIG.swayZ.amplitude[0] +
+            CONFIG.swayZ.amplitude.min +
             Math.random() *
-              (CONFIG.swayZ.amplitude[1] - CONFIG.swayZ.amplitude[0]),
+              (CONFIG.swayZ.amplitude.max - CONFIG.swayZ.amplitude.min),
           phase: Math.random() * Math.PI * 2,
         },
         wrapHeight: rangeY,
       }
     })
-  }, [pCamera, viewport.width, viewport.height])
+  }, [pCamera, viewport.width, viewport.height, yPadding])
 
   const colorsSet = useRef(false)
   useEffect(() => {
@@ -169,8 +191,8 @@ function Petals() {
 
   const count = useMemo(() => {
     return Math.min(
-      MAX_COUNT,
-      Math.floor(BASE_COUNT + viewport.width * CONFIG.density),
+      CONFIG.maxCount,
+      Math.floor(CONFIG.baseCount + viewport.width * CONFIG.density),
     )
   }, [viewport.width])
 
@@ -216,7 +238,7 @@ function Petals() {
   return (
     <instancedMesh
       ref={meshRef}
-      args={[undefined, undefined, MAX_COUNT]}
+      args={[undefined, undefined, CONFIG.maxCount]}
       count={count}
       frustumCulled={false}
     >
