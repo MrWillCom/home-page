@@ -52,6 +52,7 @@ const Y_PADDING =
   Math.max(CONFIG.swayX.amplitude[1], CONFIG.swayZ.amplitude[1])
 
 const tempObject = new THREE.Object3D()
+const tempColor = new THREE.Color()
 
 /**
  * Calculates the width and height of the camera's frustum at a given distance.
@@ -59,28 +60,27 @@ const tempObject = new THREE.Object3D()
 function getFrustumSizeAtDistance(
   camera: THREE.PerspectiveCamera,
   distance: number,
+  aspect: number,
 ) {
   const fovRad = (camera.fov * Math.PI) / 180
   const height = 2 * Math.tan(fovRad / 2) * distance
-  const width = height * (window.innerWidth / window.innerHeight)
+  const width = height * aspect
   return { width, height }
 }
 
-function EllipsoidPlate({
-  width = 1,
-  height = 0.6,
-  depth = 0.05,
-}: {
-  width?: number
-  height?: number
-  depth?: number
-}) {
-  const shape = useMemo(() => {
-    const s = new THREE.Shape()
-    s.absellipse(0, 0, width / 2, height / 2, 0, Math.PI * 2, false, 0)
-    return s
-  }, [width, height])
+const PETAL_SHAPE = new THREE.Shape()
+PETAL_SHAPE.absellipse(
+  0,
+  0,
+  CONFIG.petal.width / 2,
+  CONFIG.petal.height / 2,
+  0,
+  Math.PI * 2,
+  false,
+  0,
+)
 
+function EllipsoidPlate({ depth = 0.05 }: { depth?: number }) {
   const extrudeSettings = useMemo(
     () => ({
       depth,
@@ -93,19 +93,13 @@ function EllipsoidPlate({
     [depth],
   )
 
-  return (
-    <extrudeGeometry
-      args={[shape, extrudeSettings]}
-      onUpdate={self => self.center()}
-    />
-  )
+  return <extrudeGeometry args={[PETAL_SHAPE, extrudeSettings]} />
 }
 
 function Petals() {
   const meshRef = useRef<THREE.InstancedMesh>(null)
   const { viewport, camera } = useThree()
   const pCamera = camera as THREE.PerspectiveCamera
-  const tempColor = useMemo(() => new THREE.Color(), [])
 
   // Pre-calculate random properties for all possible petals
   // Scaling positions based on viewport to ensure they are visible
@@ -113,8 +107,7 @@ function Petals() {
     // Max distance is when Z = CAMERA_Z - NEAR_PLANE_BUFFER - spawnArea.depth
     // Min distance is when Z = CAMERA_Z - NEAR_PLANE_BUFFER
     // But we want to handle the distribution.
-    const maxDistance = CONFIG.spawnArea.depth + NEAR_PLANE_BUFFER
-    const maxFrustum = getFrustumSizeAtDistance(pCamera, maxDistance)
+    const aspect = viewport.width / viewport.height
 
     return Array.from({ length: CONFIG.maxCount }).map(() => {
       const z =
@@ -123,7 +116,7 @@ function Petals() {
 
       // Distance from camera to the petal's Z position
       const distance = Math.abs(CAMERA_Z - z)
-      const frustum = getFrustumSizeAtDistance(pCamera, distance)
+      const frustum = getFrustumSizeAtDistance(pCamera, distance, aspect)
 
       // We use a slightly larger area than the frustum to prevent visible popping
       const rangeX = frustum.width * 1.5
@@ -177,7 +170,18 @@ function Petals() {
         wrapHeight: rangeY,
       }
     })
-  }, [pCamera])
+  }, [pCamera.fov, viewport.width, viewport.height])
+
+  // Set initial colors once
+  useEffect(() => {
+    const mesh = meshRef.current
+    if (!mesh) return
+    data.forEach((item, i) => {
+      tempColor.set(item.color)
+      mesh.setColorAt(i, tempColor)
+    })
+    if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true
+  }, [data])
 
   useFrame(state => {
     const mesh = meshRef.current
@@ -213,13 +217,8 @@ function Petals() {
       tempObject.scale.setScalar(item.scale)
       tempObject.updateMatrix()
       mesh.setMatrixAt(i, tempObject.matrix)
-
-      // Set instance color
-      tempColor.set(item.color)
-      mesh.setColorAt(i, tempColor)
     })
     mesh.instanceMatrix.needsUpdate = true
-    if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true
   })
 
   // Determine active count based on viewport width
@@ -238,11 +237,7 @@ function Petals() {
       count={count}
       frustumCulled={false}
     >
-      <EllipsoidPlate
-        width={CONFIG.petal.width}
-        height={CONFIG.petal.height}
-        depth={CONFIG.petal.depth}
-      />
+      <EllipsoidPlate depth={CONFIG.petal.depth} />
       <meshStandardMaterial />
     </instancedMesh>
   )
