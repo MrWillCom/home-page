@@ -33,7 +33,7 @@ const CONFIG: HanafubukiConfig = {
     width: 0.6,
     height: 0.3,
     depth: 0.01,
-    colors: [/* '#ffb7e5', */ '#ff94d2'],
+    colors: ['#ff94d2'],
   },
 }
 
@@ -48,7 +48,6 @@ const Y_PADDING =
   Math.max(CONFIG.swayX.amplitude[1], CONFIG.swayZ.amplitude[1])
 
 const tempObject = new THREE.Object3D()
-const tempColor = new THREE.Color()
 
 function getFrustumSizeAtDistance(
   camera: THREE.PerspectiveCamera,
@@ -73,20 +72,20 @@ PETAL_SHAPE.absellipse(
   0,
 )
 
-function EllipsoidPlate({ depth = 0.05 }: { depth?: number }) {
-  const extrudeSettings = useMemo(
-    () => ({
-      depth,
+function EllipsoidPlate() {
+  const geometry = useMemo(() => {
+    const extrudeSettings = {
+      depth: CONFIG.petal.depth,
       bevelEnabled: true,
       bevelThickness: 0.02,
       bevelSize: 0.02,
       bevelSegments: 3,
       curveSegments: CURVE_SEGMENTS,
-    }),
-    [depth],
-  )
+    }
+    return <extrudeGeometry args={[PETAL_SHAPE, extrudeSettings]} />
+  }, [])
 
-  return <extrudeGeometry args={[PETAL_SHAPE, extrudeSettings]} />
+  return geometry
 }
 
 function Petals() {
@@ -153,24 +152,36 @@ function Petals() {
         wrapHeight: rangeY,
       }
     })
-  }, [pCamera.fov, viewport.width, viewport.height])
+  }, [pCamera, viewport.width, viewport.height])
 
+  const colorsSet = useRef(false)
   useEffect(() => {
     const mesh = meshRef.current
-    if (!mesh) return
+    if (!mesh || colorsSet.current) return
+    const color = new THREE.Color()
     data.forEach((petal, i) => {
-      tempColor.set(petal.color)
-      mesh.setColorAt(i, tempColor)
+      color.set(petal.color)
+      mesh.setColorAt(i, color)
     })
     if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true
+    colorsSet.current = true
   }, [data])
+
+  const count = useMemo(() => {
+    return Math.min(
+      MAX_COUNT,
+      Math.floor(BASE_COUNT + viewport.width * CONFIG.density),
+    )
+  }, [viewport.width])
 
   useFrame(state => {
     const mesh = meshRef.current
     if (!mesh) return
     const t = state.clock.elapsedTime
 
-    data.forEach((petal, i) => {
+    mesh.count = count
+    for (let i = 0; i < count; i++) {
+      const petal = data[i]
       petal.rotation.x += petal.rotationSpeed.x
       petal.rotation.y += petal.rotationSpeed.y
       petal.rotation.z += petal.rotationSpeed.z
@@ -198,16 +209,9 @@ function Petals() {
       tempObject.scale.setScalar(petal.scale)
       tempObject.updateMatrix()
       mesh.setMatrixAt(i, tempObject.matrix)
-    })
+    }
     mesh.instanceMatrix.needsUpdate = true
   })
-
-  const count = useMemo(() => {
-    return Math.min(
-      MAX_COUNT,
-      Math.floor(BASE_COUNT + viewport.width * CONFIG.density),
-    )
-  }, [viewport.width])
 
   return (
     <instancedMesh
@@ -216,7 +220,7 @@ function Petals() {
       count={count}
       frustumCulled={false}
     >
-      <EllipsoidPlate depth={CONFIG.petal.depth} />
+      <EllipsoidPlate />
       <meshStandardMaterial />
     </instancedMesh>
   )
@@ -243,17 +247,12 @@ export default function Hanafubuki() {
       <ambientLight intensity={isDarkTheme ? 4 : 7} />
       <directionalLight intensity={isDarkTheme ? 4 : 2} position={[5, 5, 5]} />
       <EffectComposer>
-        {[
-          isDarkTheme ? (
-            <Bloom
-              key="bloom"
-              luminanceThreshold={0.2}
-              mipmapBlur
-              intensity={1.0}
-              radius={0.4}
-            />
-          ) : null,
-        ].filter(el => el !== null)}
+        <Bloom
+          luminanceThreshold={0.2}
+          mipmapBlur
+          intensity={isDarkTheme ? 1.0 : 0.0}
+          radius={0.4}
+        />
       </EffectComposer>
     </Canvas>
   )
