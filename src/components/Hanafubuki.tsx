@@ -8,43 +8,39 @@ import { useMemo, useRef, useState, useEffect } from 'react'
 import * as THREE from 'three'
 
 interface HanafubukiConfig {
-  maxCount: number
-  baseCount: number
   density: number
   fallSpeed: number
   rotationSpeedMax: number
   scale: { min: number; max: number }
   swayX: { speed: [number, number]; amplitude: [number, number] }
   swayZ: { speed: [number, number]; amplitude: [number, number] }
-  spawnArea: { depth: number }
   petal: {
     width: number
     height: number
     depth: number
     colors: string[]
-    curveSegments: number
   }
 }
 
 const CONFIG: HanafubukiConfig = {
-  maxCount: 500,
-  baseCount: 20,
   density: 3,
   fallSpeed: 2,
   rotationSpeedMax: 0.02,
   scale: { min: 0.2, max: 0.5 },
   swayX: { speed: [0.5, 1], amplitude: [0.5, 2] },
   swayZ: { speed: [0.3, 0.7], amplitude: [0.5, 2] },
-  spawnArea: { depth: 30 },
   petal: {
     width: 0.6,
     height: 0.3,
     depth: 0.01,
     colors: ['#ffb7e5', '#ff94d2'],
-    curveSegments: 16,
   },
 }
 
+const MAX_COUNT = 500
+const BASE_COUNT = 20
+const CURVE_SEGMENTS = 16
+const SPAWN_DEPTH = 30
 const CAMERA_Z = 10
 const NEAR_PLANE_BUFFER = 0.1
 const Y_PADDING =
@@ -54,9 +50,6 @@ const Y_PADDING =
 const tempObject = new THREE.Object3D()
 const tempColor = new THREE.Color()
 
-/**
- * Calculates the width and height of the camera's frustum at a given distance.
- */
 function getFrustumSizeAtDistance(
   camera: THREE.PerspectiveCamera,
   distance: number,
@@ -88,7 +81,7 @@ function EllipsoidPlate({ depth = 0.05 }: { depth?: number }) {
       bevelThickness: 0.02,
       bevelSize: 0.02,
       bevelSegments: 3,
-      curveSegments: CONFIG.petal.curveSegments,
+      curveSegments: CURVE_SEGMENTS,
     }),
     [depth],
   )
@@ -101,24 +94,16 @@ function Petals() {
   const { viewport, camera } = useThree()
   const pCamera = camera as THREE.PerspectiveCamera
 
-  // Pre-calculate random properties for all possible petals
-  // Scaling positions based on viewport to ensure they are visible
   const data = useMemo(() => {
-    // Max distance is when Z = CAMERA_Z - NEAR_PLANE_BUFFER - spawnArea.depth
-    // Min distance is when Z = CAMERA_Z - NEAR_PLANE_BUFFER
-    // But we want to handle the distribution.
     const aspect = viewport.width / viewport.height
 
-    return Array.from({ length: CONFIG.maxCount }).map(() => {
+    return Array.from({ length: MAX_COUNT }).map(() => {
       const z =
-        (Math.random() - 1) * CONFIG.spawnArea.depth +
-        (CAMERA_Z - NEAR_PLANE_BUFFER)
+        (Math.random() - 1) * SPAWN_DEPTH + (CAMERA_Z - NEAR_PLANE_BUFFER)
 
-      // Distance from camera to the petal's Z position
       const distance = Math.abs(CAMERA_Z - z)
       const frustum = getFrustumSizeAtDistance(pCamera, distance, aspect)
 
-      // We use a slightly larger area than the frustum to prevent visible popping
       const rangeX = frustum.width * 1.5
       const rangeY = frustum.height + Y_PADDING * 2
 
@@ -140,7 +125,6 @@ function Petals() {
         scale:
           CONFIG.scale.min +
           Math.random() * (CONFIG.scale.max - CONFIG.scale.min),
-        // Animation factors
         rotationSpeed: new THREE.Vector3(
           (Math.random() - 0.5) * CONFIG.rotationSpeedMax,
           (Math.random() - 0.5) * CONFIG.rotationSpeedMax,
@@ -166,18 +150,16 @@ function Petals() {
               (CONFIG.swayZ.amplitude[1] - CONFIG.swayZ.amplitude[0]),
           phase: Math.random() * Math.PI * 2,
         },
-        // Store per-petal height for wrapping
         wrapHeight: rangeY,
       }
     })
   }, [pCamera.fov, viewport.width, viewport.height])
 
-  // Set initial colors once
   useEffect(() => {
     const mesh = meshRef.current
     if (!mesh) return
-    data.forEach((item, i) => {
-      tempColor.set(item.color)
+    data.forEach((petal, i) => {
+      tempColor.set(petal.color)
       mesh.setColorAt(i, tempColor)
     })
     if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true
@@ -188,52 +170,49 @@ function Petals() {
     if (!mesh) return
     const t = state.clock.elapsedTime
 
-    data.forEach((item, i) => {
-      // Apply constant rotation
-      item.rotation.x += item.rotationSpeed.x
-      item.rotation.y += item.rotationSpeed.y
-      item.rotation.z += item.rotationSpeed.z
+    data.forEach((petal, i) => {
+      petal.rotation.x += petal.rotationSpeed.x
+      petal.rotation.y += petal.rotationSpeed.y
+      petal.rotation.z += petal.rotationSpeed.z
 
-      // Calculate swaying offsets
       const offsetX =
-        Math.sin(t * item.swayX.speed + item.swayX.phase) * item.swayX.amplitude
+        Math.sin(t * petal.swayX.speed + petal.swayX.phase) *
+        petal.swayX.amplitude
       const offsetZ =
-        Math.cos(t * item.swayZ.speed + item.swayZ.phase) * item.swayZ.amplitude
+        Math.cos(t * petal.swayZ.speed + petal.swayZ.phase) *
+        petal.swayZ.amplitude
 
-      // Calculate falling position with wrapping based on per-petal wrap height
-      const halfHeight = item.wrapHeight / 2
-      const fullHeight = item.wrapHeight
-      let y = item.position.y - (t % 1000000) * CONFIG.fallSpeed
+      const halfHeight = petal.wrapHeight / 2
+      const fullHeight = petal.wrapHeight
+      let y = petal.position.y - (t % 1000000) * CONFIG.fallSpeed
       y =
         ((((y + halfHeight) % fullHeight) + fullHeight) % fullHeight) -
         halfHeight
 
       tempObject.position.set(
-        item.position.x + offsetX,
+        petal.position.x + offsetX,
         y,
-        item.position.z + offsetZ,
+        petal.position.z + offsetZ,
       )
-      tempObject.rotation.copy(item.rotation)
-      tempObject.scale.setScalar(item.scale)
+      tempObject.rotation.copy(petal.rotation)
+      tempObject.scale.setScalar(petal.scale)
       tempObject.updateMatrix()
       mesh.setMatrixAt(i, tempObject.matrix)
     })
     mesh.instanceMatrix.needsUpdate = true
   })
 
-  // Determine active count based on viewport width
-  // This uses the viewport width directly from React Three Fiber
   const count = useMemo(() => {
     return Math.min(
-      CONFIG.maxCount,
-      Math.floor(CONFIG.baseCount + viewport.width * CONFIG.density),
+      MAX_COUNT,
+      Math.floor(BASE_COUNT + viewport.width * CONFIG.density),
     )
   }, [viewport.width])
 
   return (
     <instancedMesh
       ref={meshRef}
-      args={[undefined, undefined, CONFIG.maxCount]}
+      args={[undefined, undefined, MAX_COUNT]}
       count={count}
       frustumCulled={false}
     >
@@ -247,7 +226,6 @@ export default function Hanafubuki() {
   const { resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
-  // Avoid hydration mismatch
   useEffect(() => {
     setMounted(true)
   }, [])
