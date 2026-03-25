@@ -33,7 +33,7 @@ const CONFIG: HanafubukiConfig = {
     width: 0.6,
     height: 0.3,
     depth: 0.01,
-    colors: ['#ffb7e5', '#ff94d2'],
+    colors: [/* '#ffb7e5', */ '#ff94d2'],
   },
 }
 
@@ -230,7 +230,7 @@ export default function Hanafubuki() {
     setMounted(true)
   }, [])
 
-  const bloomEnabled = mounted && resolvedTheme === 'dark'
+  const isDarkTheme = mounted && resolvedTheme === 'dark'
 
   return (
     <Canvas
@@ -240,18 +240,21 @@ export default function Hanafubuki() {
       gl={{ antialias: false }}
     >
       <Petals />
-      <ambientLight intensity={4} />
-      <directionalLight intensity={4} position={[5, 5, 5]} />
-      {bloomEnabled && (
-        <EffectComposer enableNormalPass={false}>
-          <Bloom
-            luminanceThreshold={0.2}
-            mipmapBlur
-            intensity={1.0}
-            radius={0.4}
-          />
-        </EffectComposer>
-      )}
+      <ambientLight intensity={isDarkTheme ? 4 : 7} />
+      <directionalLight intensity={isDarkTheme ? 4 : 2} position={[5, 5, 5]} />
+      <EffectComposer>
+        {[
+          isDarkTheme ? (
+            <Bloom
+              key="bloom"
+              luminanceThreshold={0.2}
+              mipmapBlur
+              intensity={1.0}
+              radius={0.4}
+            />
+          ) : null,
+        ].filter(el => el !== null)}
+      </EffectComposer>
     </Canvas>
   )
 }
