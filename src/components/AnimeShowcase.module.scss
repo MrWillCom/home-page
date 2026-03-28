@@ -32,6 +32,7 @@
       flex-direction: row-reverse;
       overflow-x: auto;
       overflow-y: hidden;
+      overscroll-behavior-x: contain;
 
       & > li {
         $w: 360px;
