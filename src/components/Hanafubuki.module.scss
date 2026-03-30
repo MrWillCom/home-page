@@ -5,3 +5,30 @@
   bottom: 0;
   z-index: 500;
 }
+
+.nearPetalLayer {
+  position: fixed;
+  inset: 0;
+  z-index: 501;
+  pointer-events: none;
+  overflow: hidden;
+
+  .nearPetal {
+    position: absolute;
+    width: var(--width);
+    height: var(--height);
+    border-radius: 50%;
+    background-image: var(--bg);
+    filter: blur(var(--blur));
+    animation: nearPetalFall var(--duration) linear forwards;
+  }
+
+  @keyframes nearPetalFall {
+    from {
+      transform: translate(var(--fromX), var(--fromY)) rotate(var(--rotFrom));
+    }
+    to {
+      transform: translate(var(--toX), var(--toY)) rotate(var(--rotTo));
+    }
+  }
+}
