@@ -33,12 +33,12 @@ const CONFIG = {
   },
   nearPetal: {
     maxConcurrent: 8,
-    spawnInterval: [1800, 3000],
+    spawnInterval: [2500, 5000],
     size: [400, 480],
     aspectRatio: [1.1, 1.3],
-    duration: [1500, 2000],
+    duration: [3000, 5000],
     blurRadius: 160,
-    alpha: { dark: 0.5, light: 0.3 },
+    alpha: { dark: 0.3, light: 0.3 },
     startAngle: [-180, 180],
     spinAngle: [30, 60],
   },
@@ -369,9 +369,9 @@ export default function Hanafubuki() {
         gl={{ antialias: false }}
       >
         <Petals />
-        <ambientLight intensity={isDarkTheme ? 4 : 7} />
+        <ambientLight intensity={!isDarkTheme ? 8 : 2} />
         <directionalLight
-          intensity={isDarkTheme ? 1.5 : 2}
+          intensity={!isDarkTheme ? 3 : 1.5}
           position={[5, 5, 5]}
         />
       </Canvas>
