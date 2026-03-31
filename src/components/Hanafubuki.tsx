@@ -2,6 +2,7 @@
 
 import styles from './Hanafubuki.module.scss'
 import { Canvas, useThree, useFrame } from '@react-three/fiber'
+import { EffectComposer, Bloom } from '@react-three/postprocessing'
 import { useTheme } from 'next-themes'
 import { useMemo, useRef, useState, useEffect } from 'react'
 import * as THREE from 'three'
@@ -11,7 +12,7 @@ const rand = (min: number, max: number) => min + Math.random() * (max - min)
 const CONFIG = {
   maxCount: 500,
   baseCount: 20,
-  density: 1,
+  density: 0.5,
   spawnDistance: [15, 30],
   fallSpeed: 2,
   spinSpeed: [-2, 2],
@@ -366,14 +367,24 @@ export default function Hanafubuki() {
         className={styles.canvas}
         style={{ position: 'fixed', inset: 0, pointerEvents: 'none' }}
         camera={{ position: [0, 0, 10], fov: 50 }}
-        gl={{ antialias: false }}
+        gl={{ antialias: false, premultipliedAlpha: false }}
       >
         <Petals />
-        <ambientLight intensity={!isDarkTheme ? 8 : 2} />
+        <ambientLight intensity={!isDarkTheme ? 8 : 2.5} />
         <directionalLight
           intensity={!isDarkTheme ? 3 : 1.5}
           position={[5, 5, 5]}
         />
+        {isDarkTheme && (
+          <EffectComposer>
+            <Bloom
+              luminanceThreshold={0}
+              luminanceSmoothing={2}
+              intensity={50}
+              mipmapBlur
+            />
+          </EffectComposer>
+        )}
       </Canvas>
       <NearPetals />
     </>
