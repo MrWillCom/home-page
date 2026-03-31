@@ -51,8 +51,7 @@ export default async function AnimeShowcase() {
       next: { revalidate: 3600 },
     })
 
-    animeEntries = (await data.json())?.data?.MediaListCollection?.lists?.[0]
-      ?.entries
+    animeEntries = (await data.json())?.data?.MediaListCollection?.lists?.[0]?.entries
   } catch (error) {
     console.error(error)
   }
@@ -89,8 +88,7 @@ export default async function AnimeShowcase() {
                 style={
                   {
                     '--cover-color':
-                      e.media.coverImage.color ??
-                      'var(--background-color-secondary)',
+                      e.media.coverImage.color ?? 'var(--background-color-secondary)',
                   } as React.CSSProperties
                 }
               >

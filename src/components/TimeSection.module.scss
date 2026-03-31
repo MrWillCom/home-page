@@ -66,11 +66,7 @@
         }
 
         @mixin useForegroundColor {
-          color: color-mix(
-            in oklab,
-            var(--foreground-color),
-            transparent var(--transparency)
-          );
+          color: color-mix(in oklab, var(--foreground-color), transparent var(--transparency));
         }
 
         .timezone,

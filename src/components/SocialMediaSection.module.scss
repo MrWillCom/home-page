@@ -38,8 +38,7 @@
       border-bottom: var(--border-dashed-default);
       font-size: 14px;
       overflow: clip;
-      transition-property:
-        margin-top, border-color, box-shadow, scale, border-radius;
+      transition-property: margin-top, border-color, box-shadow, scale, border-radius;
       transition-duration: 0.2s;
 
       @media (pointer: fine) {
@@ -125,8 +124,7 @@
           justify-content: center;
           align-items: center;
           mask-image:
-            linear-gradient(to bottom, #000, #0002),
-            linear-gradient(to left, #000, #0004);
+            linear-gradient(to bottom, #000, #0002), linear-gradient(to left, #000, #0004);
           mask-composite: intersect;
           filter: blur(2px);
         }

@@ -80,11 +80,7 @@
         bottom: 0;
         right: 0;
         width: calc(2 * var(--spacing-lg));
-        background-image: linear-gradient(
-          90deg,
-          transparent,
-          var(--background-color-primary)
-        );
+        background-image: linear-gradient(90deg, transparent, var(--background-color-primary));
       }
 
       @media (max-width: 600px) {
@@ -92,11 +88,7 @@
         bottom: 0;
         right: 0;
         height: calc(2 * var(--spacing-lg));
-        background-image: linear-gradient(
-          180deg,
-          transparent,
-          var(--background-color-primary)
-        );
+        background-image: linear-gradient(180deg, transparent, var(--background-color-primary));
       }
     }
 

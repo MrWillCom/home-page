@@ -50,8 +50,7 @@
           padding: var(--spacing-lg);
           z-index: 300;
           mask-image:
-            linear-gradient(to right, #0006, #000, #0006),
-            linear-gradient(to top, #0008, #000);
+            linear-gradient(to right, #0006, #000, #0006), linear-gradient(to top, #0008, #000);
           mask-composite: intersect;
           filter: saturate(0.5);
           opacity: 0.6;
@@ -131,11 +130,7 @@
               flex-grow: 1;
               overflow-y: hidden;
               color: var(--text-color-tertiary);
-              mask-image: linear-gradient(
-                to bottom,
-                black 0%,
-                transparent 100%
-              );
+              mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
             }
 
             .dl {

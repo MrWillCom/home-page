@@ -29,14 +29,10 @@ export default async function Home() {
         <FeatureSupportSection />
         <footer className={styles.footer}>
           <p className={styles.attribution}>
-            <a href="https://sunrise-sunset.org/api">
-              Sunrise-Sunset (sunrise-sunset.org/api)
-            </a>{' '}
-            is used for sunrise and sunset data.
+            <a href="https://sunrise-sunset.org/api">Sunrise-Sunset (sunrise-sunset.org/api)</a> is
+            used for sunrise and sunset data.
           </p>
-          <p className={styles.copyright}>
-            © 2021–{new Date().getFullYear()} Mr. Will (MrWillCom)
-          </p>
+          <p className={styles.copyright}>© 2021–{new Date().getFullYear()} Mr. Will (MrWillCom)</p>
         </footer>
       </main>
       <Hanafubuki />

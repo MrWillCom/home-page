@@ -28,8 +28,7 @@ const subdomains = [
   {
     title: 'TurbulentFlux',
     name: 'tblf',
-    description:
-      'Generate dynamic glow spots in a certain area and update them consistently.',
+    description: 'Generate dynamic glow spots in a certain area and update them consistently.',
   },
   {
     title: 'www',
@@ -39,8 +38,7 @@ const subdomains = [
   {
     title: 'Phanpy',
     name: 'phanpy',
-    description:
-      '[Self-hosted] A minimalistic opinionated Mastodon web client.', // TODO: Make a tag for `[Self-hosted]`
+    description: '[Self-hosted] A minimalistic opinionated Mastodon web client.', // TODO: Make a tag for `[Self-hosted]`
   },
   {
     title: 'Moodist',
@@ -69,12 +67,7 @@ export default function NavigatorSection() {
 
   return (
     <section className={styles.navigator}>
-      <div
-        className={
-          styles.typingArea +
-          (foundSubdomains.length === 1 ? ' ' + styles.ready : '')
-        }
-      >
+      <div className={styles.typingArea + (foundSubdomains.length === 1 ? ' ' + styles.ready : '')}>
         <input
           type="text"
           placeholder="Jump to ..."
@@ -85,9 +78,7 @@ export default function NavigatorSection() {
           onKeyDown={ev => {
             if (ev.key === 'Enter' && ev.currentTarget.value.length > 0) {
               const subdomain =
-                foundSubdomains.length === 1
-                  ? foundSubdomains[0].name
-                  : ev.currentTarget.value
+                foundSubdomains.length === 1 ? foundSubdomains[0].name : ev.currentTarget.value
               window.open('https://' + subdomain + '.mrwillcom.com')
               op.track('navigator_jump_to', { subdomain })
             }
@@ -98,11 +89,7 @@ export default function NavigatorSection() {
       <div className={styles.subdomains}>
         <ul>
           {...foundSubdomains.map((s, i) => (
-            <li
-              className={
-                foundSubdomains.length === 1 && i === 0 ? styles.active : ''
-              }
-            >
+            <li className={foundSubdomains.length === 1 && i === 0 ? styles.active : ''}>
               <a href={'https://' + s.name + '.mrwillcom.com/'} target="_blank">
                 <span className={styles.left}>
                   <span className={styles.title}>{s.title}</span>

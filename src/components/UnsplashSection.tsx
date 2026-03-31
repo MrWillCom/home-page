@@ -5,10 +5,7 @@ import { ImgHTMLAttributes } from 'react'
 function AtroposImage({ className, ...props }: ImgHTMLAttributes<HTMLElement>) {
   return (
     <AtroposWrapper shadow={false} activeOffset={25}>
-      <img
-        className={styles.atroposImage + (className ? ' ' + className : '')}
-        {...props}
-      />
+      <img className={styles.atroposImage + (className ? ' ' + className : '')} {...props} />
     </AtroposWrapper>
   )
 }
@@ -17,15 +14,12 @@ export default async function UnsplashSection() {
   var photos = null
 
   try {
-    const data = await fetch(
-      'https://api.unsplash.com/users/mrwillcom/photos?per_page=3',
-      {
-        headers: {
-          Authorization: 'Client-ID ' + process.env.UNSPLASH_ACCESS_KEY,
-        },
-        next: { revalidate: 3600 },
+    const data = await fetch('https://api.unsplash.com/users/mrwillcom/photos?per_page=3', {
+      headers: {
+        Authorization: 'Client-ID ' + process.env.UNSPLASH_ACCESS_KEY,
       },
-    )
+      next: { revalidate: 3600 },
+    })
     photos = await data.json()
   } catch (error) {
     console.error(error)
@@ -44,11 +38,7 @@ export default async function UnsplashSection() {
             where permissive free photos live.
           </p>
         </div>
-        <a
-          href="https://unsplash.com/@mrwillcom"
-          target="_blank"
-          className={styles.bottom}
-        >
+        <a href="https://unsplash.com/@mrwillcom" target="_blank" className={styles.bottom}>
           <span>View Profile</span>
           <strong>@mrwillcom</strong>
         </a>
@@ -56,23 +46,20 @@ export default async function UnsplashSection() {
       <div className={styles.images}>
         {...(() => {
           try {
-            return photos.map(
-              (p: { urls: { regular: string }; alt_description: string }) => (
-                <AtroposImage
-                  src={p.urls.regular}
-                  alt={p.alt_description ?? 'One of my Unsplash photos.'}
-                  loading="lazy"
-                />
-              ),
-            )
+            return photos.map((p: { urls: { regular: string }; alt_description: string }) => (
+              <AtroposImage
+                src={p.urls.regular}
+                alt={p.alt_description ?? 'One of my Unsplash photos.'}
+                loading="lazy"
+              />
+            ))
           } catch (error) {
             console.error(error)
 
             return [
               <span className={styles.error}>
-                Oops, something went wrong. Here should be some photos. I'd
-                appreciate you very much if you're willing to{' '}
-                <a href="mailto:hi@mrwillcom.com">report this issue to me</a>.
+                Oops, something went wrong. Here should be some photos. I'd appreciate you very much
+                if you're willing to <a href="mailto:hi@mrwillcom.com">report this issue to me</a>.
               </span>,
             ]
           }

@@ -19,9 +19,8 @@ export default function FeatureSupportSection() {
         <h2>About This Page</h2>
       </VisuallyHidden>
       <p className={styles.description}>
-        This page uses <i>state-of-the-art web technologies</i>. To fully
-        appreciate its stunning details, <i>Chromium-based browsers</i> are
-        recommended.
+        This page uses <i>state-of-the-art web technologies</i>. To fully appreciate its stunning
+        details, <i>Chromium-based browsers</i> are recommended.
       </p>
       <p className={styles.description}>Your browser:</p>
       <dl className={styles.dl}>
@@ -34,9 +33,7 @@ export default function FeatureSupportSection() {
           }
         />
         <Row
-          status={
-            <CSSSupports condition="width: calc(sibling-index() * 1px)" />
-          }
+          status={<CSSSupports condition="width: calc(sibling-index() * 1px)" />}
           feature={
             <>
               CSS: <code>sibling-index()</code>

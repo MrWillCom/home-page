@@ -51,37 +51,20 @@ export default function MessageSection() {
           className={styles.left}
         />
         <div className={styles.right}>
-          <input
-            type="email"
-            placeholder="Email*"
-            name="email"
-            autoComplete="email"
-          />
-          <input
-            type="text"
-            placeholder="Name"
-            maxLength={30}
-            name="name"
-            autoComplete="name"
-          />
-          <input
-            type="text"
-            placeholder="Website"
-            maxLength={80}
-            name="website"
-          />
+          <input type="email" placeholder="Email*" name="email" autoComplete="email" />
+          <input type="text" placeholder="Name" maxLength={30} name="name" autoComplete="name" />
+          <input type="text" placeholder="Website" maxLength={80} name="website" />
           <button type="submit" disabled={isDone}>
             {isDone ? 'Message sent.' : 'Send'}
           </button>
           <p className={styles.notes + (isError ? ' ' + styles.warning : '')}>
-            Fields without "*" are optional. Your email is necessary to send you
-            a reply. Don't spam.
+            Fields without "*" are optional. Your email is necessary to send you a reply. Don't
+            spam.
           </p>
           {isError ? (
             <p className={styles.error}>
-              Something went wrong. Please make sure what you entered are valid.
-              Your message can't be empty or longer than {MESSAGE_MAX_LENGTH}{' '}
-              characters.
+              Something went wrong. Please make sure what you entered are valid. Your message can't
+              be empty or longer than {MESSAGE_MAX_LENGTH} characters.
             </p>
           ) : null}
         </div>

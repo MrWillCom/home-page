@@ -70,10 +70,9 @@ async function fetchGitHubStars(repo: string) {
 
 async function fetchLastCommitDate(repo: string) {
   try {
-    const response = await fetch(
-      `https://api.github.com/repos/${repo}/commits?per_page=1`,
-      { next: { revalidate: 3600 } },
-    )
+    const response = await fetch(`https://api.github.com/repos/${repo}/commits?per_page=1`, {
+      next: { revalidate: 3600 },
+    })
 
     if (!response.ok) {
       throw new Error(`GitHub API responded with status ${response.status}`)
@@ -144,10 +143,7 @@ export default async function ProjectShowcase() {
           <a href="https://cupertino.mrwillcom.com/" target="_blank">
             Docs
           </a>,
-          <a
-            href="https://github.com/MrWillCom/hexo-theme-cupertino"
-            target="_blank"
-          >
+          <a href="https://github.com/MrWillCom/hexo-theme-cupertino" target="_blank">
             GitHub
           </a>,
           <a href="https://npmx.dev/hexo-theme-cupertino" target="_blank">
@@ -191,10 +187,7 @@ export default async function ProjectShowcase() {
           <a href="https://gallery.mrwillcom.com/" target="_blank">
             Preview
           </a>,
-          <a
-            href="https://github.com/MrWillCom/next-mastodon-gallery"
-            target="_blank"
-          >
+          <a href="https://github.com/MrWillCom/next-mastodon-gallery" target="_blank">
             GitHub
           </a>,
         ]}

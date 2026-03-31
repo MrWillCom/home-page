@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "format": "prettier . --write"
+    "format": "oxfmt",
+    "format:check": "oxfmt --check"
   },
   "dependencies": {
     "@date-fns/tz": "^1.4.1",
@@ -38,7 +39,7 @@
     "@types/node": "^25.5.0",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
-    "prettier": "^3.8.1",
+    "oxfmt": "^0.43.0",
     "sass": "^1.98.0",
     "typescript": "^6.0.2"
   },

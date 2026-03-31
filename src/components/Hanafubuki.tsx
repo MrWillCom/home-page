@@ -114,14 +114,12 @@ function Petals() {
     const frustumHeight = 2 * Math.tan(fovRadians / 2) * midDistance
     const frustumWidth = frustumHeight * aspect
     const yPadding =
-      CONFIG.scale[1] +
-      Math.max(CONFIG.swayX.amplitude[1], CONFIG.swayZ.amplitude[1])
+      CONFIG.scale[1] + Math.max(CONFIG.swayX.amplitude[1], CONFIG.swayZ.amplitude[1])
     const wrapHeight = frustumHeight + yPadding * 2
 
     const data = Array.from({ length: CONFIG.maxCount }, () => {
       const z =
-        perspectiveCamera.position.z -
-        rand(CONFIG.spawnDistance[0], CONFIG.spawnDistance[1])
+        perspectiveCamera.position.z - rand(CONFIG.spawnDistance[0], CONFIG.spawnDistance[1])
 
       return {
         position: new THREE.Vector3(
@@ -131,11 +129,7 @@ function Petals() {
         ),
         tilt: (() => {
           const angle = Math.random() * Math.PI * 2
-          const tiltAxis = new THREE.Vector3(
-            Math.cos(angle),
-            Math.sin(angle),
-            0,
-          )
+          const tiltAxis = new THREE.Vector3(Math.cos(angle), Math.sin(angle), 0)
           return new THREE.Quaternion().setFromAxisAngle(
             tiltAxis,
             (Math.random() - 0.5) * 2 * MAX_TILT_ANGLE,
@@ -143,22 +137,13 @@ function Petals() {
         })(),
         spinAngle: Math.random() * Math.PI * 2,
         spinSpeed: rand(CONFIG.spinSpeed[0], CONFIG.spinSpeed[1]),
-        color:
-          CONFIG.petal.colors[
-            Math.floor(Math.random() * CONFIG.petal.colors.length)
-          ],
+        color: CONFIG.petal.colors[Math.floor(Math.random() * CONFIG.petal.colors.length)],
         scale: rand(CONFIG.scale[0], CONFIG.scale[1]),
         swaySpeedX: rand(CONFIG.swayX.speed[0], CONFIG.swayX.speed[1]),
-        swayAmplitudeX: rand(
-          CONFIG.swayX.amplitude[0],
-          CONFIG.swayX.amplitude[1],
-        ),
+        swayAmplitudeX: rand(CONFIG.swayX.amplitude[0], CONFIG.swayX.amplitude[1]),
         swayPhaseX: Math.random() * Math.PI * 2,
         swaySpeedZ: rand(CONFIG.swayZ.speed[0], CONFIG.swayZ.speed[1]),
-        swayAmplitudeZ: rand(
-          CONFIG.swayZ.amplitude[0],
-          CONFIG.swayZ.amplitude[1],
-        ),
+        swayAmplitudeZ: rand(CONFIG.swayZ.amplitude[0], CONFIG.swayZ.amplitude[1]),
         swayPhaseZ: Math.random() * Math.PI * 2,
       }
     })
@@ -197,24 +182,16 @@ function Petals() {
       petal.spinAngle += petal.spinSpeed * delta
 
       const offsetX =
-        Math.sin(elapsedTime * petal.swaySpeedX + petal.swayPhaseX) *
-        petal.swayAmplitudeX
+        Math.sin(elapsedTime * petal.swaySpeedX + petal.swayPhaseX) * petal.swayAmplitudeX
       const offsetZ =
-        Math.cos(elapsedTime * petal.swaySpeedZ + petal.swayPhaseZ) *
-        petal.swayAmplitudeZ
+        Math.cos(elapsedTime * petal.swaySpeedZ + petal.swayPhaseZ) * petal.swayAmplitudeZ
 
       let y = petal.position.y - (elapsedTime % 1000000) * CONFIG.fallSpeed
-      y =
-        ((((y + halfHeight) % wrapHeight) + wrapHeight) % wrapHeight) -
-        halfHeight
+      y = ((((y + halfHeight) % wrapHeight) + wrapHeight) % wrapHeight) - halfHeight
 
       spinQuat.setFromAxisAngle(Z_AXIS, petal.spinAngle)
       resultQuat.multiplyQuaternions(petal.tilt, spinQuat)
-      scratchObject3D.position.set(
-        petal.position.x + offsetX,
-        y,
-        petal.position.z + offsetZ,
-      )
+      scratchObject3D.position.set(petal.position.x + offsetX, y, petal.position.z + offsetZ)
       scratchObject3D.quaternion.copy(resultQuat)
       scratchObject3D.scale.setScalar(petal.scale)
       scratchObject3D.updateMatrix()
@@ -254,10 +231,7 @@ function NearPetals() {
 
     const maxRadius =
       (Math.max(CONFIG.nearPetal.size[0], CONFIG.nearPetal.size[1]) *
-        Math.max(
-          CONFIG.nearPetal.aspectRatio[0],
-          CONFIG.nearPetal.aspectRatio[1],
-        )) /
+        Math.max(CONFIG.nearPetal.aspectRatio[0], CONFIG.nearPetal.aspectRatio[1])) /
       2
 
     let timeoutId: ReturnType<typeof setTimeout>
@@ -273,33 +247,21 @@ function NearPetals() {
       const spawnOffset = maxRadius + CONFIG.nearPetal.blurRadius
 
       const baseSize = rand(CONFIG.nearPetal.size[0], CONFIG.nearPetal.size[1])
-      const ratio = rand(
-        CONFIG.nearPetal.aspectRatio[0],
-        CONFIG.nearPetal.aspectRatio[1],
-      )
+      const ratio = rand(CONFIG.nearPetal.aspectRatio[0], CONFIG.nearPetal.aspectRatio[1])
       const width = baseSize * ratio
       const height = baseSize
-      const duration = rand(
-        CONFIG.nearPetal.duration[0],
-        CONFIG.nearPetal.duration[1],
-      )
+      const duration = rand(CONFIG.nearPetal.duration[0], CONFIG.nearPetal.duration[1])
 
       const petalHalfHeight = height / 2
       const fromX = rand(-spawnOffset, viewportWidth + spawnOffset)
       const toX = rand(-spawnOffset, viewportWidth + spawnOffset)
-      const fromY = rand(
-        -spawnOffset,
-        -(petalHalfHeight + CONFIG.nearPetal.blurRadius),
-      )
+      const fromY = rand(-spawnOffset, -(petalHalfHeight + CONFIG.nearPetal.blurRadius))
       const toY = rand(
         viewportHeight + petalHalfHeight + CONFIG.nearPetal.blurRadius,
         viewportHeight + spawnOffset,
       )
 
-      const startAngle = rand(
-        CONFIG.nearPetal.startAngle[0],
-        CONFIG.nearPetal.startAngle[1],
-      )
+      const startAngle = rand(CONFIG.nearPetal.startAngle[0], CONFIG.nearPetal.startAngle[1])
       const spinAngle =
         rand(CONFIG.nearPetal.spinAngle[0], CONFIG.nearPetal.spinAngle[1]) *
         (Math.random() < 0.5 ? -1 : 1)
@@ -316,9 +278,7 @@ function NearPetals() {
       petal.style.setProperty('--blur', `${CONFIG.nearPetal.blurRadius}px`)
       petal.style.setProperty('--width', `${width}px`)
       petal.style.setProperty('--height', `${height}px`)
-      const alpha = isDarkTheme
-        ? CONFIG.nearPetal.alpha.dark
-        : CONFIG.nearPetal.alpha.light
+      const alpha = isDarkTheme ? CONFIG.nearPetal.alpha.dark : CONFIG.nearPetal.alpha.light
       petal.style.setProperty(
         '--bg',
         `radial-gradient(hsl(340 ${isDarkTheme ? '80% 70%' : '100% 80%'} / ${alpha.toString()}), hsl(340 ${isDarkTheme ? '80% 70%' : '100% 80%'} / 0) 70%)`,
@@ -334,10 +294,7 @@ function NearPetals() {
     }
 
     function scheduleNext() {
-      const delay = rand(
-        CONFIG.nearPetal.spawnInterval[0],
-        CONFIG.nearPetal.spawnInterval[1],
-      )
+      const delay = rand(CONFIG.nearPetal.spawnInterval[0], CONFIG.nearPetal.spawnInterval[1])
       timeoutId = setTimeout(spawn, delay)
     }
 
@@ -371,18 +328,10 @@ export default function Hanafubuki() {
       >
         <Petals />
         <ambientLight intensity={!isDarkTheme ? 8 : 2.5} />
-        <directionalLight
-          intensity={!isDarkTheme ? 3 : 1.5}
-          position={[5, 5, 5]}
-        />
+        <directionalLight intensity={!isDarkTheme ? 3 : 1.5} position={[5, 5, 5]} />
         {isDarkTheme && (
           <EffectComposer>
-            <Bloom
-              luminanceThreshold={0}
-              luminanceSmoothing={2}
-              intensity={50}
-              mipmapBlur
-            />
+            <Bloom luminanceThreshold={0} luminanceSmoothing={2} intensity={50} mipmapBlur />
           </EffectComposer>
         )}
       </Canvas>

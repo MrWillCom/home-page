@@ -111,15 +111,9 @@ export default async function TimeSection() {
             <span className={styles.offset}>
               UTC
               {(function getUtcOffsetHours(timeZone) {
-                const referenceDate = new Date(
-                  Date.UTC(new Date().getFullYear(), 0, 1),
-                )
-                const utcDate = new Date(
-                  referenceDate.toLocaleString('en-US', { timeZone: 'UTC' }),
-                )
-                const tzDate = new Date(
-                  referenceDate.toLocaleString('en-US', { timeZone }),
-                )
+                const referenceDate = new Date(Date.UTC(new Date().getFullYear(), 0, 1))
+                const utcDate = new Date(referenceDate.toLocaleString('en-US', { timeZone: 'UTC' }))
+                const tzDate = new Date(referenceDate.toLocaleString('en-US', { timeZone }))
                 const offsetHours = Math.trunc(
                   (tzDate.getTime() - utcDate.getTime()) / (1000 * 60 * 60),
                 )
@@ -143,19 +137,13 @@ export default async function TimeSection() {
             <div>
               <dt>Sunrise</dt>
               <dd>
-                {dateFns.format(
-                  new TZDate(sunriseSunsetData?.sunrise ?? 0, TIMEZONE),
-                  'H:mm',
-                )}
+                {dateFns.format(new TZDate(sunriseSunsetData?.sunrise ?? 0, TIMEZONE), 'H:mm')}
               </dd>
             </div>
             <div>
               <dt>Sunset</dt>
               <dd>
-                {dateFns.format(
-                  new TZDate(sunriseSunsetData?.sunset ?? 0, TIMEZONE),
-                  'H:mm',
-                )}
+                {dateFns.format(new TZDate(sunriseSunsetData?.sunset ?? 0, TIMEZONE), 'H:mm')}
               </dd>
             </div>
           </dl>
