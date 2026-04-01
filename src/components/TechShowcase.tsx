@@ -4,6 +4,7 @@ import styles from './TechShowcase.module.scss'
 import { useEffect, useRef } from 'react'
 import _ from 'lodash'
 import { atom, useAtom } from 'jotai'
+import { AnimatePresence, motion } from 'motion/react'
 
 const techs = [
   'clerk',
@@ -57,49 +58,58 @@ const SHOWN_COUNT = 12
 
 const currentTechsAtom = atom(_.sampleSize(techs, SHOWN_COUNT))
 
-function TechIcon({ i }: { i: number }) {
-  const [currentTechs, setCurrentTechs] = useAtom(currentTechsAtom)
-
+function TechIcon({ i, tech }: { i: number; tech: string }) {
   return (
     <div className={styles.techIcon}>
-      <i className={'si si-' + currentTechs[i]} suppressHydrationWarning />
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.i
+          key={`${i}-${tech}`}
+          initial={{ opacity: 0, scale: 0.9, filter: 'blur(2px)' }}
+          animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+          exit={{ opacity: 0, scale: 0.9, filter: 'blur(2px)' }}
+          transition={{ duration: 0.4, ease: 'easeOut' }}
+          className={'si si-' + tech}
+          suppressHydrationWarning
+        />
+      </AnimatePresence>
     </div>
   )
 }
 
 export default function TechShowcase() {
   const [currentTechs, setCurrentTechs] = useAtom(currentTechsAtom)
-  const gridRef = useRef<HTMLDivElement>(null)
+  const lastIndex = useRef<number | null>(null)
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      if (gridRef.current) {
-        gridRef.current.setAttribute('data-hidden', '')
-
-        const handler = () => {
-          setCurrentTechs(_.sampleSize(techs, SHOWN_COUNT))
-          if (gridRef.current) {
-            gridRef.current.removeAttribute('data-hidden')
-            gridRef.current.removeEventListener('transitionend', handler)
+      if (!document.hidden) {
+        setCurrentTechs(prev => {
+          let index = _.random(0, SHOWN_COUNT - 1)
+          while (index === lastIndex.current) {
+            index = _.random(0, SHOWN_COUNT - 1)
           }
-        }
+          lastIndex.current = index
 
-        gridRef.current.addEventListener('transitionend', handler)
+          return Object.values({
+            ...prev,
+            [index]: _.sample(_.difference(techs, prev)),
+          }) as string[]
+        })
       }
-    }, 3600)
+    }, 2000)
 
     return () => {
       clearInterval(intervalId)
     }
-  }, [])
+  }, [setCurrentTechs])
 
   return (
     <section>
       <h2 className={styles.heading}>
         I work with <i>countless</i> technologies, services and software.
       </h2>
-      <div className={styles.grid} ref={gridRef}>
-        {..._.range(SHOWN_COUNT).map(i => <TechIcon i={i} />)}
+      <div className={styles.grid}>
+        {..._.range(SHOWN_COUNT).map(i => <TechIcon i={i} tech={currentTechs[i]} />)}
       </div>
     </section>
   )
