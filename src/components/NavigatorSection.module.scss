@@ -37,7 +37,6 @@
 
   & > .subdomains {
     position: relative;
-    font-family: var(--font-mono);
 
     border-bottom: var(--border-dashed-default);
 
@@ -92,7 +91,6 @@
           }
 
           & > .left {
-            font-family: var(--font-sans);
             & > .title {
               @include brighter;
 
@@ -107,6 +105,7 @@
 
           & > .right {
             text-align: right;
+            font-family: var(--font-mono);
             min-width: 240px;
             @media (max-width: 600px) {
               min-width: 100px;
