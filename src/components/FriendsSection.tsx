@@ -52,7 +52,9 @@ async function FriendItem({ friend }: { friend: Friend }) {
 export default function FriendsSection() {
   return (
     <section className={styles.sect}>
-      <h2 className={styles.heading}>Friends</h2>
+      <h2 className={styles.heading} id="friends">
+        Friends
+      </h2>
       <ul className={styles.friendsList}>
         {...friends.map(friend => <FriendItem friend={friend} />)}
       </ul>
