@@ -1,0 +1,108 @@
+.sect {
+  border-bottom: var(--border-dashed-default);
+
+  .heading {
+    font-size: 22px;
+    font-weight: 400;
+    margin: 0;
+    padding: var(--spacing-lg);
+    padding-bottom: calc(var(--spacing-lg) - var(--spacing-md));
+  }
+
+  .friendsList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    @media (max-width: 780px) {
+      grid-template-columns: 1fr;
+    }
+
+    .friendItem {
+      & > a {
+        display: block;
+        color: var(--text-color-secondary);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        padding: var(--spacing-md) var(--spacing-lg);
+        text-align: center;
+        border-radius: var(--radius-md);
+
+        @media (max-width: 780px) {
+          border-radius: 0;
+        }
+
+        .avatar {
+          display: block;
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          corner-shape: initial;
+          box-shadow: 0 0 8px #00000012;
+          opacity: 0.9;
+        }
+
+        .name,
+        .description {
+          margin: 0;
+        }
+
+        .name {
+          font-size: 15px;
+          margin-left: var(--spacing-sm);
+          font-weight: 500;
+        }
+
+        .description {
+          font-size: 13px;
+          margin-left: var(--spacing-2xs);
+          color: var(--text-color-tertiary);
+        }
+
+        &:hover,
+        &:focus-visible {
+          background-color: var(--background-color-secondary);
+
+          .avatar {
+            opacity: 1;
+          }
+
+          .name {
+            color: var(--text-color-primary);
+          }
+
+          .description {
+            color: var(--text-color-secondary);
+          }
+        }
+      }
+
+      &:nth-child(2n + 1) > a {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+
+      &:nth-child(2n) > a {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+      &:nth-last-child(1):nth-child(2n) > a {
+        border-bottom-left-radius: 0;
+      }
+      &:nth-last-child(2):nth-child(2n + 1) > a {
+        border-bottom-right-radius: 0;
+      }
+      &:nth-last-child(1):nth-child(2n + 1) > a {
+        border-bottom-right-radius: 0;
+      }
+
+      &:last-child > a {
+        padding-bottom: var(--spacing-lg);
+      }
+    }
+  }
+}

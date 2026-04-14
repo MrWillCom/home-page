@@ -11,6 +11,7 @@ import AnimeShowcase from '@/components/AnimeShowcase'
 import ReneurPromotion from '@/components/ReneurPromotion'
 import HeroSection from '@/components/HeroSection'
 import Hanafubuki from '@/components/Hanafubuki'
+import FriendsSection from '@/components/FriendsSection'
 
 export default async function Home() {
   return (
@@ -24,6 +25,7 @@ export default async function Home() {
         <TechShowcase />
         <UnsplashSection />
         <ProjectShowcase />
+        <FriendsSection />
         <AnimeShowcase />
         <MessageSection />
         <FeatureSupportSection />
