@@ -95,6 +95,9 @@
       }
       &:nth-last-child(2):nth-child(2n + 1) > a {
         border-bottom-right-radius: 0;
+        @media not (max-width: 780px) {
+          padding-bottom: var(--spacing-lg);
+        }
       }
       &:nth-last-child(1):nth-child(2n + 1) > a {
         border-bottom-right-radius: 0;
