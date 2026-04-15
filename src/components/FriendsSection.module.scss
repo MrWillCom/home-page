@@ -1,12 +1,14 @@
 .sect {
   border-bottom: var(--border-dashed-default);
 
+  $friendListPaddingY: var(--spacing-sm);
+
   .heading {
     font-size: 22px;
     font-weight: 400;
     margin: 0;
     padding: var(--spacing-lg);
-    padding-bottom: calc(var(--spacing-lg) - var(--spacing-md));
+    padding-bottom: calc(var(--spacing-lg) - $friendListPaddingY);
   }
 
   .friendsList {
@@ -27,7 +29,7 @@
         text-decoration: none;
         display: flex;
         align-items: center;
-        padding: var(--spacing-md) var(--spacing-lg);
+        padding: $friendListPaddingY var(--spacing-lg);
         text-align: center;
         border-radius: var(--radius-md);
 
@@ -57,7 +59,7 @@
         }
 
         .description {
-          font-size: 13px;
+          font-size: 12px;
           margin-left: var(--spacing-2xs);
           color: var(--text-color-tertiary);
         }
