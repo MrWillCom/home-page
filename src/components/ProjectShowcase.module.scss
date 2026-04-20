@@ -5,6 +5,7 @@
   background-color: var(--background-color-secondary);
   display: flex;
   gap: var(--spacing-md);
+  height: 220px;
 
   @media (max-width: 600px) {
     flex-direction: column-reverse;
@@ -45,7 +46,7 @@
     }
 
     &:last-child {
-      --min-scale: 1;
+      // --min-scale: 1;
     }
   }
 
@@ -147,6 +148,7 @@
       width: 100%;
 
       img {
+        display: block;
         width: auto;
         height: auto;
         max-width: 100%;

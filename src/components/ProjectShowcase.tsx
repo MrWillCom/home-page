@@ -4,6 +4,8 @@ import VisuallyHidden from './VisuallyHidden'
 import { formatDistanceToNow } from 'date-fns'
 import Image from 'next/image'
 import hexoThemeCupertinoImage from '@/assets/hexo-theme-cupertino.webp'
+import linkdingXImage from '@/assets/linkdingX.webp'
+import quote0Image from '@/assets/quote0.webp'
 import nextMastodonGalleryImage from '@/assets/next-mastodon-gallery.png'
 
 function ProjectCard({
@@ -146,7 +148,7 @@ export default async function ProjectShowcase() {
           <a href="https://github.com/MrWillCom/hexo-theme-cupertino" target="_blank">
             GitHub
           </a>,
-          <a href="https://npmx.dev/hexo-theme-cupertino" target="_blank">
+          <a href="https://npmx.dev/package/hexo-theme-cupertino" target="_blank">
             npm
           </a>,
         ]}
@@ -158,6 +160,65 @@ export default async function ProjectShowcase() {
             height={648}
             placeholder="blur"
           />
+        }
+      />
+      <ProjectCard
+        title="linkdingX"
+        description="The persistent, offline-first sidepanel companion for your linkding instance."
+        techs={['googlechrome', 'wxt', 'swr', 'tailwindcss']}
+        stats={[
+          {
+            key: 'Stars',
+            value: await fetchGitHubStars('MrWillCom/linkdingX'),
+          },
+          {
+            key: 'Last updated',
+            value: formatDistanceToNow(await fetchLastCommitDate('MrWillCom/linkdingX'), {
+              addSuffix: true,
+            }),
+          },
+          {
+            key: 'Age',
+            value: formatDistanceToNow(await fetchFirstCommitDate('MrWillCom/linkdingX')),
+          },
+        ]}
+        links={[
+          <a href="https://github.com/MrWillCom/linkdingX" target="_blank">
+            GitHub
+          </a>,
+        ]}
+        image={<Image src={linkdingXImage} alt="Screenshot of linkdingX" placeholder="blur" />}
+      />
+      <ProjectCard
+        title="quote0"
+        description="TypeScript SDK and CLI for Quote/0."
+        techs={['typescript']}
+        stats={[
+          {
+            key: 'Stars',
+            value: await fetchGitHubStars('MrWillCom/quote0'),
+          },
+          {
+            key: 'Last updated',
+            value: formatDistanceToNow(await fetchLastCommitDate('MrWillCom/quote0'), {
+              addSuffix: true,
+            }),
+          },
+          {
+            key: 'Age',
+            value: formatDistanceToNow(await fetchFirstCommitDate('MrWillCom/quote0')),
+          },
+        ]}
+        links={[
+          <a href="https://github.com/MrWillCom/quote0" target="_blank">
+            GitHub
+          </a>,
+          <a href="https://npmx.dev/package/quote0" target="_blank">
+            npm
+          </a>,
+        ]}
+        image={
+          <Image src={quote0Image} alt="Photo of quote0 on a quote0 device" placeholder="blur" />
         }
       />
       <ProjectCard
