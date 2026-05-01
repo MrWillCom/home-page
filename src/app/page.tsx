@@ -10,7 +10,6 @@ import TimeSection from '@/components/TimeSection'
 import AnimeShowcase from '@/components/AnimeShowcase'
 import ReneurPromotion from '@/components/ReneurPromotion'
 import HeroSection from '@/components/HeroSection'
-import Hanafubuki from '@/components/Hanafubuki'
 import FriendsSection from '@/components/FriendsSection'
 
 export default async function Home() {
@@ -37,7 +36,6 @@ export default async function Home() {
           <p className={styles.copyright}>© 2021–{new Date().getFullYear()} Mr. Will (MrWillCom)</p>
         </footer>
       </main>
-      <Hanafubuki />
     </>
   )
 }
