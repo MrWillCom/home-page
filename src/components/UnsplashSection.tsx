@@ -1,5 +1,6 @@
 import styles from './UnsplashSection.module.scss'
 import AtroposWrapper from './AtroposWrapper'
+import UnsplashStats from './UnsplashStats'
 import { ImgHTMLAttributes } from 'react'
 
 function AtroposImage({ className, ...props }: ImgHTMLAttributes<HTMLElement>) {
@@ -55,6 +56,10 @@ export default async function UnsplashSection() {
     console.error(error)
   }
 
+  const TIME_SPAN = 30 * 24 * 60 * 60 * 1000
+  const viewsInterval = statistics ? TIME_SPAN / statistics.views.historical.change : 0
+  const downloadsInterval = statistics ? TIME_SPAN / statistics.downloads.historical.change : 0
+
   return (
     <section className={styles.sect}>
       <div className={styles.left}>
@@ -71,16 +76,12 @@ export default async function UnsplashSection() {
         {statistics && (
           <div className={styles.statistics}>
             <span className={styles.lastNDays}>Last 30 days</span>
-            <dl>
-              <div>
-                <dd>{statistics.downloads.historical.change}</dd>
-                <dt>Downloads</dt>
-              </div>
-              <div>
-                <dd>{statistics.views.historical.change}</dd>
-                <dt>Views</dt>
-              </div>
-            </dl>
+            <UnsplashStats
+              initialViews={statistics.views.historical.change}
+              initialDownloads={statistics.downloads.historical.change}
+              viewsInterval={viewsInterval}
+              downloadsInterval={downloadsInterval}
+            />
           </div>
         )}
         <a href="https://unsplash.com/@mrwillcom" target="_blank" className={styles.bottom}>
