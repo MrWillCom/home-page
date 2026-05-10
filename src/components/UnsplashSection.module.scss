@@ -46,13 +46,50 @@
     }
   }
 
+  & > .statistics {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+
+    & > .lastNDays {
+      font-size: 13px;
+      color: var(--text-color-tertiary);
+    }
+
+    & > dl {
+      display: flex;
+      gap: var(--spacing-md);
+      margin: 0;
+
+      & > div {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-3xs);
+
+        & > dt {
+          font-size: 12px;
+          font-weight: 350;
+          color: var(--text-color-tertiary);
+        }
+
+        & > dd {
+          font-size: 15px;
+          font-weight: 500;
+          margin-left: 0;
+        }
+      }
+    }
+  }
+
   & > .bottom {
     display: flex;
     justify-content: space-between;
     text-decoration: none;
     color: var(--text-color-secondary);
     margin: calc(-1 * var(--spacing-lg));
-    margin-top: var(--spacing-md);
+    // margin-top: var(--spacing-md);
+    margin-top: var(--spacing-3xs);
     padding: var(--spacing-lg);
     font-size: 14px;
     position: relative;
