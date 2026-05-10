@@ -41,6 +41,7 @@
       background-color: var(--background-color-tertiary);
       color: var(--text-color-primary);
       padding: var(--spacing-xs) var(--spacing-md);
+      box-shadow: inset 0px 3px 9px -6px #fff;
       transition-property: background-color, color, border-color;
       transition-duration: 0.15s;
 
