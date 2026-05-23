@@ -1,3 +1,8 @@
-onlyBuiltDependencies:
-  - '@parcel/watcher'
-  - sharp
+overrides:
+  '@types/react': 19.2.2
+  '@types/react-dom': 19.2.2
+allowBuilds:
+  '@parcel/watcher': true
+  sharp: true
+minimumReleaseAgeExclude:
+  - date-fns@4.3.0
