@@ -21,6 +21,8 @@
     animation-timeline: view(block);
     --max-scale: 1.12;
     --min-scale: 0.92;
+    --max-rotate: 5deg;
+    --min-rotate: -5deg;
 
     @media (max-width: 600px) {
       top: 15svh;
@@ -30,6 +32,7 @@
       0% {
         box-shadow: 0 0 36px #0001;
         scale: var(--max-scale);
+        rotate: x var(--max-rotate);
       }
       60% {
         scale: 1;
@@ -37,16 +40,19 @@
       100% {
         scale: var(--min-scale);
         box-shadow: 0 0 36px transparent;
+        rotate: x var(--min-rotate);
       }
     }
 
     // a visually hidden h2 is :first-child
     &:nth-child(2) {
       --max-scale: 1;
+      --max-rotate: 0deg;
     }
 
     &:last-child {
       // --min-scale: 1;
+      // --min-rotate: 0deg;
     }
   }
 
@@ -165,6 +171,9 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-lg);
+
+  transform-style: preserve-3d;
+  perspective: 1000px;
 
   @supports (animation-timeline: view(block)) {
     gap: var(--spacing-xl);
