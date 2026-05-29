@@ -172,7 +172,6 @@
   flex-direction: column;
   gap: var(--spacing-lg);
 
-  transform-style: preserve-3d;
   perspective: 1000px;
 
   @supports (animation-timeline: view(block)) {
