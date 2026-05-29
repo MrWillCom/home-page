@@ -141,8 +141,7 @@
   z-index: 100;
   border-radius: var(--radius-md);
   box-shadow: 0 0 36px #00000010;
-  background-color: color-mix(in oklch, var(--background-color-primary) 85%, transparent);
-  backdrop-filter: blur(16px) saturate(1.1);
+  background-color: var(--background-color-primary);
   padding: calc(var(--radius-md) / 2);
   border: var(--border-dashed-default);
   transform-origin: -10px -10px;
