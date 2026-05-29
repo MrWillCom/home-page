@@ -2,6 +2,7 @@ import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   images: {
+    dangerouslyAllowLocalIP: process.env.NODE_ENV === 'development',
     remotePatterns: [
       {
         protocol: 'https',
@@ -20,6 +21,12 @@ const nextConfig: NextConfig = {
         hostname: 'cdn.vmst.io',
         port: '',
         pathname: '/accounts/avatars/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'blog.mrwillcom.com',
+        port: '',
+        pathname: '/img/**',
       },
     ],
   },

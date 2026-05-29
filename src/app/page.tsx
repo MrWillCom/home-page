@@ -11,6 +11,7 @@ import AnimeShowcase from '@/components/AnimeShowcase'
 import ReneurPromotion from '@/components/ReneurPromotion'
 import HeroSection from '@/components/HeroSection'
 import FriendsSection from '@/components/FriendsSection'
+import BlogPostsSection from '@/components/BlogPostsSection'
 
 export default async function Home() {
   return (
@@ -19,6 +20,7 @@ export default async function Home() {
         <HeroSection />
         <SocialMediaSection />
         <ReneurPromotion />
+        <BlogPostsSection />
         <TimeSection />
         <NavigatorSection />
         <TechShowcase />

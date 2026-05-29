@@ -65,4 +65,5 @@ body {
   font-family: var(--font-sans);
   color: var(--text-color-secondary);
   background-color: var(--background-color-underlying);
+  overflow-x: clip;
 }
