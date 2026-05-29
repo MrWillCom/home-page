@@ -20,9 +20,9 @@ export default async function Home() {
         <HeroSection />
         <SocialMediaSection />
         <ReneurPromotion />
-        <BlogPostsSection />
         <TimeSection />
         <NavigatorSection />
+        <BlogPostsSection />
         <TechShowcase />
         <UnsplashSection />
         <ProjectShowcase />
