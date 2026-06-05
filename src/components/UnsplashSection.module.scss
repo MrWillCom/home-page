@@ -53,6 +53,7 @@
     gap: var(--spacing-xs);
 
     & > .lastNDays {
+      margin-top: var(--spacing-md);
       font-size: 13px;
       color: var(--text-color-tertiary);
     }
@@ -88,7 +89,6 @@
     text-decoration: none;
     color: var(--text-color-secondary);
     margin: calc(-1 * var(--spacing-lg));
-    // margin-top: var(--spacing-md);
     margin-top: var(--spacing-3xs);
     padding: var(--spacing-lg);
     font-size: 14px;
