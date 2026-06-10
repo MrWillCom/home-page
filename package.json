@@ -13,7 +13,7 @@
     "@date-fns/tz": "^1.5.0",
     "@number-flow/react": "^0.6.0",
     "@openpanel/nextjs": "^1.5.1",
-    "@radix-ui/react-portal": "^1.1.10",
+    "@radix-ui/react-portal": "^1.1.11",
     "@reactuses/core": "^6.3.2",
     "atropos": "^2.0.2",
     "bootstrap": "^5.3.8",
@@ -28,19 +28,19 @@
     "normalize.css": "^8.0.1",
     "react": "19.2.7",
     "react-dom": "19.2.7",
-    "simple-icons-font": "^16.22.0",
+    "simple-icons-font": "^16.23.0",
     "torph": "^0.0.9",
     "type-fest": "^5.7.0",
     "zod": "^4.4.3"
   },
   "devDependencies": {
     "@types/lodash": "^4.17.24",
-    "@types/node": "^25.9.1",
-    "@types/react": "19.2.16",
+    "@types/node": "^25.9.2",
+    "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
-    "oxfmt": "^0.53.0",
+    "oxfmt": "^0.54.0",
     "sass": "^1.100.0",
     "typescript": "^6.0.3"
   },
-  "packageManager": "pnpm@11.5.2+sha512.71c631e382066efc25625d5cf029075de07b61b37f6e27350fbd84b1bda5864c8c1967adc280776b45c30a715c0359a3be08fef42d5bb09e2b99029979692916"
+  "packageManager": "pnpm@11.5.3+sha512.7ac1c919341c213a34dc0d02afb7143c5c26ac26ee8c4782deea821b8ac64d2134a081fd8941dae6e29bbb48f58dfc2b7fbceeccc07cb2f09d219d342a4969ed"
 }
