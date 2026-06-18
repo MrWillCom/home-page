@@ -12,15 +12,9 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'cdn.vmst.io',
+        hostname: 'gts.mrwillcom.com',
         port: '',
-        pathname: '/accounts/headers/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'cdn.vmst.io',
-        port: '',
-        pathname: '/accounts/avatars/**',
+        pathname: '/fileserver/**',
       },
       {
         protocol: 'https',

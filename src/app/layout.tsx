@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   title: 'Mr. Will',
   description: 'A full-stack developer and a photographer.',
   other: {
-    'fediverse:creator': '@MrWillCom@vmst.io',
+    'fediverse:creator': '@mrwillcom@gts.mrwillcom.com',
   },
 }
 

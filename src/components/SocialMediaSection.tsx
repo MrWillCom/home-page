@@ -110,18 +110,21 @@ export default async function SocialMediaSection() {
       },
     },
     {
-      url: 'https://vmst.io/@MrWillCom',
+      url: 'https://gts.mrwillcom.com/@mrwillcom',
       target: '_blank',
-      label: 'Mastodon',
+      label: 'Fediverse',
       profile: await (async () => {
         const response = await (
-          await fetch('https://vmst.io/api/v1/accounts/lookup?acct=MrWillCom', {
+          await fetch('https://gts.mrwillcom.com/api/v1/accounts/lookup?acct=mrwillcom', {
+            headers: {
+              Authorization: `Bearer ${process.env.GOTOSOCIAL_ACCESS_TOKEN}`,
+            },
             next: { revalidate: 3600 },
           })
         ).json()
 
         return {
-          platform: 'Mastodon',
+          platform: 'Fediverse',
           headerUrl: response.header,
           avatarUrl: response.avatar,
           displayName: response.display_name,
