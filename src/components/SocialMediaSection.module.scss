@@ -270,7 +270,7 @@
     // height: 48px;
     padding: calc(($height - $fontSize * $lineHeight) / 2) var(--spacing-lg);
 
-    @media (width>780px) {
+    @media (width > 780px) {
       justify-content: flex-end;
       margin-top: -48px;
     }
