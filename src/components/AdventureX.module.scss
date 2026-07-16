@@ -1,0 +1,63 @@
+.sect {
+  border-bottom: var(--border-dashed-default);
+  padding: var(--spacing-lg);
+
+  $advxAccent: lab(67.3367% 39.2522 64.5082);
+
+  .card {
+    padding: var(--spacing-lg);
+    border: var(--border-dashed-default);
+    border-radius: var(--radius-md);
+    background-color: var(--background-color-secondary);
+    text-align: center;
+
+    & > * {
+      margin: 0;
+    }
+
+    .heading {
+      font-size: 12px;
+      font-weight: 450;
+      color: var(--text-color-tertiary);
+      margin: 0;
+      margin-bottom: var(--spacing-2xs);
+      text-transform: uppercase;
+    }
+
+    .logo {
+      color: var(--text-color-primary);
+      height: 30px;
+      margin-bottom: var(--spacing-2xs);
+    }
+
+    p {
+      font-size: 14px;
+
+      strong {
+        font-weight: 500;
+      }
+    }
+
+    a {
+      display: inline-block;
+      margin-top: var(--spacing-md);
+      border-radius: var(--radius-full);
+      border: 1px solid color-mix(in oklch, var(--border-color-primary), $advxAccent 10%);
+      text-decoration: none;
+      corner-shape: initial;
+      background-color: color-mix(in oklch, var(--background-color-tertiary), $advxAccent 10%);
+      color: color-mix(in oklch, var(--text-color-primary), $advxAccent 10%);
+      padding: var(--spacing-xs) var(--spacing-md);
+      box-shadow: inset 0px 3px 9px -6px $advxAccent;
+      transition-property: background-color, color, border-color, box-shadow;
+      transition-duration: 0.15s;
+
+      &:hover,
+      &:focus-visible {
+        background-color: $advxAccent;
+        color: #fff;
+        box-shadow: inset 0px 3px 9px -6px #fff;
+      }
+    }
+  }
+}
