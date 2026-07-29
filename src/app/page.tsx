@@ -8,7 +8,6 @@ import ProjectShowcase from '@/components/ProjectShowcase'
 import FeatureSupportSection from '@/components/FeatureSupportSection'
 import TimeSection from '@/components/TimeSection'
 import AnimeShowcase from '@/components/AnimeShowcase'
-import AdventureX from '@/components/AdventureX'
 import HeroSection from '@/components/HeroSection'
 import FriendsSection from '@/components/FriendsSection'
 import BlogPostsSection from '@/components/BlogPostsSection'
@@ -19,7 +18,6 @@ export default async function Home() {
       <main className={styles.main}>
         <HeroSection />
         <SocialMediaSection />
-        <AdventureX />
         <TimeSection />
         <NavigatorSection />
         <BlogPostsSection />
