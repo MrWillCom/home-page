@@ -24,7 +24,7 @@ export default async function HeroSection() {
           I&apos;m&nbsp;<strong>Mr.&nbsp;Will</strong>!
         </h1>
         <p className={styles.description}>
-          A <i>full-stack developer</i> and a <i>photographer</i>.
+          <i>Full-stack developer</i>, <i>design engineer</i> and <i>photographer</i>.
         </p>
       </div>
       <div className={styles.right}>
