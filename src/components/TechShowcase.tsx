@@ -65,13 +65,13 @@ const currentTechsAtom = atom(_.sampleSize(techs, SHOWN_COUNT))
 function TechIcon({ i, tech }: { i: number; tech: string }) {
   return (
     <div className={styles.techIcon}>
-      <AnimatePresence mode="wait" initial={false}>
+      <AnimatePresence mode="popLayout" initial={false}>
         <motion.i
           key={`${i}-${tech}`}
-          initial={{ opacity: 0, scale: 0.9, filter: 'blur(2px)' }}
-          animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-          exit={{ opacity: 0, scale: 0.9, filter: 'blur(2px)' }}
-          transition={{ duration: 0.4, ease: 'easeOut' }}
+          initial={{ opacity: 0, filter: 'blur(6px)', translateY: 6 }}
+          animate={{ opacity: 1, filter: 'blur(0px)', translateY: 0 }}
+          exit={{ opacity: 0, filter: 'blur(6px)', translateY: -6 }}
+          transition={{ duration: 0.5 }}
           className={'si si-' + tech}
           suppressHydrationWarning
         />
@@ -100,7 +100,7 @@ export default function TechShowcase() {
           }) as string[]
         })
       }
-    }, 2000)
+    }, 1500)
 
     return () => {
       clearInterval(intervalId)
