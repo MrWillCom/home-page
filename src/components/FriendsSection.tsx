@@ -22,10 +22,10 @@ const friends: Friend[] = [
     avatar: 'clck.webp',
   },
   {
-    name: 'Innei',
-    description: '致虚极，守静笃。',
-    link: 'https://innei.in/',
-    avatar: 'innei.jpeg',
+    name: 'Micky',
+    description: 'Visual Designer · AI × Product × Brand',
+    link: 'https://micky-portfolio-black.vercel.app/',
+    avatar: 'micky.jpg',
   },
 ]
 
