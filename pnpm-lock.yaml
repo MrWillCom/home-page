@@ -25,8 +25,8 @@ importers:
         specifier: ^1.1.17
         version: 1.1.17(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@reactuses/core':
-        specifier: ^6.5.2
-        version: 6.5.2(react@19.2.8)
+        specifier: ^6.5.3
+        version: 6.5.3(react@19.2.8)
       atropos:
         specifier: ^2.0.2
         version: 2.0.2
@@ -86,10 +86,10 @@ importers:
         specifier: ^26.2.0
         version: 26.2.0
       '@types/react':
-        specifier: 19.2.2
+        specifier: 19.2.18
         version: 19.2.18
       '@types/react-dom':
-        specifier: 19.2.2
+        specifier: 19.2.4
         version: 19.2.4(@types/react@19.2.18)
       oxfmt:
         specifier: ^0.64.0
@@ -611,8 +611,8 @@ packages:
       '@types/react':
         optional: true
 
-  '@reactuses/core@6.5.2':
-    resolution: {integrity: sha512-oLhqof0nC1uYHtcv1a19jnB+wqfbr8ecIDrpn7KENMrsyGP44PoihfIVMxYIljJxMfeIzNQz0TxK1syIWcTuAw==}
+  '@reactuses/core@6.5.3':
+    resolution: {integrity: sha512-FBATB781Kk4u2JDzvQ+J4Sxc2pLn+Qv56eIZ3MfqHK0cSxl3+1sWrM4nUHt1Awq47gYzswC+dxqaHM8FWVfsOw==}
     peerDependencies:
       qrcode: ^1.5
       react: ^16.8.0  || ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -1299,7 +1299,7 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.2.18
 
-  '@reactuses/core@6.5.2(react@19.2.8)':
+  '@reactuses/core@6.5.3(react@19.2.8)':
     dependencies:
       '@microsoft/fetch-event-source': 2.0.1
       js-cookie: 3.0.8

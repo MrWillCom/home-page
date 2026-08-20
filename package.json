@@ -14,7 +14,7 @@
     "@number-flow/react": "^0.6.2",
     "@openpanel/nextjs": "^1.5.1",
     "@radix-ui/react-portal": "^1.1.17",
-    "@reactuses/core": "^6.5.2",
+    "@reactuses/core": "^6.5.3",
     "atropos": "^2.0.2",
     "bootstrap": "^5.3.8",
     "date-fns": "^4.4.0",
